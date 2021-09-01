@@ -1,11 +1,10 @@
 import React from 'react';
 import './Leko.css';
+import Lon from './Lon';
 
-export interface LekoProps
+export interface LekoProps extends Lon
 {
   nimi: string;
-  x: number;
-  y: number;
 }
 
 export abstract class Leko extends React.Component<LekoProps, any>
