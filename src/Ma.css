@@ -1,0 +1,10 @@
+.Ma
+{
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 0;
+  width: 600px;
+  height: 400px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px -10px;
+}

@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import Musi from './Musi';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Musi />
   </React.StrictMode>,
   document.getElementById('lawa')
 );

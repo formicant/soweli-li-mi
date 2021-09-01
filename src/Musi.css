@@ -1,0 +1,30 @@
+h1
+{
+  margin: 0;
+  font-size: 240%;
+  font-family: linja-pona;
+  font-weight: normal;
+  text-align: center;
+  position: relative;
+  left: 1px;
+}
+
+h2
+{
+  margin-top: -12px;
+  margin-bottom: -6px;
+  font-size: 120%;
+  font-weight: normal;
+  font-variation-settings: 'wght' 500, 'wdth' 125, 'opsz' 72;
+  text-align: center;
+}
+
+h3
+{
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 66%;
+  font-weight: normal;
+  font-variation-settings: 'wght' 350, 'wdth' 125, 'opsz' 72;
+  text-align: center;
+}

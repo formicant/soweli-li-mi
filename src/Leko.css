@@ -1,0 +1,46 @@
+.Leko
+{
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  position: absolute;
+}
+
+.sitelen
+{
+  /* background-color: #eee; */
+  font-family: linja-pona;
+  font-size: 45px;
+}
+
+.nimi
+{
+  font-variation-settings: 'wght' 400, 'wdth' 75, 'opsz' 72;
+  line-height: 1.5ex;
+}
+
+.linjaWan
+{
+  font-size: 35px;
+  font-variation-settings: 'wght' 350;
+}
+
+.linjaTu
+{
+  font-size: 25px;
+  font-variation-settings: 'wght' 500;
+}
+
+.nimi span
+{
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: -1px;
+}

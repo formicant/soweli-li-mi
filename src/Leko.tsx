@@ -1,0 +1,48 @@
+import React from 'react';
+import './Leko.css';
+
+export interface ILekoProps
+{
+  nimi: string;
+  x: number;
+  y: number;
+}
+
+export abstract class Leko extends React.Component<ILekoProps, any>
+{
+  constructor(props: ILekoProps)
+  {
+    super(props);
+  }
+  
+  public baseRender = (content: JSX.Element) =>
+    <div
+      className='Leko'
+      style={{
+        left: Leko.size * this.props.x,
+        top: Leko.size * this.props.y,
+      }}
+    >
+      {content}
+    </div>;
+  
+  static readonly size = 40;
+}
+
+export class LekoSitelen extends Leko
+{
+  public render = () => this.baseRender(
+    <span className='sitelen'>
+      {this.props.nimi}
+    </span>
+  );
+}
+
+export class LekoNimi extends Leko
+{
+  public render = () => this.baseRender(
+    <span className='nimi'>
+      {this.props.nimi}
+    </span>
+  );
+}
