@@ -1,16 +1,16 @@
 import React from 'react';
 import './Leko.css';
 
-export interface ILekoProps
+export interface LekoProps
 {
   nimi: string;
   x: number;
   y: number;
 }
 
-export abstract class Leko extends React.Component<ILekoProps, any>
+export abstract class Leko extends React.Component<LekoProps, any>
 {
-  constructor(props: ILekoProps)
+  constructor(props: LekoProps)
   {
     super(props);
   }
