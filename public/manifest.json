@@ -1,0 +1,15 @@
+{
+  "short_name": "soweli li mi",
+  "name": "soweli li mi",
+  "icons": [
+    {
+      "src": "sitelen-lawa-lili.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#222",
+  "background_color": "#ddd"
+}
