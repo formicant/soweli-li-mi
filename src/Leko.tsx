@@ -23,14 +23,11 @@ export abstract class Leko extends React.Component<LekoProps, any>
   }
   
   public baseRender = (content: JSX.Element) =>
-    <div
-      className='Leko'
-      style={{
-        left: Leko.size * this.props.x,
-        top: Leko.size * this.props.y,
-        color: this.kule(),
-      }}
-    >
+    <div className='Leko' style={{
+      color: this.kule(),
+      left: Leko.size * this.props.x,
+      top: Leko.size * this.props.y,
+    }}>
       {content}
     </div>;
   

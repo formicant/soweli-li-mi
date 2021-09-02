@@ -27,7 +27,7 @@ export const lukinPiNnimiAli =
   li:     { kulupu: 'toki', kule: '#666' } as LukinNimi,
   e:      { kulupu: 'toki', kule: '#666' } as LukinNimi,
   en:     { kulupu: 'toki', kule: '#666' } as LukinNimi,
-  ala:    { kulupu: 'toki', kule: '#822' } as LukinNimi,
+  ala:    { kulupu: 'toki', kule: '#f20' } as LukinNimi,
   lon:    { kulupu: 'toki', kule: '#666' } as LukinNimi,
 };
 
