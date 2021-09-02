@@ -1,10 +1,12 @@
 import React from 'react';
 import './Leko.css';
 import Lon from './Lon';
+import Kule from './Kule';
+import { Nimi, lukinPiNnimiAli } from './NimiAli'
 
 export interface LekoProps extends Lon
 {
-  nimi: string;
+  nimi: Nimi;
 }
 
 export abstract class Leko extends React.Component<LekoProps, any>
@@ -14,12 +16,19 @@ export abstract class Leko extends React.Component<LekoProps, any>
     super(props);
   }
   
+  private kule(): Kule
+  {
+    const lukinNimi = lukinPiNnimiAli[this.props.nimi];
+    return lukinNimi.kule;
+  }
+  
   public baseRender = (content: JSX.Element) =>
     <div
       className='Leko'
       style={{
         left: Leko.size * this.props.x,
         top: Leko.size * this.props.y,
+        color: this.kule(),
       }}
     >
       {content}
