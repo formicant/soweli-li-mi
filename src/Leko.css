@@ -10,11 +10,11 @@
   align-content: center;
   flex-direction: column;
   position: absolute;
+  //background-color: #eee;
 }
 
 .sitelen
 {
-  /* background-color: #eee; */
   font-family: linja-pona;
   font-size: 45px;
 }

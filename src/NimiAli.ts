@@ -1,34 +1,37 @@
-import LukinNimi from './LukinNimi';
+export type KlupuNimi = 'ijo' | 'kulupu' | 'pali' | 'toki'
 
-export const lukinPiNnimiAli =
+export const kulupuPiNimiAli =
 {
-  soweli: { kulupu: 'ijo',  kule: '#222', anteTawa: 'poka' } as LukinNimi,
-  tomo:   { kulupu: 'ijo',  kule: '#640', anteTawa: 'awen' } as LukinNimi,
-  kiwen:  { kulupu: 'ijo',  kule: '#468', anteTawa: 'awen' } as LukinNimi,
-  telo:   { kulupu: 'ijo',  kule: '#09b', anteTawa: 'awen' } as LukinNimi,
-  ko:     { kulupu: 'ijo',  kule: '#884', anteTawa: 'awen' } as LukinNimi,
-  kasi:   { kulupu: 'ijo',  kule: '#2a4', anteTawa: 'awen' } as LukinNimi,
-  kili:   { kulupu: 'ijo',  kule: '#b10', anteTawa: 'awen' } as LukinNimi,
-  waso:   { kulupu: 'ijo',  kule: '#678', anteTawa: 'poka' } as LukinNimi,
-  kala:   { kulupu: 'ijo',  kule: '#47a', anteTawa: 'ali'  } as LukinNimi,
-  akesi:  { kulupu: 'ijo',  kule: '#294', anteTawa: 'ali'  } as LukinNimi,
-  pipi:   { kulupu: 'ijo',  kule: '#850', anteTawa: 'ali'  } as LukinNimi,
-  sike:   { kulupu: 'ijo',  kule: '#444', anteTawa: 'awen' } as LukinNimi,
-  leko:   { kulupu: 'ijo',  kule: '#444', anteTawa: 'awen' } as LukinNimi,
+  soweli: 'ijo'    as KlupuNimi,
+  waso:   'ijo'    as KlupuNimi,
+  kala:   'ijo'    as KlupuNimi,
+  akesi:  'ijo'    as KlupuNimi,
+  pipi:   'ijo'    as KlupuNimi,
+  tomo:   'ijo'    as KlupuNimi,
+  kiwen:  'ijo'    as KlupuNimi,
+  telo:   'ijo'    as KlupuNimi,
+  ko:     'ijo'    as KlupuNimi,
+  kasi:   'ijo'    as KlupuNimi,
+  kili:   'ijo'    as KlupuNimi,
+  sike:   'ijo'    as KlupuNimi,
+  leko:   'ijo'    as KlupuNimi,
   
-  mi:     { kulupu: 'pali', kule: '#222' } as LukinNimi,
-  pini:   { kulupu: 'pali', kule: '#640' } as LukinNimi,
-  moli:   { kulupu: 'pali', kule: '#b10' } as LukinNimi,
-  awen:   { kulupu: 'pali', kule: '#468' } as LukinNimi,
-  weka:   { kulupu: 'pali', kule: '#bbb' } as LukinNimi,
-  tawa:   { kulupu: 'pali', kule: '#222' } as LukinNimi,
-  pakala: { kulupu: 'pali', kule: '#266' } as LukinNimi,
+  ali:    'kulupu' as KlupuNimi,
+  nimi:   'kulupu' as KlupuNimi,
   
-  li:     { kulupu: 'toki', kule: '#666' } as LukinNimi,
-  e:      { kulupu: 'toki', kule: '#666' } as LukinNimi,
-  en:     { kulupu: 'toki', kule: '#666' } as LukinNimi,
-  ala:    { kulupu: 'toki', kule: '#f20' } as LukinNimi,
-  lon:    { kulupu: 'toki', kule: '#666' } as LukinNimi,
-};
+  mi:     'pali'   as KlupuNimi,
+  pini:   'pali'   as KlupuNimi,
+  moli:   'pali'   as KlupuNimi,
+  awen:   'pali'   as KlupuNimi,
+  weka:   'pali'   as KlupuNimi,
+  tawa:   'pali'   as KlupuNimi,
+  pakala: 'pali'   as KlupuNimi,
+  
+  li:     'toki'   as KlupuNimi,
+  e:      'toki'   as KlupuNimi,
+  en:     'toki'   as KlupuNimi,
+  ala:    'toki'   as KlupuNimi,
+  lon:    'toki'   as KlupuNimi,
+} as const;
 
-export type Nimi = keyof typeof lukinPiNnimiAli;
+export type Nimi = keyof typeof kulupuPiNimiAli;

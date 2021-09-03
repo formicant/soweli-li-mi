@@ -1,5 +1,5 @@
 export default interface Lon
 {
-  x: number,
-  y: number;
+  readonly x: number,
+  readonly y: number;
 }

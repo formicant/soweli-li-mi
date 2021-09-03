@@ -2,11 +2,13 @@ import React from 'react';
 import './Leko.css';
 import Lon from './Lon';
 import Kule from './Kule';
-import { Nimi, lukinPiNnimiAli } from './NimiAli'
+import { Nimi } from './NimiAli'
+import { lukinPiNnimiAli } from './LukinNimi'
+import { kipisiNimi } from './KipisiNimi';
 
 export interface LekoProps extends Lon
 {
-  nimi: Nimi;
+  readonly nimi: Nimi;
 }
 
 export abstract class Leko extends React.Component<LekoProps, any>
@@ -22,7 +24,7 @@ export abstract class Leko extends React.Component<LekoProps, any>
     return lukinNimi.kule;
   }
   
-  public baseRender = (content: JSX.Element) =>
+  public baseRender = (content: JSX.Element | JSX.Element[]) =>
     <div className='Leko' style={{
       color: this.kule(),
       left: Leko.size * this.props.x,
@@ -45,9 +47,14 @@ export class LekoSitelen extends Leko
 
 export class LekoNimi extends Leko
 {
-  public render = () => this.baseRender(
-    <span className='nimi'>
-      {this.props.nimi}
-    </span>
-  );
+  public render()
+  {
+    const linja = kipisiNimi(this.props.nimi);
+    const nanpaLinja = linja.length === 1 ? 'Wan' : 'Tu';
+    return this.baseRender(linja.map((ni, nanpa) =>
+      <span className={`nimi linja${nanpaLinja}`} key={nanpa}>
+        {ni.nimiLili}
+      </span>
+    ));
+  }
 }
