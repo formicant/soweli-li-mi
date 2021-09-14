@@ -9,6 +9,15 @@ import { kipisiENimi } from './KipisiENimi';
 
 type kulupuLeko = KlupuNimi | 'sitelen';
 
+const anteKule: { [kulupu in kulupuLeko]: boolean } =
+{
+  ijo:     true,
+  toki:    true,
+  kulupu:  true,
+  pali:    false,
+  sitelen: false,
+};
+
 export interface JoLeko extends Lon
 {
   readonly nimi: Nimi;
@@ -27,7 +36,7 @@ export abstract class Leko extends Component<JoLeko, any>
     const kule = this.kule();
     
     const kulupuLukin = classNames('Leko', this.kulupu());
-    const lukinKule = kulupu === 'ijo' || kulupu === 'toki'
+    const lukinKule = anteKule[kulupu]
       ? { backgroundColor: kule }
       : { color: kule };
     const lukin = {
