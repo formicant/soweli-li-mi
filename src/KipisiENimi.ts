@@ -1,7 +1,7 @@
+import { range, NumberComparer } from 'linq-to-typescript';
 import { Nimi, kulupuPiNimiAli } from './NimiAli';
-import { range } from 'linq-to-typescript';
 
-export interface LinjaNimi
+interface LinjaNimi
 {
   readonly nimiLili: string;
   readonly suliPoka: number;
@@ -33,16 +33,17 @@ function paliEKipisiPiNimiAli(): KipisiPiNimiAli
   function kipisiENimi(nimi: string): LinjaNimi[]
   {
     if(nimi.length < 4)
-      return [paliELinja(nimi, nanpaSulipilinjaWan)];
+      return [paliELinja(nimi, nanpaSuliPiLinjaWan)];
     else
     {
-      const t = range(2, nimi.length - 3);
-      
-      const meso = Math.floor(nimi.length / 2);
-      return [
-        paliELinja(nimi.substring(0, meso), nanpaSulipilinjaTu),
-        paliELinja(nimi.substring(meso), nanpaSulipilinjaTu),
-      ];
+      const kenKipisi = range(2, nimi.length - 3)
+        .select(meso => [
+          paliELinja(nimi.substring(0, meso), nanpaSuliPiLinjaTu),
+          paliELinja(nimi.substring(meso), nanpaSuliPiLinjaTu),
+        ]);
+      return kenKipisi
+        .orderBy(([wan, tu]) => Math.abs(wan.suliPoka - tu.suliPoka), NumberComparer)
+        .first();
     }
   }
   
@@ -53,5 +54,5 @@ function paliEKipisiPiNimiAli(): KipisiPiNimiAli
   return kipisi as KipisiPiNimiAli;
 }
 
-const nanpaSulipilinjaWan = 8000;
-const nanpaSulipilinjaTu = 10240;
+const nanpaSuliPiLinjaWan = 8000;
+const nanpaSuliPiLinjaTu = 10240;
