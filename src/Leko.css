@@ -2,45 +2,37 @@
 {
   margin: 0;
   padding: 0;
-  width: 40px;
-  height: 40px;
+  width: 1em;
+  height: 1em;
   text-align: center;
   display: flex;
   justify-content: center;
   align-content: center;
   flex-direction: column;
   position: absolute;
-  //background-color: #eee;
 }
 
 .sitelen
 {
   font-family: linja-pona;
-  font-size: 45px;
+  font-size: 1.125em;
 }
 
 .nimi
 {
-  font-variation-settings: 'wght' 400, 'wdth' 75, 'opsz' 72;
-  line-height: 1.5ex;
+  line-height: 0.75em;
+  position: relative;
+  top: -0.07em;
 }
 
 .linjaWan
 {
-  font-size: 35px;
-  font-variation-settings: 'wght' 350;
+  font-size: 0.8em;
+  font-weight: 350;
 }
 
 .linjaTu
 {
-  font-size: 25px;
-  font-variation-settings: 'wght' 500;
-}
-
-.nimi span
-{
-  margin: 0;
-  padding: 0;
-  position: relative;
-  top: -1px;
+  font-size: 0.625em;
+  font-weight: 400;
 }

@@ -1,13 +1,13 @@
-import { Nimi, kulupuPiNimiAli } from "./NimiAli";
+import { Nimi, kulupuPiNimiAli } from './NimiAli';
+import { range } from 'linq-to-typescript';
 
-export interface LinjaKipisi
+export interface LinjaNimi
 {
   readonly nimiLili: string;
   readonly suliPoka: number;
-  readonly suliLukin: number;
 }
 
-export function kipisiNimi(nimi: Nimi): LinjaKipisi[]
+export function kipisiENimi(nimi: Nimi): LinjaNimi[]
 {
   if(!kipisiPiNimiAli)
     kipisiPiNimiAli = paliEKipisiPiNimiAli();
@@ -15,38 +15,43 @@ export function kipisiNimi(nimi: Nimi): LinjaKipisi[]
   return kipisiPiNimiAli[nimi];
 }
 
-type KipisiPiNimiAli = { [nimi in Nimi]: LinjaKipisi[] };
+type KipisiPiNimiAli = { [nimi in Nimi]: LinjaNimi[] };
 let kipisiPiNimiAli: KipisiPiNimiAli | undefined;
 
 function paliEKipisiPiNimiAli(): KipisiPiNimiAli
 {
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
-  if(!context)
-    throw new Error('Ken ala pali e lipu sitelen!');
-  context.font = '20px truculenta-variable';
+  const lipuSitelen = document.createElement('canvas');
+  const lonSitelen = lipuSitelen.getContext('2d')!;
+  lonSitelen.font = 'normal 100px truculenta-variable';
   
-  const kipisi: { [nimi: string]: LinjaKipisi[] } = { };
-  for(const nimi of Object.keys(kulupuPiNimiAli))
+  function paliELinja(nimiLili: string, suliPokaAli: number): LinjaNimi
   {
-    kipisi[nimi] = kipisiENimi(nimi, context);
+    const suliPoka = Math.round(suliPokaAli / lonSitelen.measureText(nimiLili).width);
+    return { nimiLili: nimiLili, suliPoka: suliPoka };
   }
-  return kipisi as KipisiPiNimiAli;
   
-  //const metrics = context.measureText(nimi);
+  function kipisiENimi(nimi: string): LinjaNimi[]
+  {
+    if(nimi.length < 4)
+      return [paliELinja(nimi, nanpaSulipilinjaWan)];
+    else
+    {
+      const t = range(2, nimi.length - 3);
+      
+      const meso = Math.floor(nimi.length / 2);
+      return [
+        paliELinja(nimi.substring(0, meso), nanpaSulipilinjaTu),
+        paliELinja(nimi.substring(meso), nanpaSulipilinjaTu),
+      ];
+    }
+  }
+  
+  const kipisi: { [nimi: string]: LinjaNimi[] } = { };
+  for(const nimi of Object.keys(kulupuPiNimiAli))
+    kipisi[nimi] = kipisiENimi(nimi);
+  
+  return kipisi as KipisiPiNimiAli;
 }
 
-function kipisiENimi(nimi: string, context: CanvasRenderingContext2D): LinjaKipisi[]
-{
-  if(nimi.length < 4)
-    return [{ nimiLili: nimi, suliPoka: 75, suliLukin: 72 }];
-  else
-  {
-    const meso = Math.floor(nimi.length / 2);
-    return [
-      { nimiLili: nimi.substring(0, meso), suliPoka: 75, suliLukin: 72 },
-      { nimiLili: nimi.substring(meso), suliPoka: 75, suliLukin: 72 },
-    ];
-  }
-  
-}
+const nanpaSulipilinjaWan = 8000;
+const nanpaSulipilinjaTu = 10240;

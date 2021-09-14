@@ -4,7 +4,7 @@ import Lon from './Lon';
 import Kule from './Kule';
 import { Nimi } from './NimiAli'
 import { lukinPiNnimiAli } from './LukinNimi'
-import { kipisiNimi } from './KipisiNimi';
+import { kipisiENimi } from './KipisiNimi';
 
 export interface LekoProps extends Lon
 {
@@ -27,13 +27,11 @@ export abstract class Leko extends React.Component<LekoProps, any>
   public baseRender = (content: JSX.Element | JSX.Element[]) =>
     <div className='Leko' style={{
       color: this.kule(),
-      left: Leko.size * this.props.x,
-      top: Leko.size * this.props.y,
+      left: `${this.props.x}em`,
+      top: `${this.props.y}em`,
     }}>
       {content}
     </div>;
-  
-  static readonly size = 40;
 }
 
 export class LekoSitelen extends Leko
@@ -49,10 +47,14 @@ export class LekoNimi extends Leko
 {
   public render()
   {
-    const linja = kipisiNimi(this.props.nimi);
+    const linja = kipisiENimi(this.props.nimi);
     const nanpaLinja = linja.length === 1 ? 'Wan' : 'Tu';
     return this.baseRender(linja.map((ni, nanpa) =>
-      <span className={`nimi linja${nanpaLinja}`} key={nanpa}>
+      <span
+        key={nanpa}
+        className={`nimi linja${nanpaLinja}`}
+        style={{ fontVariationSettings: `'wdth' ${ni.suliPoka}, 'opsz' 12` }}
+      >
         {ni.nimiLili}
       </span>
     ));

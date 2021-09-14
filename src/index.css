@@ -16,8 +16,9 @@ body
   background-color: #ded;
   color: #222;
   font-family: truculenta-variable;
-  font-feature-settings: 'liga' 1, 'clig' 1, 'calt' 1, 'kern' 1, 'mark' 1;
-  font-variation-settings: 'wght' 400, 'wdth' 125, 'opsz' 42;
-  text-rendering: optimizeLegibility;
   font-size: 24px;
+  font-weight: 400;
+  font-variation-settings: 'wdth' 125, 'opsz' 12;
+  font-feature-settings: 'liga' 1, 'clig' 1, 'calt' 1, 'kern' 1, 'mark' 1;
+  text-rendering: optimizeLegibility;
 }

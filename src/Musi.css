@@ -1,30 +1,31 @@
 h1
 {
   margin: 0;
-  font-size: 240%;
+  margin-bottom: -0.1em;
+  font-size: 2.5em;
   font-family: linja-pona;
   font-weight: normal;
   text-align: center;
-  position: relative;
-  left: 1px;
+  line-height: 1em;
 }
 
 h2
 {
-  margin-top: -12px;
-  margin-bottom: -6px;
-  font-size: 120%;
+  margin: 0;
+  font-size: 1.2em;
   font-weight: normal;
-  font-variation-settings: 'wght' 500, 'wdth' 125, 'opsz' 72;
+  font-variation-settings: 'wght' 500, 'wdth' 125, 'opsz' 12;
   text-align: center;
+  line-height: 1em;
 }
 
 h3
 {
-  margin-top: 0;
-  margin-bottom: 16px;
-  font-size: 66%;
+  margin: 0;
+  margin-bottom: 1em;
+  font-size: 0.64em;
   font-weight: normal;
-  font-variation-settings: 'wght' 350, 'wdth' 125, 'opsz' 72;
+  font-variation-settings: 'wght' 350, 'wdth' 125, 'opsz' 12;
   text-align: center;
+  line-height: 1em;
 }
