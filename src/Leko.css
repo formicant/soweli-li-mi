@@ -12,7 +12,23 @@
   position: absolute;
 }
 
-.sitelen
+.Leko.ijo, .Leko.toki
+{
+  color: #fff;
+  opacity: 0.75;
+}
+
+.Leko.ijo
+{
+  border-radius: 0.1em;
+}
+
+.Leko.toki
+{
+  border-radius: 0.5em;
+}
+
+.sitelen span
 {
   font-family: linja-pona;
   font-size: 1.125em;
@@ -22,17 +38,18 @@
 {
   line-height: 0.75em;
   position: relative;
-  top: -0.07em;
 }
 
 .linjaWan
 {
   font-size: 0.8em;
   font-weight: 350;
+  top: -0.02em;
 }
 
 .linjaTu
 {
   font-size: 0.625em;
   font-weight: 400;
+  top: -0.07em;
 }

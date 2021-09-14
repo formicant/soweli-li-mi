@@ -20,5 +20,5 @@ body
   font-weight: 400;
   font-variation-settings: 'wdth' 125, 'opsz' 12;
   font-feature-settings: 'liga' 1, 'clig' 1, 'calt' 1, 'kern' 1, 'mark' 1;
-  text-rendering: optimizeLegibility;
+  text-rendering: geometricPrecision;
 }
