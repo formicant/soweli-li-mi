@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
+import { StrictMode } from 'react';
+import { render } from 'react-dom';
+import { Musi } from './Musi';
 import reportWebVitals from './reportWebVitals';
-import Musi from './Musi';
 
-ReactDOM.render(
-  <React.StrictMode>
+render(
+  <StrictMode>
     <Musi />
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('lawa')
 );
 

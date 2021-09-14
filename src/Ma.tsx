@@ -1,5 +1,5 @@
 import './Ma.css';
-import { Component, MouseEvent } from 'react';
+import { Component } from 'react';
 import { LekoNimi, LekoSitelen } from './Leko';
 
 interface JoMa
@@ -10,7 +10,7 @@ interface InsaMa
 {
 }
 
-export default abstract class Ma extends Component<JoMa, InsaMa>
+export class Ma extends Component<JoMa, InsaMa>
 {
   render = () =>
     <div className='Ma'>

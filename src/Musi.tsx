@@ -1,8 +1,7 @@
-import React from 'react';
 import './Musi.css';
-import Ma from './Ma';
+import { Ma } from './Ma';
 
-const Musi = () =>
+export const Musi = () =>
   <div>
     <header>
       <h1>soweli li mi</h1>
@@ -13,5 +12,3 @@ const Musi = () =>
       <Ma />
     </main>
   </div>;
-
-export default Musi;

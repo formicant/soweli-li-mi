@@ -1,62 +1,64 @@
-import React from 'react';
 import './Leko.css';
-import Lon from './Lon';
-import Kule from './Kule';
+import { Component } from 'react';
+import { Lon } from './Lon';
+import { Kule } from './Kule';
 import { Nimi } from './NimiAli'
 import { lukinPiNnimiAli } from './LukinNimi'
-import { kipisiENimi } from './KipisiNimi';
+import { kipisiENimi } from './KipisiENimi';
 
-export interface LekoProps extends Lon
+export interface JoLeko extends Lon
 {
   readonly nimi: Nimi;
 }
 
-export abstract class Leko extends React.Component<LekoProps, any>
+export abstract class Leko extends Component<JoLeko, any>
 {
-  constructor(props: LekoProps)
+  constructor(props: JoLeko)
   {
     super(props);
   }
+  
+  render = () =>
+    <div className='Leko' style={{
+      color: this.kule(),
+      left: `${this.props.x}em`,
+      top: `${this.props.y}em`,
+    }}>
+      {this.insa()}
+    </div>;
+  
+  protected abstract insa(): JSX.Element | JSX.Element[];
   
   private kule(): Kule
   {
     const lukinNimi = lukinPiNnimiAli[this.props.nimi];
     return lukinNimi.kule;
   }
-  
-  public baseRender = (content: JSX.Element | JSX.Element[]) =>
-    <div className='Leko' style={{
-      color: this.kule(),
-      left: `${this.props.x}em`,
-      top: `${this.props.y}em`,
-    }}>
-      {content}
-    </div>;
 }
 
 export class LekoSitelen extends Leko
 {
-  public render = () => this.baseRender(
+  protected insa = () =>
     <span className='sitelen'>
       {this.props.nimi}
-    </span>
-  );
+    </span>;
 }
 
 export class LekoNimi extends Leko
 {
-  public render()
+  protected insa()
   {
     const linja = kipisiENimi(this.props.nimi);
     const nanpaLinja = linja.length === 1 ? 'Wan' : 'Tu';
-    return this.baseRender(linja.map((ni, nanpa) =>
+    
+    return linja.map(({ nimiLili, suliPoka }, nanpa) =>
       <span
         key={nanpa}
         className={`nimi linja${nanpaLinja}`}
-        style={{ fontVariationSettings: `'wdth' ${ni.suliPoka}, 'opsz' 12` }}
+        style={{ fontVariationSettings: `'wdth' ${suliPoka}, 'opsz' 12` }}
       >
-        {ni.nimiLili}
+        {nimiLili}
       </span>
-    ));
+    );
   }
 }

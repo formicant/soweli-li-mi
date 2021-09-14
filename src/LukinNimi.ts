@@ -1,5 +1,5 @@
 import { Nimi } from './NimiAli';
-import Kule from './Kule';
+import { Kule } from './Kule';
 
 export interface LukinNimi
 {
