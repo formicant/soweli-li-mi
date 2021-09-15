@@ -23,7 +23,7 @@ export interface JoLeko extends Lon
   readonly nimi: Nimi;
 }
 
-export abstract class Leko extends Component<JoLeko, any>
+export abstract class Leko extends Component<JoLeko, { }>
 {
   constructor(props: JoLeko)
   {

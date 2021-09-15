@@ -1,4 +1,4 @@
-import { range, NumberComparer } from 'linq-to-typescript';
+import { Range } from 'immutable' ;
 import { Nimi, kulupuPiNimiAli } from './NimiAli';
 
 interface LinjaNimi
@@ -36,14 +36,13 @@ function paliEKipisiPiNimiAli(): KipisiPiNimiAli
       return [paliELinja(nimi, nanpaSuliPiLinjaWan)];
     else
     {
-      const kenKipisi = range(2, nimi.length - 3)
-        .select(meso => [
+      const kenKipisi = Range(2, nimi.length - 1)
+        .map(meso => [
           paliELinja(nimi.substring(0, meso), nanpaSuliPiLinjaTu),
           paliELinja(nimi.substring(meso), nanpaSuliPiLinjaTu),
         ]);
       return kenKipisi
-        .orderBy(([wan, tu]) => Math.abs(wan.suliPoka - tu.suliPoka), NumberComparer)
-        .first();
+        .minBy(([wan, tu]) => Math.abs(wan.suliPoka - tu.suliPoka)) ?? [];
     }
   }
   
