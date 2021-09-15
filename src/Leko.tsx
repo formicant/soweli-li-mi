@@ -7,9 +7,9 @@ import { Nimi, KlupuNimi, kulupuPiNimiAli } from './NimiAli'
 import { lukinPiNnimiAli } from './LukinNimi'
 import { kipisiENimi } from './KipisiENimi';
 
-type kulupuLeko = KlupuNimi | 'sitelen';
+type KulupuLeko = KlupuNimi | 'sitelen';
 
-const anteKule: { [kulupu in kulupuLeko]: boolean } =
+const anteKule: { [kulupu in KulupuLeko]: boolean } =
 {
   ijo:     true,
   toki:    true,
@@ -32,13 +32,10 @@ export abstract class Leko extends Component<JoLeko, any>
   
   render()
   {
-    const kulupu = this.kulupu();
-    const kule = this.kule();
-    
-    const kulupuLukin = classNames('Leko', this.kulupu());
-    const lukinKule = anteKule[kulupu]
-      ? { backgroundColor: kule }
-      : { color: kule };
+    const kulupuLukin = classNames('Leko', this.kulupu);
+    const lukinKule = anteKule[this.kulupu]
+      ? { backgroundColor: this.kule }
+      : { color: this.kule };
     const lukin = {
       left: `${this.props.x}em`,
       top: `${this.props.y}em`,
@@ -52,11 +49,11 @@ export abstract class Leko extends Component<JoLeko, any>
     );
   };
   
-  protected abstract kulupu(): kulupuLeko;
+  protected abstract get kulupu(): KulupuLeko;
   
-  protected abstract insa(): JSX.Element | JSX.Element[];
+  protected abstract insa(): JSX.Element | ReadonlyArray<JSX.Element>;
   
-  private kule(): Kule
+  private get kule(): Kule
   {
     const lukinNimi = lukinPiNnimiAli[this.props.nimi];
     return lukinNimi.kule;
@@ -65,7 +62,7 @@ export abstract class Leko extends Component<JoLeko, any>
 
 export class LekoSitelen extends Leko
 {
-  protected kulupu = () => 'sitelen' as const;
+  protected get kulupu() { return 'sitelen' as const; }
   
   protected insa = () =>
     <span>
@@ -75,8 +72,7 @@ export class LekoSitelen extends Leko
 
 export class LekoNimi extends Leko
 {
-  protected kulupu =
-    () => kulupuPiNimiAli[this.props.nimi];
+  protected get kulupu() { return kulupuPiNimiAli[this.props.nimi]; }
   
   protected insa()
   {
