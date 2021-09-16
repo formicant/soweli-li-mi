@@ -1,9 +1,9 @@
 import './Leko.css';
 import classNames from 'classnames';
 import { Component } from 'react';
-import { Lon } from './Lon';
+import { Lon } from './insa/Lon';
 import { Kule } from './Kule';
-import { Nimi, KlupuNimi, kulupuPiNimiAli } from './NimiAli'
+import { Nimi, KlupuNimi, kulupuPiNimiAli } from './insa/NimiAli'
 import { lukinPiNnimiAli } from './LukinNimi'
 import { kipisiENimi } from './KipisiENimi';
 
