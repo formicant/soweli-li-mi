@@ -12,7 +12,7 @@
   position: absolute;
 }
 
-.Leko.ijo, .Leko.toki
+.Leko.ijo, .Leko.kulupu, .Leko.toki
 {
   color: #fff;
   opacity: 0.75;
@@ -21,6 +21,11 @@
 .Leko.ijo
 {
   border-radius: 0.1em;
+}
+
+.Leko.kulupu
+{
+  border-radius: 0.3em;
 }
 
 .Leko.toki

@@ -1,5 +1,5 @@
 import { Range } from 'immutable' ;
-import { Nimi, kulupuPiNimiAli } from './NimiAli';
+import { Nimi, kulupuPiNimiAli } from './insa/NimiAli';
 
 interface LinjaNimi
 {

@@ -1,4 +1,4 @@
-import { Nimi } from './NimiAli';
+import { Nimi } from './insa/NimiAli';
 import { Kule } from './Kule';
 
 export interface LukinNimi

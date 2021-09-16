@@ -31,5 +31,7 @@ export class Ma extends Component<JoMa, InsaMa>
       <LekoSitelen x={6} y={4} nimi='kiwen' />
       <LekoSitelen x={7} y={4} nimi='ko' />
       <LekoSitelen x={8} y={4} nimi='leko' />
+      <LekoNimi x={10} y={4} nimi='ali' />
+      <LekoNimi x={9} y={5} nimi='nimi' />
     </div>;
 }
