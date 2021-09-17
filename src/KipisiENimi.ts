@@ -1,5 +1,5 @@
 import { Range } from 'immutable' ;
-import { Nimi, kulupuPiNimiAli } from './insa/NimiAli';
+import { Nimi, nimiAli } from './insa/NimiAli';
 
 interface LinjaNimi
 {
@@ -47,7 +47,7 @@ function paliEKipisiPiNimiAli(): KipisiPiNimiAli
   }
   
   const kipisi: { [nimi: string]: ReadonlyArray<LinjaNimi> } = { };
-  for(const nimi of Object.keys(kulupuPiNimiAli))
+  for(const nimi of nimiAli)
     kipisi[nimi] = kipisiENimi(nimi);
   
   return kipisi as KipisiPiNimiAli;

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Component } from 'react';
 import { Lon } from './insa/Lon';
 import { Kule } from './Kule';
-import { Nimi, KlupuNimi, kulupuPiNimiAli } from './insa/NimiAli'
+import { Nimi, KlupuNimi, panaEKulupu } from './insa/NimiAli'
 import { lukinPiNnimiAli } from './LukinNimi'
 import { kipisiENimi } from './KipisiENimi';
 
@@ -72,7 +72,7 @@ export class LekoSitelen extends Leko
 
 export class LekoNimi extends Leko
 {
-  protected get kulupu() { return kulupuPiNimiAli[this.props.nimi]; }
+  protected get kulupu() { return panaEKulupu(this.props.nimi); }
   
   protected insa()
   {
