@@ -1,4 +1,4 @@
-import { Seq, List } from "immutable";
+import { Seq } from "immutable";
 
 export type KlupuNimi = 'toki' | 'kulupu' | 'ijo' | 'pali';
 
@@ -49,7 +49,7 @@ const kulupuPiNimiAli = Seq(nimiInsaKulupu)
   .flatMap((nimiMute, kulupu) => nimiMute.map(nimi => [nimi, kulupu]))
   .toMap();
 
-export const nimiAli: List<Nimi> = Seq(nimiInsaKulupu).toIndexedSeq().flatMap(v => v).toList();
+export const nimiAli = kulupuPiNimiAli.keys();
 
 export type NimiToki   = typeof nimiInsaKulupu.toki  [number];
 export type NimiKulupu = typeof nimiInsaKulupu.kulupu[number];
