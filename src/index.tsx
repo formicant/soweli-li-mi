@@ -1,12 +1,12 @@
 import './index.css';
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
-import { Musi } from './Musi';
+import { Sijelo } from './Sijelo';
 import reportWebVitals from './reportWebVitals';
 
 render(
   <StrictMode>
-    <Musi />
+    <Sijelo />
   </StrictMode>,
   document.getElementById('lawa')
 );

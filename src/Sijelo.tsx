@@ -1,7 +1,7 @@
-import './Musi.css';
+import './Sijelo.css';
 import { Ma } from './Ma';
 
-export const Musi = () =>
+export const Sijelo = () =>
   <div>
     <header>
       <h1>soweli li mi</h1>
