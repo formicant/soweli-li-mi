@@ -49,7 +49,7 @@ export abstract class Leko extends Component<Ijo, InsaLeko>
   private insa()
   {
     if(this.props.liSitelen)
-      return [<span>{this.props.nimi}</span>];
+      return <span>{this.props.nimi}</span>;
     else
     {
       const linja = kipisiENimi(this.props.nimi);

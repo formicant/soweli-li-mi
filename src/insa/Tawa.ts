@@ -3,6 +3,7 @@ import { Ijo, LipuIjo } from './Ijo';
 
 export type Poka = 'soto' | 'teje';
 export type NasinTawa = 'sewi' | 'anpa' | Poka;
+export type TawaTenpo = 'monsi' | 'sinpin' | 'open' | 'pini';
 
 export interface Tawa
 {

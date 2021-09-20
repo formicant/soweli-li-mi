@@ -1,4 +1,4 @@
-import Im from "immutable";
+import { monsiEKulupu } from "./utils";
 
 export type KlupuNimi = 'toki' | 'kulupu' | 'ijo' | 'pali';
 
@@ -45,9 +45,7 @@ const nimiInsaKulupu =
   ],
 } as const;
 
-const kulupuPiNimiAli = Im.Seq(nimiInsaKulupu)
-  .flatMap((nimiMute, kulupu) => nimiMute.map(nimi => [nimi, kulupu]))
-  .toMap();
+const kulupuPiNimiAli = monsiEKulupu(nimiInsaKulupu);
 
 export const nimiAli = kulupuPiNimiAli.keys();
 

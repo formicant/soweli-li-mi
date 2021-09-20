@@ -2,13 +2,14 @@ import './LukinMusi.css';
 import { Component } from 'react';
 import { lipuMaAli } from './insa/LipuMa';
 import { Musi, openEMusi } from './insa/Musi';
+import { IloPalisa, Palisa } from './IloPalisa';
 import { Ma } from './Ma';
 
 export class LukinMusi extends Component<{ }, Musi>
 {
-  constructor()
+  constructor(jo: { })
   {
-    super({ });
+    super(jo);
     this.state = openEMusi(lipuMaAli[0]);
   }
   
@@ -23,6 +24,7 @@ export class LukinMusi extends Component<{ }, Musi>
           suli={this.state.lipuMa.suli}
           lipuIjo={this.lipuIjo}
         />
+        <IloPalisa palisaLa={this.lukaPalisa} />
       </main>
     );
   }
@@ -34,5 +36,10 @@ export class LukinMusi extends Component<{ }, Musi>
       return tawaNi.lipuIjo;
     else
       throw Error('tenpo ni li ike!');
+  }
+  
+  private lukaPalisa(palisa: Palisa): void
+  {
+    console.log(palisa);
   }
 }
