@@ -1,4 +1,4 @@
-import { Seq } from "immutable";
+import Im from "immutable";
 
 export type KlupuNimi = 'toki' | 'kulupu' | 'ijo' | 'pali';
 
@@ -45,7 +45,7 @@ const nimiInsaKulupu =
   ],
 } as const;
 
-const kulupuPiNimiAli = Seq(nimiInsaKulupu)
+const kulupuPiNimiAli = Im.Seq(nimiInsaKulupu)
   .flatMap((nimiMute, kulupu) => nimiMute.map(nimi => [nimi, kulupu]))
   .toMap();
 

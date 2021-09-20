@@ -1,11 +1,11 @@
-import { List } from "immutable";
+import Im from "immutable";
 import { LipuMa } from "./LipuMa";
 import { NasinTawa, Tawa, tawaOpen } from "./Tawa";
 
 export interface Musi
 {
   readonly lipuMa: LipuMa;
-  readonly tenpo: List<Tawa>;
+  readonly tenpo: Im.List<Tawa>;
   readonly tenpoNi: number;
 }
 
@@ -13,7 +13,7 @@ export function openEMusi(lipuMa: LipuMa): Musi
 {
   return {
     lipuMa: lipuMa,
-    tenpo: List.of(tawaOpen(lipuMa.ijoAli)),
+    tenpo: Im.List.of(tawaOpen(lipuMa.ijoAli)),
     tenpoNi: 0,
   };
 }

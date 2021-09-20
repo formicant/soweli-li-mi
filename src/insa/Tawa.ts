@@ -1,4 +1,4 @@
-import { Seq, Map } from 'immutable';
+import Im from 'immutable';
 import { Ijo, LipuIjo } from './Ijo';
 
 export type Poka = 'soto' | 'teje';
@@ -13,6 +13,6 @@ export interface Tawa
 export function tawaOpen(ijoAli: Iterable<Ijo>)
 {
   return {
-    lipuIjo: Map(Seq(ijoAli).toKeyedSeq())
+    lipuIjo: Im.Map(Im.Seq(ijoAli).toKeyedSeq())
   };
 }

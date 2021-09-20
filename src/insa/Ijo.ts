@@ -1,4 +1,4 @@
-import { Map } from 'immutable';
+import Im from 'immutable';
 import { Lon } from './Lon';
 import { Nimi, NimiIjo, KlupuNimi, panaEKulupuNimi } from './NimiAli'
 
@@ -16,7 +16,7 @@ export interface IjoSitelen extends Lon
 
 export type Ijo = IjoNimi | IjoSitelen;
 
-export type LipuIjo = Map<number, Ijo>;
+export type LipuIjo = Im.Map<number, Ijo>;
 
 export type KlupuIjo = KlupuNimi | 'sitelen';
 

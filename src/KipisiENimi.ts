@@ -1,4 +1,4 @@
-import { Range } from 'immutable' ;
+import Im from 'immutable' ;
 import { Nimi, nimiAli } from './insa/NimiAli';
 
 interface LinjaNimi
@@ -36,7 +36,7 @@ function paliEKipisiPiNimiAli(): KipisiPiNimiAli
       return [paliELinja(nimi, nanpaSuliPiLinjaWan)];
     else
     {
-      const kenKipisi = Range(2, nimi.length - 1)
+      const kenKipisi = Im.Range(2, nimi.length - 1)
         .map(meso => [
           paliELinja(nimi.substring(0, meso), nanpaSuliPiLinjaTu),
           paliELinja(nimi.substring(meso), nanpaSuliPiLinjaTu),
