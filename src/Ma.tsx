@@ -6,7 +6,6 @@ import { Leko } from './Leko';
 
 interface JoMa
 {
-  readonly nimi: string;
   readonly suli: Lon;
   readonly lipuIjo: LipuIjo;
 }

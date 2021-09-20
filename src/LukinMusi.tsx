@@ -16,8 +16,10 @@ export class LukinMusi extends Component<{ }, Musi>
   {
     return (
       <main>
+        <div className='nimiMa'>
+          {this.state.lipuMa.nimi}
+        </div>
         <Ma
-          nimi={this.state.lipuMa.nimi}
           suli={this.state.lipuMa.suli}
           lipuIjo={this.lipuIjo}
         />
