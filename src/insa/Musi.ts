@@ -18,34 +18,18 @@ export function openEMusi(lipuMa: LipuMa): Musi
   };
 }
 
-export function tenpoOpen(musi: Musi): Musi
+export function tenpoMonsi(musi: Musi, ali: boolean): Musi
 {
   if(musi.tenpoNi > 0)
-    return { ...musi, tenpoNi: 0 };
+    return { ...musi, tenpoNi: ali ? 0 : musi.tenpoNi - 1 };
   else
     return musi;
 }
 
-export function tenpoMonsi(musi: Musi): Musi
-{
-  if(musi.tenpoNi > 0)
-    return { ...musi, tenpoNi: musi.tenpoNi - 1 };
-  else
-    return musi;
-}
-
-export function tenpoSinpin(musi: Musi): Musi
+export function tenpoSinpin(musi: Musi, ali: boolean): Musi
 {
   if(musi.tenpoNi < musi.tenpo.size - 1)
-    return { ...musi, tenpoNi: musi.tenpoNi - 1 };
-  else
-    return musi;
-}
-
-export function tenpoPini(musi: Musi): Musi
-{
-  if(musi.tenpoNi < musi.tenpo.size - 1)
-    return { ...musi, tenpoNi: musi.tenpo.size - 1 };
+    return { ...musi, tenpoNi: ali ? musi.tenpo.size - 1 : musi.tenpoNi - 1 };
   else
     return musi;
 }

@@ -5,8 +5,6 @@
   padding: 0;
   font-size: 40px;
   border: solid #fff 0.1em;
-  width: 15em;
-  height: 10em;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px -10px;
 }

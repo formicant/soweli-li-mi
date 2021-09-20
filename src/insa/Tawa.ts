@@ -1,5 +1,5 @@
 import { Seq, Map } from 'immutable';
-import { Ijo } from './Ijo';
+import { Ijo, LipuIjo } from './Ijo';
 
 export type Poka = 'soto' | 'teje';
 export type NasinTawa = 'sewi' | 'anpa' | Poka;
@@ -7,12 +7,12 @@ export type NasinTawa = 'sewi' | 'anpa' | Poka;
 export interface Tawa
 {
   readonly nasin?: NasinTawa;
-  readonly ijoAli: Map<symbol, Ijo>;
+  readonly lipuIjo: LipuIjo;
 }
 
 export function tawaOpen(ijoAli: Iterable<Ijo>)
 {
   return {
-    ijoAli: Map(Seq(ijoAli).map((ijo, _) => [Symbol('ijo'), ijo]))
+    lipuIjo: Map(Seq(ijoAli).toKeyedSeq())
   };
 }

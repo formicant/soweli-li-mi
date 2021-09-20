@@ -22,7 +22,7 @@ export const lipuMaAli: LipuMa[] =
       { x: 5, y: 6, liSitelen: false, nimi: 'mi' },
       { x: 8, y: 5, liSitelen: false, nimi: 'kiwen' },
       { x: 8, y: 6, liSitelen: false, nimi: 'li' },
-      { x: 8, y: 6, liSitelen: false, nimi: 'awen' },
+      { x: 8, y: 7, liSitelen: false, nimi: 'awen' },
     ]
   },
 ];

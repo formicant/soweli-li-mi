@@ -67,7 +67,7 @@ export function liInsaKulupu(nimi: Nimi, kulupu: KlupuNimi)
   return (nimiInsaKulupu[kulupu] as ReadonlyArray<Nimi>).includes(nimi);
 }
 
-export function panaEKulupu(nimi: Nimi)
+export function panaEKulupuNimi(nimi: Nimi)
 {
   return kulupuPiNimiAli.get(nimi) as KlupuNimi;
 }

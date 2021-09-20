@@ -8,7 +8,7 @@ render(
   <StrictMode>
     <Sijelo />
   </StrictMode>,
-  document.getElementById('lawa')
+  document.getElementById('sijelo')
 );
 
 // If you want to start measuring performance in your app, pass a function
