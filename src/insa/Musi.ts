@@ -40,11 +40,18 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
   const lipuIjo = tawaNi(musi).lipuIjo;
   const soweli = lipuIjo.toSeq().filter(ijo => ijo.liSitelen && ijo.nimi === 'soweli');
   
-  const soweliSin = soweli.map(ijo => tawaELon(ijo, nasin));
+  const soweliSin = soweli.map(ijo => insaELon(tawaELon(ijo, nasin), musi.lipuMa.suli));
   const lipuIjoSin = lipuIjo.merge(soweliSin);
-  const tawaSin: Tawa = { nasin: nasin, lipuIjo: lipuIjoSin };
-  const tenpoSin = musi.tenpo.toSeq().take(musi.tenpoNi + 1).concat([tawaSin]).toList();
-  return { ...musi, tenpo: tenpoSin, tenpoNi: musi.tenpoNi + 1 }; // O PALI!
+  
+  if(lipuIjoSin.equals(lipuIjo)) // li pali ala. ijo li sama ala.
+    return musi
+  else
+  {
+    const tawaSin: Tawa = { nasin: nasin, lipuIjo: lipuIjoSin };
+    const tenpoSin = musi.tenpo.toSeq().take(musi.tenpoNi + 1).concat([tawaSin]).toList();
+    
+    return { ...musi, tenpo: tenpoSin, tenpoNi: musi.tenpoNi + 1 };
+  }
 }
 
 export function tawaNi(musi: Musi)
@@ -66,4 +73,19 @@ function tawaELon<T extends Lon>(lon: T, nasin: NasinTawa): T
     case 'teje': return { ...lon, x: lon.x + 1 };
     default: throw Error('nasin li ike!');
   }
+}
+
+function insaELon<T extends Lon>(lon: T, suli: Lon): T
+{
+  if(lon.x < 0)
+    lon = { ...lon, x: 0 };
+  else if(lon.x >= suli.x)
+    lon = { ...lon, x: suli.x - 1 };
+    
+  if(lon.y < 0)
+    lon = { ...lon, y: 0 };
+  else if(lon.y >= suli.y)
+    lon = { ...lon, y: suli.y - 1 };
+  
+  return lon;
 }
