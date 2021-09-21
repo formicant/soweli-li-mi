@@ -1,7 +1,7 @@
 import './LukinMusi.css';
 import { Component } from 'react';
 import { lipuMaAli } from './insa/LipuMa';
-import { Musi, openEMusi } from './insa/Musi';
+import { Musi, tawaNi, openEMusi, tenpoMonsi, tenpoSinpin, tawa } from './insa/Musi';
 import { IloPalisa, Palisa } from './IloPalisa';
 import { Ma } from './Ma';
 
@@ -15,6 +15,8 @@ export class LukinMusi extends Component<{ }, Musi>
   
   render()
   {
+    const lipuIjo = tawaNi(this.state).lipuIjo;
+    
     return (
       <main>
         <div className='nimiMa'>
@@ -22,24 +24,28 @@ export class LukinMusi extends Component<{ }, Musi>
         </div>
         <Ma
           suli={this.state.lipuMa.suli}
-          lipuIjo={this.lipuIjo}
+          lipuIjo={lipuIjo}
         />
         <IloPalisa palisaLa={this.lukaPalisa} />
       </main>
     );
   }
   
-  private get lipuIjo()
+  private lukaPalisa = (palisa: Palisa) =>
   {
-    const tawaNi = this.state.tenpo.get(this.state.tenpoNi);
-    if(tawaNi)
-      return tawaNi.lipuIjo;
-    else
-      throw Error('tenpo ni li ike!');
-  }
+    const pali = this.paliPalisa[palisa];
+    this.setState(pali(this.state));
+  };
   
-  private lukaPalisa(palisa: Palisa): void
+  private paliPalisa: { [palisa in Palisa]: (musi: Musi) => Musi } =
   {
-    console.log(palisa);
-  }
+    'sewi':   musi => tawa(musi, 'sewi'),
+    'anpa':   musi => tawa(musi, 'anpa'),
+    'soto':   musi => tawa(musi, 'soto'),
+    'teje':   musi => tawa(musi, 'teje'),
+    'monsi':  musi => tenpoMonsi(musi),
+    'sinpin': musi => tenpoSinpin(musi),
+    'open':   musi => tenpoMonsi(musi, true),
+    'pini':   musi => tenpoSinpin(musi, true),
+  } as const;
 }

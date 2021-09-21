@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { monsiEKulupu } from "./insa/utils";
-import { NasinTawa, TawaTenpo } from "./insa/Tawa";
+import { NasinTawa } from "./insa/Tawa";
 
+type TawaTenpo = 'monsi' | 'sinpin' | 'open' | 'pini';
 export type Palisa = NasinTawa | TawaTenpo;
 
 const palisaAli: { [palisa in Palisa]: ReadonlyArray<string> } =
@@ -26,7 +27,7 @@ export interface JoPiIloPalisa
 
 export class IloPalisa extends Component<JoPiIloPalisa>
 {
-  render() { return null; }
+  render = () => null;
   
   componentDidMount()
   {
