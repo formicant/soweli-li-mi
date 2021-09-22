@@ -1,74 +1,63 @@
 import './Leko.css';
 import classNames from 'classnames';
-import { Component } from 'react';
-import { Ijo, KlupuIjo, panaEKulupuIjo } from './insa/Ijo';
-import { Kule } from './Kule';
-import { lukinPiNnimiAli } from './LukinNimi'
+import { useState, useRef, useEffect } from 'react';
+import { Ijo, panaEKulupuIjo } from './insa/Ijo';
+import { lukinPiNnimiAli, anteEKule } from './LukinNimi'
 import { kipisiENimi } from './KipisiENimi';
+import { Jasima, panaEJasima } from './jasima';
 
-const anteKule: { [kulupu in KlupuIjo]: boolean } =
+export function Leko(ijo: Ijo)
 {
-  ijo:     true,
-  toki:    true,
-  kulupu:  true,
-  pali:    false,
-  sitelen: false,
-} as const;
-
-export interface InsaLeko
-{
-}
-
-export abstract class Leko extends Component<Ijo, InsaLeko>
-{
-  // constructor(ijo: Ijo)
-  // {
-  //   super(ijo);
-  // }
+  const kulupu = panaEKulupuIjo(ijo);
+  const kulupuLukin = classNames('Leko', kulupu);
+  const lukinNimi = lukinPiNnimiAli[ijo.nimi];
   
-  render()
-  {
-    const kulupu = panaEKulupuIjo(this.props);
-    const kulupuLukin = classNames('Leko', kulupu);
-    const lukinKule = anteKule[kulupu]
-      ? { backgroundColor: this.kule }
-      : { color: this.kule };
-    const lukin = {
-      left: `${this.props.x}em`,
-      top: `${this.props.y}em`,
-      ...lukinKule
-    };
-    
-    return (
-      <div className={kulupuLukin} style={lukin}>
-        {this.insa()}
-      </div>
-    );
+  const ijoMajuna = useMajuna(ijo);
+  const [jasimaMajuna, sinEJasima] = useState<Jasima>('none');
+  const jasima = panaEJasima(jasimaMajuna, ijoMajuna, ijo, lukinNimi.anteTawa);
+  if(jasima !== jasimaMajuna)
+    sinEJasima(jasima);
+  
+  const lukinKule = anteEKule[kulupu]
+    ? { backgroundColor: lukinNimi.kule }
+    : { color: lukinNimi.kule };
+  const lukin = {
+    ...lukinKule,
+    left: `${ijo.x}em`,
+    top: `${ijo.y}em`,
+    transform: jasima
   };
   
-  private insa()
+  return (
+    <div className={kulupuLukin} style={lukin}>
+      {insa(ijo)}
+    </div>
+  );
+}
+
+function insa(ijo: Ijo)
+{
+  if(ijo.liSitelen)
+    return <span>{ijo.nimi}</span>;
+  else
   {
-    if(this.props.liSitelen)
-      return <span>{this.props.nimi}</span>;
-    else
-    {
-      const linja = kipisiENimi(this.props.nimi);
-      const nanpaLinja = linja.length === 1 ? 'linjaWan' : 'linjaTu';
-      const kulupuLukin = classNames('nimi', nanpaLinja);
-      
-      return linja.map(({ nimiLili, suliPoka }, nanpa) =>
-        <span key={nanpa} className={kulupuLukin}
-          style={{ fontVariationSettings: `'wdth' ${suliPoka}, 'opsz' 12` }}
-        >
-          {nimiLili}
-        </span>
-      );
-    }
+    const linja = kipisiENimi(ijo.nimi);
+    const nanpaLinja = linja.length === 1 ? 'linjaWan' : 'linjaTu';
+    const kulupuLukin = classNames('nimi', nanpaLinja);
+    
+    return linja.map(({ nimiLili, suliPoka }, nanpa) =>
+      <span key={nanpa} className={kulupuLukin}
+        style={{ fontVariationSettings: `'wdth' ${suliPoka}, 'opsz' 12` }}
+      >
+        {nimiLili}
+      </span>
+    );
   }
-  
-  private get kule(): Kule
-  {
-    const lukinNimi = lukinPiNnimiAli[this.props.nimi];
-    return lukinNimi.kule;
-  }
+}
+
+function useMajuna<T>(sin: T)
+{
+  const ona = useRef<T>();
+  useEffect(() => { ona.current = sin; });
+  return ona.current;
 }

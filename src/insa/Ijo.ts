@@ -1,6 +1,6 @@
 import Im from 'immutable';
 import { Lon } from './Lon';
-import { Nimi, NimiIjo, KlupuNimi, panaEKulupuNimi } from './NimiAli'
+import { Nimi, NimiIjo, KulupuNimi, panaEKulupuNimi } from './NimiAli'
 
 export interface IjoNimi extends Lon
 {
@@ -18,7 +18,7 @@ export type Ijo = IjoNimi | IjoSitelen;
 
 export type LipuIjo = Im.Map<number, Ijo>;
 
-export type KlupuIjo = KlupuNimi | 'sitelen';
+export type KulupuIjo = KulupuNimi | 'sitelen';
 
 export function panaEKulupuIjo(ijo: Ijo)
 {

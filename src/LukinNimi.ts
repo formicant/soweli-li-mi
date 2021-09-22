@@ -1,19 +1,23 @@
 import { Nimi } from './insa/NimiAli';
+import { KulupuIjo } from './insa/Ijo';
 import { Kule } from './Kule';
+
+export type AnteTawa = 'poka' | 'sikePoka' | 'sikeSewi';
 
 export interface LukinNimi
 {
   readonly kule: Kule;
-  readonly anteTawa?: 'poka' | 'ali';
+  readonly anteTawa?: AnteTawa;
+  readonly lawaSewi?: boolean;
 }
 
 export const lukinPiNnimiAli: { [nimi in Nimi]: LukinNimi } =
 {
   soweli: { kule: '#222', anteTawa: 'poka' },
   waso:   { kule: '#678', anteTawa: 'poka' },
-  kala:   { kule: '#47a', anteTawa: 'ali' },
-  akesi:  { kule: '#294', anteTawa: 'ali' },
-  pipi:   { kule: '#850', anteTawa: 'ali' },
+  kala:   { kule: '#d80', anteTawa: 'sikePoka' },
+  akesi:  { kule: '#294', anteTawa: 'sikeSewi' },
+  pipi:   { kule: '#850', anteTawa: 'sikeSewi' },
   tomo:   { kule: '#640' },
   kiwen:  { kule: '#468' },
   telo:   { kule: '#09b' },
@@ -39,4 +43,13 @@ export const lukinPiNnimiAli: { [nimi in Nimi]: LukinNimi } =
   en:     { kule: '#666' },
   ala:    { kule: '#f20' },
   lon:    { kule: '#666' },
+} as const;
+
+export const anteEKule: { [kulupu in KulupuIjo]: boolean } =
+{
+  ijo:     true,
+  toki:    true,
+  kulupu:  true,
+  pali:    false,
+  sitelen: false,
 } as const;

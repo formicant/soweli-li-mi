@@ -38,7 +38,7 @@ export function tenpoSinpin(musi: Musi, ali: boolean = false): Musi
 export function tawa(musi: Musi, nasin: NasinTawa): Musi
 {
   const lipuIjo = tawaNi(musi).lipuIjo;
-  const soweli = lipuIjo.toSeq().filter(ijo => ijo.liSitelen && ijo.nimi === 'soweli');
+  const soweli = lipuIjo.toSeq().filter(ijo => ijo.liSitelen);
   
   const soweliSin = soweli.map(ijo => insaELon(tawaELon(ijo, nasin), musi.lipuMa.suli));
   const lipuIjoSin = lipuIjo.merge(soweliSin);

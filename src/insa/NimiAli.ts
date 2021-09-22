@@ -1,6 +1,6 @@
-import { monsiEKulupu } from "./utils";
+import { monsiEKulupu } from "./kepeken";
 
-export type KlupuNimi = 'toki' | 'kulupu' | 'ijo' | 'pali';
+export type KulupuNimi = 'toki' | 'kulupu' | 'ijo' | 'pali';
 
 const nimiInsaKulupu =
 {
@@ -60,12 +60,12 @@ export function liInsaKulupu(nimi: Nimi, kulupu: 'toki'  ): nimi is NimiToki
 export function liInsaKulupu(nimi: Nimi, kulupu: 'kulupu'): nimi is NimiKulupu
 export function liInsaKulupu(nimi: Nimi, kulupu: 'ijo'   ): nimi is NimiIjo
 export function liInsaKulupu(nimi: Nimi, kulupu: 'pali'  ): nimi is NimiPali
-export function liInsaKulupu(nimi: Nimi, kulupu: KlupuNimi)
+export function liInsaKulupu(nimi: Nimi, kulupu: KulupuNimi)
 {
   return (nimiInsaKulupu[kulupu] as ReadonlyArray<Nimi>).includes(nimi);
 }
 
 export function panaEKulupuNimi(nimi: Nimi)
 {
-  return kulupuPiNimiAli.get(nimi) as KlupuNimi;
+  return kulupuPiNimiAli.get(nimi) as KulupuNimi;
 }
