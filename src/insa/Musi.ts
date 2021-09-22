@@ -89,3 +89,15 @@ function insaELon<T extends Lon>(lon: T, suli: Lon): T
   
   return lon;
 }
+
+// /**
+//  * pana e linja tenpo pi ijo wan tan tenpo ni tawa open musi.
+//  * ni li pona taso tawa jasima e leko.
+//  * @param nanpaIjo nanpa taso tawa pana e ijo tan LipuIjo.
+//  */
+// export function tenpoPiniIjo(musi: Musi, nanpaIjo: number)
+// {
+//   return Im.Range(musi.tenpoNi, -1, -1)
+//     .map(t => musi.tenpo.get(t)!.lipuIjo.get(nanpaIjo))
+//     .takeWhile(t => t !== undefined) as Im.Seq.Indexed<Ijo>;
+// }
