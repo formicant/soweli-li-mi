@@ -1,8 +1,8 @@
 import Im from 'immutable';
 import { Token, TokenPosition } from 'typescript-parsec';
-import { KulupuNimi, panaEKulupuNimi } from './NimiAli';
-import { Lon } from './Lon';
-import { IjoEnNanpa, LonIjo } from './LonIjo';
+import { KulupuNimi, panaEKulupuNimi } from './nimiAli';
+import { Lon } from './lon';
+import { IjoEnNanpa, LonIjo } from './lonIjo';
 
 type KulupuToki = KulupuNimi | 'ala';
 

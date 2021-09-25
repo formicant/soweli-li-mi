@@ -1,5 +1,5 @@
-import './Sijelo.css';
-import { LukinMusi } from './LukinMusi';
+import './sijelo.css';
+import { LukinMusi } from './lukinMusi';
 
 export const Sijelo = () =>
   <>

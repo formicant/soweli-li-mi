@@ -1,11 +1,11 @@
-import './LukinMusi.css';
+import './lukinMusi.css';
 import { Component } from 'react';
-import { lipuMaAli } from './insa/LipuMa';
-import { Musi, tawaNi, openEMusi, tenpoMonsi, tenpoSinpin, tawa } from './insa/Musi';
-import { IloPalisa, Palisa } from './IloPalisa';
-import { Ma } from './Ma';
-import { test } from './insa/NasinMusi';
-import { LonIjo } from './insa/LonIjo';
+import { lipuMaAli } from './insa/lipuMa';
+import { Musi, tawaNi, openEMusi, tenpoMonsi, tenpoSinpin, tawa } from './insa/musi';
+import { IloPalisa, Palisa } from './iloPalisa';
+import { Ma } from './ma';
+import { test } from './insa/nasinMusi';
+import { LonIjo } from './insa/lonIjo';
 
 export class LukinMusi extends Component<{ }, Musi>
 {

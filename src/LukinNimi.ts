@@ -1,6 +1,6 @@
-import { Nimi } from './insa/NimiAli';
-import { KulupuIjo } from './insa/Ijo';
-import { Kule } from './Kule';
+import { Nimi } from './insa/nimiAli';
+import { KulupuIjo } from './insa/ijo';
+import { Kule } from './kule';
 
 export type AnteTawa = 'poka' | 'sikePoka' | 'sikeSewi';
 

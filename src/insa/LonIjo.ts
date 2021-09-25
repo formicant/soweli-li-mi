@@ -1,7 +1,7 @@
 import Im from 'immutable';
 import { TypedRecord, makeTypedFactory } from 'typed-immutable-record';
-import { Lon } from './Lon';
-import { Ijo,  LipuIjo } from './Ijo';
+import { Lon } from './lon';
+import { Ijo,  LipuIjo } from './ijo';
 
 export interface IjoEnNanpa
 {

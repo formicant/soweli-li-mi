@@ -1,8 +1,8 @@
-import './Ma.css';
+import './ma.css';
 import { Component } from 'react';
-import { Lon } from './insa/Lon';
-import { LipuIjo } from './insa/Ijo';
-import { Leko } from './Leko';
+import { Lon } from './insa/lon';
+import { LipuIjo } from './insa/ijo';
+import { Leko } from './leko';
 
 interface JoMa
 {

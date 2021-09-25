@@ -1,7 +1,7 @@
 import Im from 'immutable';
 import { apply, expectEOF, str, tok, seq, rep, alt, kmid, opt } from 'typescript-parsec';
-import { LonIjo } from './LonIjo';
-import { Lon } from './Lon';
+import { LonIjo } from './lonIjo';
+import { Lon } from './lon';
 import { panaETokiAli } from './toki';
 
 const pilinJaki = rep(alt(tok('ala'), tok('ijo'), tok('kulupu'), tok('toki'), tok('pali')));

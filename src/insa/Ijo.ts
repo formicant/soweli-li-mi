@@ -1,6 +1,6 @@
 import Im from 'immutable';
-import { Lon } from './Lon';
-import { Nimi, NimiIjo, KulupuNimi, panaEKulupuNimi } from './NimiAli'
+import { Lon } from './lon';
+import { Nimi, NimiIjo, KulupuNimi, panaEKulupuNimi } from './nimiAli'
 
 export interface IjoNimi extends Lon
 {

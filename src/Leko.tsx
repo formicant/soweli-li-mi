@@ -1,9 +1,9 @@
-import './Leko.css';
+import './leko.css';
 import classNames from 'classnames';
 import { useState, useRef, useEffect } from 'react';
-import { Ijo, panaEKulupuIjo } from './insa/Ijo';
-import { lukinPiNnimiAli, anteEKule } from './LukinNimi'
-import { kipisiENimi } from './KipisiENimi';
+import { Ijo, panaEKulupuIjo } from './insa/ijo';
+import { lukinPiNnimiAli, anteEKule } from './lukinNimi'
+import { kipisiENimi } from './kipisiENimi';
 import { Jasima, panaEJasima } from './jasima';
 
 export function Leko(ijo: Ijo)

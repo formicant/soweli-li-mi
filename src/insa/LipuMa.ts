@@ -1,5 +1,5 @@
-import { Lon } from "./Lon";
-import { Ijo } from "./Ijo";
+import { Lon } from "./lon";
+import { Ijo } from "./ijo";
 
 export interface LipuMa
 {

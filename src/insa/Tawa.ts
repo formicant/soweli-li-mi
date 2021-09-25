@@ -1,5 +1,5 @@
 import Im from 'immutable';
-import { Ijo, LipuIjo } from './Ijo';
+import { Ijo, LipuIjo } from './ijo';
 
 export type Poka = 'soto' | 'teje';
 export type NasinTawa = 'sewi' | 'anpa' | Poka;
