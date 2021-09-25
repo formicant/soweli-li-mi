@@ -4,6 +4,8 @@ import { lipuMaAli } from './insa/LipuMa';
 import { Musi, tawaNi, openEMusi, tenpoMonsi, tenpoSinpin, tawa } from './insa/Musi';
 import { IloPalisa, Palisa } from './IloPalisa';
 import { Ma } from './Ma';
+import { test } from './insa/NasinMusi';
+import { LonIjo } from './insa/LonIjo';
 
 export class LukinMusi extends Component<{ }, Musi>
 {
@@ -17,6 +19,12 @@ export class LukinMusi extends Component<{ }, Musi>
   {
     const lipuIjo = tawaNi(this.state).lipuIjo;
     
+    // O WEKA E NI:
+    const lonIjo = new LonIjo(lipuIjo);
+    const testResult = test(this.state.lipuMa.suli, lonIjo);
+    console.log(testResult);
+    // ^^^
+    
     return (
       <main>
         <div className='nimiMa'>
@@ -26,6 +34,8 @@ export class LukinMusi extends Component<{ }, Musi>
           suli={this.state.lipuMa.suli}
           lipuIjo={lipuIjo}
         />
+        <div>
+        </div>
         <IloPalisa palisaLa={this.lukaPalisa} />
       </main>
     );

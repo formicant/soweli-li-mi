@@ -29,6 +29,7 @@ export const lukinPiNnimiAli: { [nimi in Nimi]: LukinNimi } =
   
   ali:    { kule: '#666' },
   nimi:   { kule: '#666' },
+  kon:    { kule: '#2af' },
   
   mi:     { kule: '#222' },
   pini:   { kule: '#640' },

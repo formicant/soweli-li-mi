@@ -55,4 +55,4 @@ function panaENanpaPiJasimaSike(jasima: Jasima, namakoLawa: number)
     return undefined;
 }
 
-const alasaNanpaPiJasimaSike = /rotate\((.*)turn\)/;
+const alasaNanpaPiJasimaSike = /^rotate\((.*)turn\)$/;

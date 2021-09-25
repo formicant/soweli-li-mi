@@ -16,6 +16,7 @@ const nimiInsaKulupu =
   [
     'ali',
     'nimi',
+    'kon',
   ],
   ijo:
   [
