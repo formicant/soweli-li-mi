@@ -17,12 +17,10 @@ export function panaEJasima(jasimaMajuna: Jasima, lonMajuna: Lon | undefined, lo
     if(nanpaNasin !== undefined)
     {
       const namakoLawa =  anteTawa === 'sikeSewi' ? 0.25 : 0;
-      let namakoSike = 0;
-      
       const nanpaMajuna = panaENanpaPiJasimaSike(jasimaMajuna, namakoLawa) ?? 0;
       const sike = Math.floor(nanpaMajuna);
       const ante = nanpaNasin - (nanpaMajuna - sike);
-      namakoSike = sike + (ante <= -0.5 ? 1 : 0) + (ante >= 0.5 ? -1 : 0);
+      const namakoSike = sike + (ante <= -0.5 ? 1 : 0) + (ante >= 0.5 ? -1 : 0);
       
       const nanpaSike = nanpaNasin + namakoSike + namakoLawa;
       return `rotate(${nanpaSike}turn)`;
