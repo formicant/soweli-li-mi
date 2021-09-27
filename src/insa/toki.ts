@@ -43,7 +43,7 @@ function linjaEPalisaToki(palisaToki: Im.Stack<Toki>): Toki
       ...palisaToki.peek()!,
       next: linjaEPalisaToki(palisaToki.pop())
     };
-  else if(palisaToki.size == 1)
+  else if(palisaToki.size === 1)
     return palisaToki.peek()!;
   else
     throw Error('palisa toki li jo e ala!');

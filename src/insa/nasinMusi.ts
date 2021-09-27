@@ -29,6 +29,5 @@ export function tokiENasinMusi(nasin: NasinMusi)
   const seme = `${nasin.seme.join(' en ')}`;
   const lonSeme = nasin.lonSeme.equals(Im.Set.of('ali')) ? '' : ` lon ${nasin.lonSeme.join(' en ')}`;
   const liSeme = ` li ${nasin.liSeme}`;
-  const nanpaIjo = ` (${nasin.nanpaIjoMute.join(', ')})`;
-  return `${seme}${lonSeme}${liSeme}${nanpaIjo}`;
+  return `${seme}${lonSeme}${liSeme}`;
 }

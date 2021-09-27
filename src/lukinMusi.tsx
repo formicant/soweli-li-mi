@@ -23,7 +23,7 @@ export class LukinMusi extends Component<{ }, Musi>
     const lonIjo = new LonIjo(lipuIjo);
     const lipuPiNasinMusi =
       panaETokiPiNasinMusi(this.state.lipuMa.suli, lonIjo)
-        .map(toki => <p>{toki}</p>);
+        .map((toki, nanpa) => <p key={nanpa}>{toki}</p>);
     // ^^^
     
     return (

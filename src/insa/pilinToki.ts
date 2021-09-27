@@ -1,5 +1,5 @@
 import Im from 'immutable';
-import { apply, expectEOF, str, tok, seq, rep, alt, kmid, opt, Parser, ParseResult } from 'typescript-parsec';
+import { apply, expectEOF, str, tok, seq, rep, alt, kmid, Parser } from 'typescript-parsec';
 import { LonIjo } from './lonIjo';
 import { Lon } from './lon';
 import { panaETokiAli, Toki } from './toki';
@@ -14,7 +14,7 @@ const pilinPali   = tok('pali'   as const);
 const pilinLi  = str<'toki'>('li');
 const pilinEn  = str<'toki'>('en');
 const pilinLon = str<'toki'>('lon');
-const pilinAla = str<'toki'>('ala');
+//const pilinAla = str<'toki'>('ala');
 
 const pilinSeme = apply(
   muteEnInsa(alt(pilinIjo, pilinKulupu), pilinEn),
