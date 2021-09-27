@@ -1,0 +1,99 @@
+import Im from 'immutable';
+import { apply, expectEOF, str, tok, seq, rep, alt, kmid, opt, Parser, ParseResult } from 'typescript-parsec';
+import { LonIjo } from './lonIjo';
+import { Lon } from './lon';
+import { panaETokiAli, Toki } from './toki';
+import { Seme, LiSeme, NasinMusi, tokiENasinMusi } from './nasinMusi';
+
+const pilinJaki = rep(alt(tok('ala'), tok('ijo'), tok('kulupu'), tok('toki'), tok('pali')));
+
+const pilinIjo    = tok('ijo'    as const);
+const pilinKulupu = tok('kulupu' as const);
+const pilinPali   = tok('pali'   as const);
+
+const pilinLi  = str<'toki'>('li');
+const pilinEn  = str<'toki'>('en');
+const pilinLon = str<'toki'>('lon');
+const pilinAla = str<'toki'>('ala');
+
+const pilinSeme = apply(
+  muteEnInsa(alt(pilinIjo, pilinKulupu), pilinEn),
+  ([mute, insa]) =>
+  ({
+    nanpaIjoMute: Im.Seq(mute).map((ni: Toki) => ni.nanpaIjo!)
+      .concat(Im.Seq(insa).map((ni: Toki) => ni.nanpaIjo!))
+      .toSet(),
+    seme: Im.Seq(mute).map(ni => ni.text as Seme).toSet()
+  } as const)
+);
+
+const pilinLeko = alt(
+  apply(
+    pilinSeme,
+    ({ nanpaIjoMute, seme }) =>
+    ({
+      nanpaIjoMute: nanpaIjoMute,
+      seme: seme,
+      lonSeme: Im.Set.of('ali' as Seme)
+    })
+  ),
+  apply(
+    seq(pilinSeme, pilinLon, pilinSeme),
+    ([seme, lon, lonSeme]) =>
+    ({
+      nanpaIjoMute: Im.Set.of((lon as Toki).nanpaIjo!).union(seme.nanpaIjoMute, lonSeme.nanpaIjoMute),
+      seme: seme.seme,
+      lonSeme: lonSeme.seme
+    })
+  )
+);
+
+const pilinNasinMusi = apply(
+  seq(pilinLeko, pilinLi, alt(pilinPali, pilinIjo)),
+  ([leko, li, liSeme]) =>
+  ({
+    nanpaIjoMute: Im.Set.of((li as Toki).nanpaIjo!, (liSeme as Toki).nanpaIjo!).union(leko.nanpaIjoMute),
+    seme: leko.seme,
+    lonSeme: leko.lonSeme,
+    liSeme: liSeme.text as LiSeme
+  } as NasinMusi)
+);
+
+const pilin = kmid(pilinJaki, pilinNasinMusi, pilinJaki);
+
+export function panaETokiPiNasinMusi(suli: Lon, lonIjo: LonIjo): string[]
+{
+  const tokiAli = panaETokiAli(suli, lonIjo);
+  const nasinAli = tokiAli
+    .map(linja => expectEOF(pilin.parse(linja)))
+    .filter(linja => linja.successful)
+    .flatMap(linja => linja.successful
+      ? Im.Seq(linja.candidates).map(ken => ken.result).cacheResult().update(wekaENasinMusiInsa)
+      : undefined as never)
+    .map(ken => tokiENasinMusi(ken))
+    .toArray();
+  
+  return nasinAli;
+}
+
+function wekaENasinMusiInsa(nasinMute: Im.Seq.Indexed<NasinMusi>)
+{
+  return nasinMute
+    .filterNot(nasinNi =>
+      nasinMute.some(nasinAnte => nasinAnte !== nasinNi && nasinNi.nanpaIjoMute.isSubset(nasinAnte.nanpaIjoMute)));
+}
+
+function muteEnInsa<TKulupu, TMute, TInsa>(
+  pilinMute: Parser<TKulupu, TMute>,
+  pilinInsa: Parser<TKulupu, TInsa>
+): Parser<TKulupu, [TMute[], TInsa[]]>
+{
+  return apply(
+    seq(pilinMute, rep(seq(pilinInsa, pilinMute))),
+    ([lawa, sijelo]) =>
+    [
+      [lawa].concat(sijelo.map(([insa, mute]) => mute)),
+      sijelo.map(([insa, mute]) => insa)
+    ]
+  );
+}

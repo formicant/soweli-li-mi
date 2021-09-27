@@ -15,8 +15,11 @@ export const lipuMaAli: LipuMa[] =
     suli: { x: 15, y: 10 },
     ijoAli:
     [
+      { x: 2, y: 2, liSitelen: true, nimi: 'soweli' },
       { x: 6, y: 3, liSitelen: true, nimi: 'kala' },
       { x: 8, y: 1, liSitelen: true, nimi: 'kiwen' },
+      { x: 1, y: 6, liSitelen: false, nimi: 'soweli' },
+      { x: 2, y: 6, liSitelen: false, nimi: 'en' },
       { x: 3, y: 6, liSitelen: false, nimi: 'kala' },
       { x: 4, y: 6, liSitelen: false, nimi: 'li' },
       { x: 5, y: 6, liSitelen: false, nimi: 'mi' },

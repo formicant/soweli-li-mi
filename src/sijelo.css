@@ -29,3 +29,8 @@ h3
   text-align: center;
   line-height: 1em;
 }
+
+p
+{
+  margin: 0;
+}
