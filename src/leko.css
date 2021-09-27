@@ -1,7 +1,16 @@
-.Leko
+.leko
 {
-  margin: 0;
-  padding: 0;
+  width: 1em;
+  height: 1em;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  transition: all 0.25s;
+}
+
+.insaLeko
+{
   width: 1em;
   height: 1em;
   text-align: center;
@@ -9,28 +18,35 @@
   justify-content: center;
   align-content: center;
   flex-direction: column;
-  position: absolute;
-  transition: all 0.2s;
 }
 
-.Leko.ijo, .Leko.kulupu, .Leko.toki
+.insaLeko.ijo, .insaLeko.kulupu, .insaLeko.toki
 {
   color: #fff;
   opacity: 0.75;
 }
 
-.Leko.ijo
+.insaLeko.ijo
 {
+  transform: scale(0.9);
   border-radius: 0.1em;
 }
 
-.Leko.kulupu
+.insaLeko.kulupu
 {
+  transform: scale(0.92);
   border-radius: 0.3em;
 }
 
-.Leko.toki
+.insaLeko.toki
 {
+  transform: scale(0.94);
+  border-radius: 0.5em;
+}
+
+.insaLeko.pali
+{
+  transform: scale(1.05);
   border-radius: 0.5em;
 }
 

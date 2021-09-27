@@ -21,7 +21,7 @@ export class Ma extends Component<JoMa>
       .toIndexedSeq();
     
     return (
-      <div className='Ma' style={{
+      <div className='ma' style={{
         width: `${this.props.suli.x}em`,
         height: `${this.props.suli.y}em`,
       }}>

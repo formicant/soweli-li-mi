@@ -9,7 +9,7 @@ import { Jasima, panaEJasima } from './jasima';
 export function Leko(ijo: Ijo)
 {
   const kulupu = panaEKulupuIjo(ijo);
-  const kulupuLukin = classNames('Leko', kulupu);
+  const kulupuLukin = classNames('insaLeko', kulupu);
   const lukinNimi = lukinPiNnimiAli[ijo.nimi];
   
   const ijoMajuna = useMajuna(ijo);
@@ -18,19 +18,21 @@ export function Leko(ijo: Ijo)
   if(jasima !== jasimaMajuna)
     sinEJasima(jasima);
   
+  const lukin =
+  {
+    left: `${ijo.x}em`,
+    top: `${ijo.y}em`,
+    transform: jasima,
+  };
   const lukinKule = anteEKule[kulupu]
     ? { backgroundColor: lukinNimi.kule }
     : { color: lukinNimi.kule };
-  const lukin = {
-    ...lukinKule,
-    left: `${ijo.x}em`,
-    top: `${ijo.y}em`,
-    transform: jasima
-  };
   
   return (
-    <div className={kulupuLukin} style={lukin}>
-      {insa(ijo)}
+    <div className={'leko'} style={lukin}>
+      <div className={kulupuLukin} style={lukinKule}>
+        {insa(ijo)}
+      </div>
     </div>
   );
 }
