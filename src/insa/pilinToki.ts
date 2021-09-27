@@ -20,30 +20,30 @@ const pilinSeme = apply(
   muteEnInsa(alt(pilinIjo, pilinKulupu), pilinEn),
   ([mute, insa]) =>
   ({
-    nanpaIjoMute: Im.Seq(mute).map((ni: Toki) => ni.nanpaIjo!)
+    seme: Im.Seq(mute).map(ni => ni.text as Seme).toSet(),
+    nanpaIjo: Im.Seq(mute).map((ni: Toki) => ni.nanpaIjo!)
       .concat(Im.Seq(insa).map((ni: Toki) => ni.nanpaIjo!))
-      .toSet(),
-    seme: Im.Seq(mute).map(ni => ni.text as Seme).toSet()
+      .toSet()
   } as const)
 );
 
 const pilinLeko = alt(
   apply(
     pilinSeme,
-    ({ nanpaIjoMute, seme }) =>
+    ({ nanpaIjo, seme }) =>
     ({
-      nanpaIjoMute: nanpaIjoMute,
       seme: seme,
-      lonSeme: Im.Set.of('ali' as Seme)
+      lonSeme: Im.Set.of('ali' as Seme),
+      nanpaIjo: nanpaIjo
     })
   ),
   apply(
     seq(pilinSeme, pilinLon, pilinSeme),
     ([seme, lon, lonSeme]) =>
     ({
-      nanpaIjoMute: Im.Set.of((lon as Toki).nanpaIjo!).union(seme.nanpaIjoMute, lonSeme.nanpaIjoMute),
       seme: seme.seme,
-      lonSeme: lonSeme.seme
+      lonSeme: lonSeme.seme,
+      nanpaIjo: Im.Set.of((lon as Toki).nanpaIjo!).union(seme.nanpaIjo, lonSeme.nanpaIjo)
     })
   )
 );
@@ -52,10 +52,10 @@ const pilinNasinMusi = apply(
   seq(pilinLeko, pilinLi, alt(pilinPali, pilinIjo)),
   ([leko, li, liSeme]) =>
   ({
-    nanpaIjoMute: Im.Set.of((li as Toki).nanpaIjo!, (liSeme as Toki).nanpaIjo!).union(leko.nanpaIjoMute),
     seme: leko.seme,
     lonSeme: leko.lonSeme,
-    liSeme: liSeme.text as LiSeme
+    liSeme: Im.Set.of(liSeme.text as LiSeme),
+    nanpaIjo: Im.Set.of((li as Toki).nanpaIjo!, (liSeme as Toki).nanpaIjo!).union(leko.nanpaIjo)
   } as NasinMusi)
 );
 
@@ -80,7 +80,8 @@ function wekaENasinMusiInsa(nasinMute: Im.Seq.Indexed<NasinMusi>)
 {
   return nasinMute
     .filterNot(nasinNi =>
-      nasinMute.some(nasinAnte => nasinAnte !== nasinNi && nasinNi.nanpaIjoMute.isSubset(nasinAnte.nanpaIjoMute)));
+      nasinMute.some(nasinAnte =>
+        nasinAnte !== nasinNi && nasinNi.nanpaIjo.isSubset(nasinAnte.nanpaIjo)));
 }
 
 function muteEnInsa<TKulupu, TMute, TInsa>(
