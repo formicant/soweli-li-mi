@@ -1,6 +1,5 @@
 import Im from 'immutable';
-import { TypedRecord, makeTypedFactory } from 'typed-immutable-record';
-import { Lon } from './lon';
+import { PokiLon, paliEPokiLon } from './lon';
 import { Ijo,  LipuIjo } from './ijo';
 
 export interface IjoEnNanpa
@@ -9,23 +8,11 @@ export interface IjoEnNanpa
   readonly nanpa: number;
 }
 
-interface PokiLon extends TypedRecord<PokiLon>, Lon { }
-const paliEPokiLon = makeTypedFactory<Lon, PokiLon>({ x: 0, y: 0 });
+export type LonIjo = Im.Map<PokiLon, IjoEnNanpa>;
 
-export class LonIjo
+export function paliELonIjo(lipuIjo: LipuIjo)
 {
-  constructor(lipuIjo: LipuIjo)
-  {
-    this.lonIjo = Im.Map(
-      lipuIjo.mapEntries(([nanpa, ijo]) => [paliEPokiLon(ijo), { ijo: ijo, nanpa: nanpa }])
-    );
-  }
-  
-  get(lon: Lon)
-  {
-    const pokiLon = paliEPokiLon(lon);
-    return this.lonIjo.get(pokiLon);
-  }
-  
-  private lonIjo: Im.Map<PokiLon, IjoEnNanpa>;
+  return Im.Map(
+    lipuIjo.mapEntries(([nanpa, ijo]) => [paliEPokiLon(ijo), { ijo: ijo, nanpa: nanpa }])
+  );
 }

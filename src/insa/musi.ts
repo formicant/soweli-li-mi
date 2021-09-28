@@ -1,6 +1,8 @@
 import Im from "immutable";
 import { LipuMa } from "./lipuMa";
 import { Lon } from "./lon";
+import { paliELonIjo } from "./lonIjo";
+import { panaETokiPiNasinMusi } from "./pilinToki";
 import { NasinTawa, Tawa, tawaOpen } from "./tawa";
 
 export interface Musi
@@ -38,6 +40,11 @@ export function tenpoSinpin(musi: Musi, ali: boolean = false): Musi
 export function tawa(musi: Musi, nasin: NasinTawa): Musi
 {
   const lipuIjo = tawaNi(musi).lipuIjo;
+  const lonIjo = paliELonIjo(lipuIjo);
+  const nasinMusi = panaETokiPiNasinMusi(musi.lipuMa.suli, lonIjo);
+  
+  //const lonPali = lonIjo.panaEAli();
+  
   const soweli = lipuIjo.toSeq().filter(ijo => ijo.liSitelen);
   
   const soweliSin = soweli.map(ijo => insaELon(tawaELon(ijo, nasin), musi.lipuMa.suli));

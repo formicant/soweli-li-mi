@@ -1,7 +1,7 @@
 import Im from 'immutable';
 import { Token, TokenPosition } from 'typescript-parsec';
 import { KulupuNimi, panaEKulupuNimi } from './nimiAli';
-import { Lon } from './lon';
+import { Lon, paliEPokiLon } from './lon';
 import { IjoEnNanpa, LonIjo } from './lonIjo';
 
 type KulupuToki = KulupuNimi | 'ala';
@@ -26,7 +26,7 @@ function panaELinja(suli: Lon, lonIjo: LonIjo, anteEPokaESewi: boolean)
   
   return Im.Range(0, suliAnte.y).map(y =>
     Im.Range(0, suliAnte.x)
-      .map(x => paliEToki(x, lonIjo.get(ante({ x: x, y: y }))))
+      .map(x => paliEToki(x, lonIjo.get(paliEPokiLon(ante({ x: x, y: y })))))
       .update(panaELinjaToki));
 }
 
