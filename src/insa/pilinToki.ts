@@ -3,7 +3,7 @@ import { apply, expectEOF, str, tok, seq, rep, alt, kmid, Parser } from 'typescr
 import { LonIjo } from './lonIjo';
 import { Lon } from './lon';
 import { panaETokiAli, Toki } from './toki';
-import { Seme, LiSeme, NasinMusi, tokiENasinMusi } from './nasinMusi';
+import { Seme, LiSeme, NasinMusi } from './nasinMusi';
 
 const pilinJaki = rep(alt(tok('ala'), tok('ijo'), tok('kulupu'), tok('toki'), tok('pali')));
 
@@ -61,7 +61,7 @@ const pilinNasinMusi = apply(
 
 const pilin = kmid(pilinJaki, pilinNasinMusi, pilinJaki);
 
-export function panaETokiPiNasinMusi(suli: Lon, lonIjo: LonIjo): string[]
+export function panaENasinMusiAli(suli: Lon, lonIjo: LonIjo): readonly NasinMusi[]
 {
   const tokiAli = panaETokiAli(suli, lonIjo);
   const nasinAli = tokiAli
@@ -70,7 +70,6 @@ export function panaETokiPiNasinMusi(suli: Lon, lonIjo: LonIjo): string[]
     .flatMap(linja => linja.successful
       ? Im.Seq(linja.candidates).map(ken => ken.result).cacheResult().update(wekaENasinMusiInsa)
       : undefined as never)
-    .map(ken => tokiENasinMusi(ken))
     .toArray();
   
   return nasinAli;

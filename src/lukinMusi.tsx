@@ -4,7 +4,8 @@ import { lipuMaAli } from './insa/lipuMa';
 import { Musi, tawaNi, openEMusi, tenpoMonsi, tenpoSinpin, tawa } from './insa/musi';
 import { IloPalisa, Palisa } from './iloPalisa';
 import { Ma } from './ma';
-import { panaETokiPiNasinMusi } from './insa/pilinToki';
+import { panaENasinMusiAli } from './insa/pilinToki';
+import { tokiENasinMusi } from './insa/nasinMusi';
 import { paliELonIjo } from './insa/lonIjo';
 
 export class LukinMusi extends Component<{ }, Musi>
@@ -22,7 +23,8 @@ export class LukinMusi extends Component<{ }, Musi>
     // O WEKA E NI:
     const lonIjo = paliELonIjo(lipuIjo);
     const lipuPiNasinMusi =
-      panaETokiPiNasinMusi(this.state.lipuMa.suli, lonIjo)
+      panaENasinMusiAli(this.state.lipuMa.suli, lonIjo)
+        .map(tokiENasinMusi)
         .map((toki, nanpa) => <p key={nanpa}>{toki}</p>);
     // ^^^
     

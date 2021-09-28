@@ -2,7 +2,7 @@ import Im from "immutable";
 import { LipuMa } from "./lipuMa";
 import { Lon } from "./lon";
 import { paliELonIjo } from "./lonIjo";
-import { panaETokiPiNasinMusi } from "./pilinToki";
+import { panaENasinMusiAli } from "./pilinToki";
 import { NasinTawa, Tawa, tawaOpen } from "./tawa";
 
 export interface Musi
@@ -41,7 +41,7 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
 {
   const lipuIjo = tawaNi(musi).lipuIjo;
   const lonIjo = paliELonIjo(lipuIjo);
-  const nasinMusi = panaETokiPiNasinMusi(musi.lipuMa.suli, lonIjo);
+  const nasinMusi = panaENasinMusiAli(musi.lipuMa.suli, lonIjo);
   
   //const lonPali = lonIjo.panaEAli();
   

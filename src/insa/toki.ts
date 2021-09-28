@@ -2,7 +2,8 @@ import Im from 'immutable';
 import { Token, TokenPosition } from 'typescript-parsec';
 import { KulupuNimi, panaEKulupuNimi } from './nimiAli';
 import { Lon, paliEPokiLon } from './lon';
-import { IjoEnNanpa, LonIjo } from './lonIjo';
+import { LonIjo } from './lonIjo';
+import { Ijo } from './ijo';
 
 type KulupuToki = KulupuNimi | 'ala';
 
@@ -49,28 +50,34 @@ function linjaEPalisaToki(palisaToki: Im.Stack<Toki>): Toki
     throw Error('palisa toki li jo e ala!');
 }
 
-function paliEToki(x: number, ijoENanpa: IjoEnNanpa | undefined): Toki
+function paliEToki(x: number, ijoENanpa: Im.Collection<number, Ijo> | undefined): Toki
 {
   const lonToki = panaELonToki(x);
-  if(ijoENanpa && !ijoENanpa.ijo.liSitelen)
+  if(ijoENanpa !== undefined)
   {
-    const nimi = ijoENanpa.ijo.nimi;
-    const kulupu = panaEKulupuNimi(nimi);
-    return {
-      nanpaIjo: ijoENanpa.nanpa,
-      kind: kulupu,
-      text: nimi,
-      pos: lonToki,
-      next: undefined,
-    };
+    const nimiWan = ijoENanpa.filterNot(ijo => ijo.liSitelen).entrySeq().first();
+    // O PALI: lon wan li ken jo e nimi mute. o pali pana e ken ali!
+    if(nimiWan !== undefined)
+    {
+      const [nanpa, ijo] = nimiWan;
+      const nimi = ijo.nimi;
+      const kulupu = panaEKulupuNimi(nimi);
+      return {
+        nanpaIjo: nanpa,
+        kind: kulupu,
+        text: nimi,
+        pos: lonToki,
+        next: undefined,
+      };
+    }
   }
-  else
-    return {
-      kind: 'ala',
-      text: '',
-      pos: lonToki,
-      next: undefined,
-    };
+  
+  return {
+    kind: 'ala',
+    text: '',
+    pos: lonToki,
+    next: undefined,
+  };
 }
 
 function panaELonToki(x: number): TokenPosition
