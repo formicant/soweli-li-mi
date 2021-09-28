@@ -17,6 +17,14 @@ export function paliELonPali(lonIjo: LonIjo, nasinMusi: readonly NasinMusi[]): L
   );
 }
 
+export function panaENanpaTanPali(lukin: Im.Collection<number, Im.Set<NimiPali>> | undefined, pali: NimiPali)
+{
+  if(lukin !== undefined)
+    return lukin.filter(paliMute => paliMute.contains(pali)).keySeq().toSet();
+  else
+    return Im.Set.of<number>();
+}
+
 function panaEPali(lon: PokiLon, ijo: Ijo, nanpa: number, lonIjo: LonIjo, nasinMusi: readonly NasinMusi[])
 {
   const ijoAntePiLonSama = lonIjo

@@ -11,10 +11,11 @@ export function Leko(ijo: Ijo)
   const kulupu = panaEKulupuIjo(ijo);
   const kulupuLukin = classNames('insaLeko', kulupu);
   const lukinNimi = lukinPiNnimiAli[ijo.nimi];
+  const anteTawa = ijo.liSitelen ? lukinNimi.anteTawa : undefined;
   
   const ijoMajuna = useMajuna(ijo);
   const [jasimaMajuna, sinEJasima] = useState<Jasima>('none');
-  const jasima = panaEJasima(jasimaMajuna, ijoMajuna, ijo, lukinNimi.anteTawa);
+  const jasima = panaEJasima(jasimaMajuna, ijoMajuna, ijo, anteTawa);
   if(jasima !== jasimaMajuna)
     sinEJasima(jasima);
   

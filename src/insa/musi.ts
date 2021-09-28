@@ -1,10 +1,9 @@
 import Im from "immutable";
 import { LipuMa } from "./lipuMa";
-import { Lon } from "./lon";
 import { paliELonIjo } from "./lonIjo";
 import { paliELonPali } from "./lonPali";
 import { panaENasinMusiAli } from "./pilinToki";
-import { NasinTawa, Tawa, tawaOpen } from "./tawa";
+import { NasinTawa, Tawa, tawaOpen, panaEKulupuTawa, tawaELon } from "./tawa";
 
 export interface Musi
 {
@@ -45,10 +44,12 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
   const nasinMusi = panaENasinMusiAli(musi.lipuMa.suli, lonIjo);
   const lonPali = paliELonPali(lonIjo, nasinMusi);
   
-  const soweli = lipuIjo.toSeq().filter(ijo => ijo.liSitelen);
+  const kulupuTawa = panaEKulupuTawa(musi.lipuMa.suli, lonPali, nasin)
+    .toKeyedSeq()
+    .mapEntries(([_, nanpa]) => [nanpa, lipuIjo.get(nanpa)!]);
   
-  const soweliSin = soweli.map(ijo => insaELon(tawaELon(ijo, nasin), musi.lipuMa.suli));
-  const lipuIjoSin = lipuIjo.merge(soweliSin);
+  const kulupuTawaSin = kulupuTawa.map(ijo => tawaELon(ijo, nasin), musi.lipuMa.suli);
+  const lipuIjoSin = lipuIjo.merge(kulupuTawaSin);
   
   if(lipuIjoSin.equals(lipuIjo)) // li pali ala. ijo li sama ala.
     return musi
@@ -68,33 +69,6 @@ export function tawaNi(musi: Musi)
     return tawaNi;
   else
     throw Error('tenpo ni li ike!');
-}
-
-function tawaELon<T extends Lon>(lon: T, nasin: NasinTawa): T
-{
-  switch(nasin)
-  {
-    case 'sewi': return { ...lon, y: lon.y - 1 };
-    case 'anpa': return { ...lon, y: lon.y + 1 };
-    case 'soto': return { ...lon, x: lon.x - 1 };
-    case 'teje': return { ...lon, x: lon.x + 1 };
-    default: throw Error('nasin li ike!');
-  }
-}
-
-function insaELon<T extends Lon>(lon: T, suli: Lon): T
-{
-  if(lon.x < 0)
-    lon = { ...lon, x: 0 };
-  else if(lon.x >= suli.x)
-    lon = { ...lon, x: suli.x - 1 };
-    
-  if(lon.y < 0)
-    lon = { ...lon, y: 0 };
-  else if(lon.y >= suli.y)
-    lon = { ...lon, y: suli.y - 1 };
-  
-  return lon;
 }
 
 // /**
