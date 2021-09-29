@@ -2,10 +2,10 @@ import Im from 'immutable';
 import { PokiLon } from './lon';
 import { Ijo } from './ijo';
 import { NimiIjo, NimiPali, panaEKulupuNimi } from './nimiAli';
-import { NasinMusi } from './nasinMusi';
+import { LiSeme, NasinMusi } from './nasinMusi';
 import { LonIjo } from './lonIjo';
 
-export type LonPali = Im.Map<PokiLon, Im.Collection<number, Im.Set<NimiPali>>>;
+export type LonPali = Im.Map<PokiLon, Im.Collection<number, Im.Set<LiSeme>>>;
 
 export function paliELonPali(lonIjo: LonIjo, nasinMusi: readonly NasinMusi[]): LonPali
 {
@@ -17,7 +17,7 @@ export function paliELonPali(lonIjo: LonIjo, nasinMusi: readonly NasinMusi[]): L
   );
 }
 
-export function panaENanpaTanPali(lukin: Im.Collection<number, Im.Set<NimiPali>> | undefined, pali: NimiPali)
+export function panaENanpaTanPali(lukin: Im.Collection<number, Im.Set<LiSeme>> | undefined, pali: NimiPali)
 {
   if(lukin !== undefined)
     return lukin.filter(paliMute => paliMute.contains(pali)).keySeq().toSet();
@@ -56,8 +56,6 @@ function panaEPali(lon: PokiLon, ijo: Ijo, nanpa: number, lonIjo: LonIjo, nasinM
   const paliMute = Im.Seq(nasinMusi)
     .filter(nasinLiLon)
     .flatMap(nasin => nasin.liSeme)
-    .filter(liSeme => panaEKulupuNimi(liSeme) === 'pali')
-    .map(pali => pali as NimiPali)
     .toSet();
   return paliMute;
 }

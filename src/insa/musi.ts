@@ -1,7 +1,10 @@
 import Im from "immutable";
+import { LipuIjo } from "./ijo";
 import { LipuMa } from "./lipuMa";
 import { paliELonIjo } from "./lonIjo";
-import { paliELonPali } from "./lonPali";
+import { LonPali, paliELonPali } from "./lonPali";
+import { NasinMusi } from "./nasinMusi";
+import { NimiIjo, panaEKulupuNimi } from "./nimiAli";
 import { panaENasinMusiAli } from "./pilinToki";
 import { NasinTawa, Tawa, tawaOpen, panaEKulupuTawa, tawaELon } from "./tawa";
 
@@ -48,18 +51,37 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
     .toKeyedSeq()
     .mapEntries(([_, nanpa]) => [nanpa, lipuIjo.get(nanpa)!]);
   
-  const kulupuTawaSin = kulupuTawa.map(ijo => tawaELon(ijo, nasin), musi.lipuMa.suli);
+  const kulupuTawaSin = kulupuTawa.map(ijo => tawaELon(ijo, nasin));
   const lipuIjoSin = lipuIjo.merge(kulupuTawaSin);
   
-  if(lipuIjoSin.equals(lipuIjo)) // li pali ala. ijo li sama ala.
+  const lonIjoSin = paliELonIjo(lipuIjoSin);
+  const nasinMusiSin = panaENasinMusiAli(musi.lipuMa.suli, lonIjoSin);
+  const lonPaliSin = paliELonPali(lonIjoSin, nasinMusiSin);
+  const ijoAnte = panaEIjoAnte(lonPaliSin, lipuIjoSin);
+  
+  const lipuIjoAnte = lipuIjoSin.merge(ijoAnte);
+  
+  if(lipuIjoAnte.equals(lipuIjo)) // li pali ala. ijo li sama ala.
     return musi
   else
   {
-    const tawaSin: Tawa = { nasin: nasin, lipuIjo: lipuIjoSin };
+    const tawaSin: Tawa = { nasin: nasin, lipuIjo: lipuIjoAnte };
     const tenpoSin = musi.tenpo.toSeq().take(musi.tenpoNi + 1).concat([tawaSin]).toList();
     
     return { ...musi, tenpo: tenpoSin, tenpoNi: musi.tenpoNi + 1 };
   }
+}
+
+function panaEIjoAnte(lonPali: LonPali, lipuIjo: LipuIjo)
+{
+  return Im.Seq.Keyed(
+    lonPali.entrySeq().flatMap(([_, mute]) =>
+      mute
+        .map(paliMute => paliMute.filter(pali => panaEKulupuNimi(pali) === 'ijo') as Im.Set<NimiIjo>)
+        .filterNot(paliMute => paliMute.isEmpty())
+        .toKeyedSeq()
+    )
+  ).map((anteMute, nanpa) => ({ ...lipuIjo.get(nanpa)!, liSitelen: true as const, nimi: anteMute.first()! }));
 }
 
 export function tawaNi(musi: Musi)
