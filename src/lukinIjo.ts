@@ -3,13 +3,13 @@ import { Kule } from './kule';
 
 export type AnteTawa = 'poka' | 'sikePoka' | 'sikeSewi';
 
-export interface LukinNimi
+export interface LukinIjo
 {
   readonly kule: Kule;
   readonly anteTawa?: AnteTawa;
 }
 
-export const lukinPiKulupuNimi: { [kulupu in KulupuNimi]: LukinNimi } =
+export const lukinPiKulupuNimi: { [kulupu in KulupuNimi]: LukinIjo } =
 {
   ijo:    { kule: '#26a' },
   toki:   { kule: '#555' },
@@ -17,7 +17,7 @@ export const lukinPiKulupuNimi: { [kulupu in KulupuNimi]: LukinNimi } =
   pali:   { kule: '#b52' },
 } as const;
 
-export const lukinPiIjoAli: { [nimi in NimiIjo]: LukinNimi } =
+export const lukinPiIjoAli: { [nimi in NimiIjo]: LukinIjo } =
 {
   soweli: { kule: '#444', anteTawa: 'poka' },
   waso:   { kule: '#678', anteTawa: 'poka' },

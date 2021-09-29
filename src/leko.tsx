@@ -2,7 +2,7 @@ import './leko.css';
 import classNames from 'classnames';
 import { useState, useRef, useEffect } from 'react';
 import { Ijo } from './insa/ijo';
-import { lukinPiKulupuNimi, lukinPiIjoAli } from './lukinNimi'
+import { lukinPiKulupuNimi, lukinPiIjoAli } from './lukinIjo'
 import { kipisiENimi } from './kipisiENimi';
 import { Jasima, panaEJasima } from './jasima';
 import { panaEKulupuNimi } from './insa/nimiAli';
