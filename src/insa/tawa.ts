@@ -1,7 +1,10 @@
 import Im from 'immutable';
 import { Ijo, LipuIjo } from './ijo';
+import { LipuMa } from './lipuMa';
 import { Lon, PokiLon } from './lon';
-import { LonPali, panaENanpaTanPali } from './lonPali';
+import { paliELonIjo } from './lonIjo';
+import { LonPali, paliELonPali, panaENanpaTanPali } from './lonPali';
+import { panaENasinMusiAli } from './pilinToki';
 
 export type NasinTawa = 'sewi' | 'anpa' | 'soto' | 'teje';
 
@@ -9,12 +12,24 @@ export interface Tawa
 {
   readonly nasin?: NasinTawa;
   readonly lipuIjo: LipuIjo;
+  readonly lukinWawa: Im.Set<number>;
 }
 
-export function tawaOpen(ijoAli: Iterable<Ijo>): Tawa
+export function tawaOpen(lipuMa: LipuMa): Tawa
 {
+  const lipuIjo = Im.Map(Im.Seq(lipuMa.ijoAli).toKeyedSeq());
+  
+  const lonIjo = paliELonIjo(lipuIjo);
+  const nasinMusi = panaENasinMusiAli(lipuMa.suli, lonIjo);
+  const lonPali = paliELonPali(lonIjo, nasinMusi);
+  
+  const lukinWawa = Im.Seq(nasinMusi).flatMap(nasin => nasin.nanpaIjo)
+    .concat(lonPali.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjo.get(nanpa)!.liSitelen && !pali.isEmpty()).keySeq()))
+    .toSet();
+  
   return {
-    lipuIjo: Im.Map(Im.Seq(ijoAli).toKeyedSeq())
+    lipuIjo: lipuIjo,
+    lukinWawa: lukinWawa,
   };
 }
 

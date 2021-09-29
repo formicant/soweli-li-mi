@@ -3,7 +3,6 @@ import { LipuIjo } from "./ijo";
 import { LipuMa } from "./lipuMa";
 import { paliELonIjo } from "./lonIjo";
 import { LonPali, paliELonPali } from "./lonPali";
-import { NasinMusi } from "./nasinMusi";
 import { NimiIjo, panaEKulupuNimi } from "./nimiAli";
 import { panaENasinMusiAli } from "./pilinToki";
 import { NasinTawa, Tawa, tawaOpen, panaEKulupuTawa, tawaELon } from "./tawa";
@@ -19,7 +18,7 @@ export function openEMusi(lipuMa: LipuMa): Musi
 {
   return {
     lipuMa: lipuMa,
-    tenpo: Im.List.of(tawaOpen(lipuMa.ijoAli)),
+    tenpo: Im.List.of(tawaOpen(lipuMa)),
     tenpoNi: 0,
   };
 }
@@ -61,11 +60,19 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
   
   const lipuIjoAnte = lipuIjoSin.merge(ijoAnte);
   
+  const lonIjoAnte = paliELonIjo(lipuIjoAnte);
+  const nasinMusiAnte = panaENasinMusiAli(musi.lipuMa.suli, lonIjoAnte);
+  const lonPaliAnte = paliELonPali(lonIjoAnte, nasinMusiAnte);
+  
+  const lukinWawa = Im.Seq(nasinMusiAnte).flatMap(nasin => nasin.nanpaIjo)
+    .concat(lonPaliAnte.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjoAnte.get(nanpa)!.liSitelen && !pali.isEmpty()).keySeq()))
+    .toSet();
+  
   if(lipuIjoAnte.equals(lipuIjo)) // li pali ala. ijo li sama ala.
     return musi
   else
   {
-    const tawaSin: Tawa = { nasin: nasin, lipuIjo: lipuIjoAnte };
+    const tawaSin: Tawa = { nasin: nasin, lipuIjo: lipuIjoAnte, lukinWawa: lukinWawa };
     const tenpoSin = musi.tenpo.toSeq().take(musi.tenpoNi + 1).concat([tawaSin]).toList();
     
     return { ...musi, tenpo: tenpoSin, tenpoNi: musi.tenpoNi + 1 };

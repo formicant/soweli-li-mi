@@ -1,4 +1,5 @@
 import './ma.css';
+import Im from "immutable";
 import { Component } from 'react';
 import { Lon } from './insa/lon';
 import { LipuIjo } from './insa/ijo';
@@ -8,6 +9,7 @@ interface JoMa
 {
   readonly suli: Lon;
   readonly lipuIjo: LipuIjo;
+  readonly lukinWawa: Im.Set<number>;
 }
 
 export class Ma extends Component<JoMa>
@@ -16,7 +18,7 @@ export class Ma extends Component<JoMa>
   {
     const lekoAli = this.props.lipuIjo
       .map((ijo, nanpaTaso) =>
-        <Leko key={nanpaTaso} {...ijo} />
+        <Leko key={nanpaTaso} ijo={ijo} lukinWawa={this.props.lukinWawa.contains(nanpaTaso)} />
       )
       .toIndexedSeq();
     

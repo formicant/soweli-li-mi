@@ -18,10 +18,10 @@ export class LukinMusi extends Component<{ }, Musi>
   
   render()
   {
-    const lipuIjo = tawaNi(this.state).lipuIjo;
+    const ni = tawaNi(this.state);
     
     // O WEKA E NI:
-    const lonIjo = paliELonIjo(lipuIjo);
+    const lonIjo = paliELonIjo(ni.lipuIjo);
     const lipuPiNasinMusi =
       panaENasinMusiAli(this.state.lipuMa.suli, lonIjo)
         .map(tokiENasinMusi)
@@ -35,7 +35,8 @@ export class LukinMusi extends Component<{ }, Musi>
         </div>
         <Ma
           suli={this.state.lipuMa.suli}
-          lipuIjo={lipuIjo}
+          lipuIjo={ni.lipuIjo}
+          lukinWawa={ni.lukinWawa}
         />
         <div>
           {lipuPiNasinMusi}

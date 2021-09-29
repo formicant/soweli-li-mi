@@ -6,10 +6,11 @@ import { lukinPiNnimiAli, anteEKule } from './lukinNimi'
 import { kipisiENimi } from './kipisiENimi';
 import { Jasima, panaEJasima } from './jasima';
 
-export function Leko(ijo: Ijo)
+export function Leko({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boolean })
 {
   const kulupu = panaEKulupuIjo(ijo);
-  const kulupuLukin = classNames('insaLeko', kulupu);
+  const kulupuLukin = classNames('leko', { 'wawa': lukinWawa });
+  const kulupuLukinInsa = classNames('insaLeko', kulupu);
   const lukinNimi = lukinPiNnimiAli[ijo.nimi];
   const anteTawa = ijo.liSitelen ? lukinNimi.anteTawa : undefined;
   
@@ -32,8 +33,8 @@ export function Leko(ijo: Ijo)
     : { color: lukinNimi.kule };
   
   return (
-    <div className={'leko'} style={lukin}>
-      <div className={kulupuLukin} style={lukinKule}>
+    <div className={kulupuLukin} style={lukin}>
+      <div className={kulupuLukinInsa} style={lukinKule}>
         {insa(ijo)}
       </div>
     </div>
