@@ -1,18 +1,24 @@
 import './leko.css';
 import classNames from 'classnames';
 import { useState, useRef, useEffect } from 'react';
-import { Ijo, panaEKulupuIjo } from './insa/ijo';
-import { lukinPiNnimiAli, anteEKule } from './lukinNimi'
+import { Ijo } from './insa/ijo';
+import { lukinPiKulupuNimi, lukinPiIjoAli } from './lukinNimi'
 import { kipisiENimi } from './kipisiENimi';
 import { Jasima, panaEJasima } from './jasima';
+import { panaEKulupuNimi } from './insa/nimiAli';
 
 export function Leko({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boolean })
 {
-  const kulupu = panaEKulupuIjo(ijo);
-  const kulupuLukin = classNames('leko', { 'wawa': lukinWawa });
-  const kulupuLukinInsa = classNames('insaLeko', kulupu);
-  const lukinNimi = lukinPiNnimiAli[ijo.nimi];
+  const lukinNimi = ijo.liSitelen
+    ? lukinPiIjoAli[ijo.nimi]
+    : lukinPiKulupuNimi[panaEKulupuNimi(ijo.nimi)];
   const anteTawa = ijo.liSitelen ? lukinNimi.anteTawa : undefined;
+  
+  const kulupuLukin = classNames(
+    'leko',
+    { 'sitelen': ijo.liSitelen },
+    { 'wawa': lukinWawa }
+  );
   
   const ijoMajuna = useMajuna(ijo);
   const [jasimaMajuna, sinEJasima] = useState<Jasima>('none');
@@ -27,16 +33,12 @@ export function Leko({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boolean })
     left: `${ijo.x}em`,
     top: `${ijo.y}em`,
     transform: jasima,
+    color: lukinNimi.kule,
   };
-  const lukinKule = anteEKule[kulupu]
-    ? { backgroundColor: lukinNimi.kule }
-    : { color: lukinNimi.kule };
   
   return (
     <div className={kulupuLukin} style={lukin}>
-      <div className={kulupuLukinInsa} style={lukinKule}>
-        {insa(ijo)}
-      </div>
+      {insa(ijo)}
     </div>
   );
 }

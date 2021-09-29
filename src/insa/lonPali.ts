@@ -1,7 +1,7 @@
 import Im from 'immutable';
 import { PokiLon } from './lon';
 import { Ijo } from './ijo';
-import { NimiIjo, NimiPali, panaEKulupuNimi } from './nimiAli';
+import { NimiIjo, NimiPali } from './nimiAli';
 import { LiSeme, NasinMusi } from './nasinMusi';
 import { LonIjo } from './lonIjo';
 

@@ -1,5 +1,5 @@
 import Im from 'immutable';
-import { Ijo, LipuIjo } from './ijo';
+import { LipuIjo } from './ijo';
 import { LipuMa } from './lipuMa';
 import { Lon, PokiLon } from './lon';
 import { paliELonIjo } from './lonIjo';
