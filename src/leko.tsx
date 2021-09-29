@@ -15,7 +15,9 @@ export function Leko(ijo: Ijo)
   
   const ijoMajuna = useMajuna(ijo);
   const [jasimaMajuna, sinEJasima] = useState<Jasima>('none');
-  const jasima = panaEJasima(jasimaMajuna, ijoMajuna, ijo, anteTawa);
+  const jasima = ijoMajuna?.nimi === ijo.nimi
+    ? panaEJasima(jasimaMajuna, ijoMajuna, ijo, anteTawa)
+    : 'none';
   if(jasima !== jasimaMajuna)
     sinEJasima(jasima);
   
