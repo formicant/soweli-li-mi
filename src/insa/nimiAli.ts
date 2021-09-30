@@ -2,7 +2,7 @@ import { monsiEKulupu } from "./kepeken";
 
 export type KulupuNimi = 'toki' | 'kulupu' | 'ijo' | 'pali';
 
-const nimiInsaKulupu =
+export const nimiInsaKulupu =
 {
   toki:
   [
@@ -16,6 +16,7 @@ const nimiInsaKulupu =
   [
     'ali',
     'nimi',
+    'sitelen',
     'kon',
   ],
   ijo:
@@ -27,12 +28,14 @@ const nimiInsaKulupu =
     'pipi',
     'tomo',
     'kiwen',
+    'ma',
     'telo',
     'ko',
     'kasi',
     'kili',
+    'pan',
     'sike',
-    'leko',
+    'lipu',
   ],
   pali:
   [
@@ -42,13 +45,14 @@ const nimiInsaKulupu =
     'awen',
     'weka',
     'tawa',
-    'pakala',
-  ],
+    'sewi',
+    'anpa',
+  ]
 } as const;
 
 const kulupuPiNimiAli = monsiEKulupu(nimiInsaKulupu);
 
-export const nimiAli = kulupuPiNimiAli.keys();
+export const nimiAli = kulupuPiNimiAli.keySeq().toArray();
 
 export type NimiToki   = typeof nimiInsaKulupu.toki  [number];
 export type NimiKulupu = typeof nimiInsaKulupu.kulupu[number];

@@ -1,6 +1,5 @@
 import Im from 'immutable';
-import { LipuIjo } from './ijo';
-import { LipuMa } from './lipuMa';
+import { Ijo, LipuIjo } from './ijo';
 import { Lon, PokiLon } from './lon';
 import { paliELonIjo } from './lonIjo';
 import { LonPali, paliELonPali, panaENanpaTanPali } from './lonPali';
@@ -15,12 +14,12 @@ export interface Tawa
   readonly lukinWawa: Im.Set<number>;
 }
 
-export function tawaOpen(lipuMa: LipuMa): Tawa
+export function tawaOpen(suli: Lon, ijoAli: readonly Ijo[]): Tawa
 {
-  const lipuIjo = Im.Map(Im.Seq(lipuMa.ijoAli).toKeyedSeq());
+  const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq());
   
   const lonIjo = paliELonIjo(lipuIjo);
-  const nasinMusi = panaENasinMusiAli(lipuMa.suli, lonIjo);
+  const nasinMusi = panaENasinMusiAli(suli, lonIjo);
   const lonPali = paliELonPali(lonIjo, nasinMusi);
   
   const lukinWawa = Im.Seq(nasinMusi).flatMap(nasin => nasin.nanpaIjo)

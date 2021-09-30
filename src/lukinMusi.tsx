@@ -1,46 +1,34 @@
 import './lukinMusi.css';
+import lipuMaAli from './lipu/lipuMa.json'
 import { Component } from 'react';
-import { lipuMaAli } from './insa/lipuMa';
 import { Musi, tawaNi, openEMusi, tenpoMonsi, tenpoSinpin, tawa } from './insa/musi';
 import { IloPalisa, Palisa } from './iloPalisa';
 import { Ma } from './ma';
-import { panaENasinMusiAli } from './insa/pilinToki';
-import { tokiENasinMusi } from './insa/nasinMusi';
-import { paliELonIjo } from './insa/lonIjo';
+import { pilinELipuMa } from './insa/lipuMa';
 
 export class LukinMusi extends Component<{ }, Musi>
 {
   constructor(jo: { })
   {
     super(jo);
-    this.state = openEMusi(lipuMaAli[0]);
+    const lipuMa = pilinELipuMa(lipuMaAli[0]);
+    this.state = openEMusi(lipuMa.nimiMa, lipuMa.suliMa, lipuMa.ijoAli);
   }
   
   render()
   {
     const ni = tawaNi(this.state);
     
-    // O WEKA E NI:
-    const lonIjo = paliELonIjo(ni.lipuIjo);
-    const lipuPiNasinMusi =
-      panaENasinMusiAli(this.state.lipuMa.suli, lonIjo)
-        .map(tokiENasinMusi)
-        .map((toki, nanpa) => <p key={nanpa}>{toki}</p>);
-    // ^^^
-    
     return (
       <main>
         <div className='nimiMa'>
-          {this.state.lipuMa.nimi}
+          {this.state.nimiMa}
         </div>
         <Ma
-          suli={this.state.lipuMa.suli}
+          suli={this.state.suliMa}
           lipuIjo={ni.lipuIjo}
           lukinWawa={ni.lukinWawa}
         />
-        <div>
-          {lipuPiNasinMusi}
-        </div>
         <IloPalisa palisaLa={this.lukaPalisa} />
       </main>
     );

@@ -9,14 +9,15 @@
   flex-direction: column;
   position: absolute;
   transition: all 0.25s;
-  opacity: 0.33;
-  z-index: 0;
+  cursor: default;
+  opacity: 0.4;
+  z-index: 1;
 }
 
 .leko.wawa
 {
   opacity: 1;
-  z-index: 1;
+  z-index: 2;
 }
 
 .sitelen span
@@ -29,18 +30,19 @@
 {
   line-height: 0.75em;
   position: relative;
+  transform: scaleX(1.1);
 }
 
 .linjaWan
 {
   font-size: 0.8em;
-  font-weight: 350;
+  font-weight: 330;
   top: -0.02em;
 }
 
 .linjaTu
 {
   font-size: 0.625em;
-  font-weight: 400;
+  font-weight: 360;
   top: -0.07em;
 }

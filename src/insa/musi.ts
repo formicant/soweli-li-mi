@@ -1,6 +1,6 @@
 import Im from "immutable";
-import { LipuIjo } from "./ijo";
-import { LipuMa } from "./lipuMa";
+import { Ijo, LipuIjo } from "./ijo";
+import { Lon } from "./lon";
 import { paliELonIjo } from "./lonIjo";
 import { LonPali, paliELonPali } from "./lonPali";
 import { NimiIjo, panaEKulupuNimi } from "./nimiAli";
@@ -9,16 +9,18 @@ import { NasinTawa, Tawa, tawaOpen, panaEKulupuTawa, tawaELon } from "./tawa";
 
 export interface Musi
 {
-  readonly lipuMa: LipuMa;
+  readonly nimiMa: string;
+  readonly suliMa: Lon;
   readonly tenpo: Im.List<Tawa>;
   readonly tenpoNi: number;
 }
 
-export function openEMusi(lipuMa: LipuMa): Musi
+export function openEMusi(nimiMa: string, suliMa: Lon, ijoAli: readonly Ijo[]): Musi
 {
   return {
-    lipuMa: lipuMa,
-    tenpo: Im.List.of(tawaOpen(lipuMa)),
+    nimiMa: nimiMa,
+    suliMa: suliMa,
+    tenpo: Im.List.of(tawaOpen(suliMa, ijoAli)),
     tenpoNi: 0,
   };
 }
@@ -43,10 +45,10 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
 {
   const lipuIjo = tawaNi(musi).lipuIjo;
   const lonIjo = paliELonIjo(lipuIjo);
-  const nasinMusi = panaENasinMusiAli(musi.lipuMa.suli, lonIjo);
+  const nasinMusi = panaENasinMusiAli(musi.suliMa, lonIjo);
   const lonPali = paliELonPali(lonIjo, nasinMusi);
   
-  const kulupuTawa = panaEKulupuTawa(musi.lipuMa.suli, lonPali, nasin)
+  const kulupuTawa = panaEKulupuTawa(musi.suliMa, lonPali, nasin)
     .toKeyedSeq()
     .mapEntries(([_, nanpa]) => [nanpa, lipuIjo.get(nanpa)!]);
   
@@ -54,16 +56,17 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
   const lipuIjoSin = lipuIjo.merge(kulupuTawaSin);
   
   const lonIjoSin = paliELonIjo(lipuIjoSin);
-  const nasinMusiSin = panaENasinMusiAli(musi.lipuMa.suli, lonIjoSin);
+  const nasinMusiSin = panaENasinMusiAli(musi.suliMa, lonIjoSin);
   const lonPaliSin = paliELonPali(lonIjoSin, nasinMusiSin);
   const ijoAnte = panaEIjoAnte(lonPaliSin, lipuIjoSin);
   
   const lipuIjoAnte = lipuIjoSin.merge(ijoAnte);
   
   const lonIjoAnte = paliELonIjo(lipuIjoAnte);
-  const nasinMusiAnte = panaENasinMusiAli(musi.lipuMa.suli, lonIjoAnte);
+  const nasinMusiAnte = panaENasinMusiAli(musi.suliMa, lonIjoAnte);
   const lonPaliAnte = paliELonPali(lonIjoAnte, nasinMusiAnte);
   
+  // O PALI: ken ante e ijo wan tawa ijo mute!
   const lukinWawa = Im.Seq(nasinMusiAnte).flatMap(nasin => nasin.nanpaIjo)
     .concat(lonPaliAnte.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjoAnte.get(nanpa)!.liSitelen && !pali.isEmpty()).keySeq()))
     .toSet();

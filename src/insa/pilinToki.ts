@@ -48,7 +48,7 @@ const pilinLeko = alt(
   )
 );
 
-const pilinNasinMusi = apply(
+const pilinPiNasinMusi = apply(
   seq(pilinLeko, pilinLi, alt(pilinPali, pilinIjo)),
   ([leko, li, liSeme]) =>
   ({
@@ -59,7 +59,7 @@ const pilinNasinMusi = apply(
   } as NasinMusi)
 );
 
-const pilin = kmid(pilinJaki, pilinNasinMusi, pilinJaki);
+const pilin = kmid(pilinJaki, pilinPiNasinMusi, pilinJaki);
 
 export function panaENasinMusiAli(suli: Lon, lonIjo: LonIjo): readonly NasinMusi[]
 {

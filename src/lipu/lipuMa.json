@@ -1,0 +1,45 @@
+[
+  {
+    "nimi": "ma pona",
+    "ma": [
+      "Soweli Li Mi...Lipu Li Awen",
+      " . . . . # # # # . ",
+      " . . # # # . . # . ",
+      " . . # . . 0 . # # ",
+      " & . 0 . . . . ^ # ",
+      " . . # . 0 . . # # ",
+      " . . # . . # # # . ",
+      " . . # # # # . . . ",
+      "Sike Li Tawa...Tomo Li Pini"
+    ],
+    "namako": {
+      "&": "soweli",
+      "#": "lipu",
+      "0": "sike",
+      "^": "tomo"
+    }
+  },
+  {
+    "nimi": "lon poka telo",
+    "ma": [
+      "tom TOM LI  PIN  .   .   .   .   .   .   .   .   .  SOW EN  KAL LON KON LI  ANP",
+      " .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . ",
+      " .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  was  .   . ",
+      " .   .   .   .  SOW LI  MI   .   .   .   .   .   .   .   .   .   .   .   .   . ",
+      " .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . ",
+      " .   .   .   .  kil  .   .   .   .   .   .   .   .   .   .   .   .   .   .   . ",
+      " .  sow  .   .  kas  .   .   .   .   .   .   .   .   .   .   .   .   .   .   . ",
+      "ma  ma  ma  ma  ma  ma   .  pan pan pan  .   .   .   .   .   .   .   .   .   . ",
+      "ma  MA  LI  AWE ma  ma  ma  ma  ma  ma  pan pan pan pan  .   .   .   .   .   . ",
+      "ma  KIW LI  TAW LI  ANP ma  ma  ma  ma  tel tel tel tel tel tel tel tel tel tel",
+      "ma  ma  ma  ma  ma  ma  ma  ma  ma  ma  tel tel tel tel tel tel tel tel tel tel",
+      "ma   .  WAS KAL  .  PIP kiw kiw tel ma  tel tel tel tel tel tel tel tel pan tel",
+      "ma   .  ma  ma  LI  ma  ma  ma  tel tel tel tel tel tel tel kiw tel  @  kas tel",
+      "ma   .   .  pip MI  ma  ma  ma  ma  kas tel kas tel pan kiw kiw kiw kas kas kas",
+      "NIM EN  SOW EN  WAS EN  KAL LI  TAW ma  ma  ma  ma  SOW EN  WAS LON TEL LI  SEW"
+    ],
+    "namako": {
+      "@": "telo kala"
+    }
+  }
+]
