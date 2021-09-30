@@ -1,8 +1,8 @@
 import Im from 'immutable';
 import { Lon } from './lon';
 import { buildLexer, apply, expectSingleResult, expectEOF, tok, rep, alt, Parser } from 'typescript-parsec';
-import { nimiAli, nimiInsaKulupu } from './nimiAli';
-import { Ijo } from './ijo';
+import { Nimi, nimiAli, nimiInsaKulupu } from './nimiAli';
+import { Ijo, KulupuIjo } from './ijo';
 
 interface LipuMa
 {
@@ -29,12 +29,12 @@ function panaENimi(nimi: string, liSitelen: boolean)
   const nimiLili = nimi.toLowerCase();
   const tan = liSitelen ? nimiSitelen : nimiNimi;
   if(tan.contains(nimiLili))
-    return nimiLili;
+    return nimiLili as Nimi;
   else
   {
     const nimiOpen = tan.filter(ni => ni.startsWith(nimiLili));
     if(nimiOpen.size === 1)
-      return nimiOpen.first()!;
+      return nimiOpen.first()! as Nimi;
     else if(nimiOpen.isEmpty())
       throw new Error(`nimi '${nimi}' li ken open e ala!`);
     else
@@ -42,13 +42,13 @@ function panaENimi(nimi: string, liSitelen: boolean)
   }
 }
 
-type Wan = { readonly liSitelen: boolean, readonly nimi: string };
+type Wan = { readonly kulupu: KulupuIjo, readonly nimi: Nimi };
 
 const pilinPiIjoNimi = apply(
   tok(KulupuToki.Nimi),
   (toki): readonly Wan[] =>
   [{
-    liSitelen: false,
+    kulupu: 'nimi',
     nimi: panaENimi(toki.text, false),
   }]
 );
@@ -57,7 +57,7 @@ const pilinPiIjoSitelen = apply(
   tok(KulupuToki.Sitelen),
   (toki): readonly Wan[] =>
   [{
-    liSitelen: true,
+    kulupu: 'sitelen',
     nimi: panaENimi(toki.text, true),
   }]
 );
@@ -110,7 +110,8 @@ export function pilinELipuMa(lipuMa: LipuMa)
   const ijoAli = ma
     .flatMap((linja, y) =>
       Im.Seq(linja).flatMap((leko, x) =>
-        Im.Seq(leko).map(wan => ({ lon: new Lon(x, y), ...wan } as Ijo))))
+        Im.Seq(leko).map(wan => ({  ...wan, lon: new Lon(x, y) }))))
+    .map((ijo, nanpa) => new Ijo({ ...ijo, nanpa: nanpa }))
     .toArray();
   
   return {

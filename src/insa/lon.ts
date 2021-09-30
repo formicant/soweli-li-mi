@@ -8,7 +8,7 @@ interface ILon
   readonly y: number;
 }
 
-export class Lon extends Im.Record<ILon>({ x: 0, y: 0 }) implements ILon
+export class Lon extends Im.Record<ILon>({ x: NaN, y: NaN }) implements ILon
 {
   constructor(x: number, y: number)
   {

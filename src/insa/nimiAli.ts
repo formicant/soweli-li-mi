@@ -93,7 +93,7 @@ export function liInsaKulupu(nimi: Nimi, kulupu: 'ijo'   ): nimi is NimiIjo
 export function liInsaKulupu(nimi: Nimi, kulupu: 'pali'  ): nimi is NimiPali
 export function liInsaKulupu(nimi: Nimi, kulupu: KulupuNimi)
 {
-  return (nimiInsaKulupu[kulupu] as ReadonlyArray<Nimi>).includes(nimi);
+  return (nimiInsaKulupu[kulupu] as readonly Nimi[]).includes(nimi);
 }
 
 export function panaEKulupuNimi(nimi: Nimi)

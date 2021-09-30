@@ -52,7 +52,7 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
     .toKeyedSeq()
     .mapEntries(([_, nanpa]) => [nanpa, lipuIjo.get(nanpa)!]);
   
-  const kulupuTawaSin = kulupuTawa.map(ijo => ({ ...ijo, lon: ijo.lon.tawa(nasin) }));
+  const kulupuTawaSin = kulupuTawa.map(ijo => ijo.tawa(nasin));
   const lipuIjoSin = lipuIjo.merge(kulupuTawaSin);
   
   const lonIjoSin = paliELonIjo(lipuIjoSin);
@@ -68,7 +68,7 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
   
   // O PALI: ken ante e ijo wan tawa ijo mute!
   const lukinWawa = Im.Seq(nasinMusiAnte).flatMap(nasin => nasin.nanpaIjo)
-    .concat(lonPaliAnte.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjoAnte.get(nanpa)!.liSitelen && !pali.isEmpty()).keySeq()))
+    .concat(lonPaliAnte.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjoAnte.get(nanpa)!.liSitelen() && !pali.isEmpty()).keySeq()))
     .toSet();
   
   if(lipuIjoAnte.equals(lipuIjo)) // li pali ala. ijo li sama ala.
@@ -91,7 +91,7 @@ function panaEIjoAnte(lonPali: LonPali, lipuIjo: LipuIjo)
         .filterNot(paliMute => paliMute.isEmpty())
         .toKeyedSeq()
     )
-  ).map((anteMute, nanpa) => ({ ...lipuIjo.get(nanpa)!, liSitelen: true as const, nimi: anteMute.first()! }));
+  ).map((anteMute, nanpa) => lipuIjo.get(nanpa)!.merge({ kulupu: 'sitelen', nimi: anteMute.first()! }));
 }
 
 export function tawaNi(musi: Musi)

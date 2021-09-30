@@ -21,7 +21,7 @@ export function tawaOpen(suli: Lon, ijoAli: readonly Ijo[]): Tawa
   const lonPali = paliELonPali(lonIjo, nasinMusi);
   
   const lukinWawa = Im.Seq(nasinMusi).flatMap(nasin => nasin.nanpaIjo)
-    .concat(lonPali.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjo.get(nanpa)!.liSitelen && !pali.isEmpty()).keySeq()))
+    .concat(lonPali.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjo.get(nanpa)!.liSitelen() && !pali.isEmpty()).keySeq()))
     .toSet();
   
   return {

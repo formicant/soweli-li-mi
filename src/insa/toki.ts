@@ -55,7 +55,7 @@ function paliEToki(x: number, ijoENanpa: Im.Collection<number, Ijo> | undefined)
   const lonToki = panaELonToki(x);
   if(ijoENanpa !== undefined)
   {
-    const nimiWan = ijoENanpa.filterNot(ijo => ijo.liSitelen).entrySeq().first();
+    const nimiWan = ijoENanpa.filterNot(ijo => ijo.liSitelen()).entrySeq().first();
     // O PALI: lon wan li ken jo e nimi mute. o pali pana e ken ali!
     if(nimiWan !== undefined)
     {

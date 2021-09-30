@@ -45,7 +45,7 @@ export const lukinPiIjoAli: { [nimi in NimiIjo]: LukinIjo } =
   ilo:    { kule: '#488' },
   len:    { kule: '#a94' },
   mani:   { kule: '#c90' },
-  linja:  { kule: '#d00', anteTawa: 'sikePoka' },
+  linja:  { kule: '#d00', anteTawa: 'poka' },
   jaki:   { kule: '#543', anteTawa: 'sikePoka' },
   suno:   { kule: '#c80', anteTawa: 'sikeSewi' },
   mun:    { kule: '#07d', anteTawa: 'sikePoka' },

@@ -9,14 +9,14 @@ import { panaEKulupuNimi } from './insa/nimiAli';
 
 export function Leko({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boolean })
 {
-  const lukinNimi = ijo.liSitelen
+  const lukinNimi = ijo.liSitelen()
     ? lukinPiIjoAli[ijo.nimi]
     : lukinPiKulupuNimi[panaEKulupuNimi(ijo.nimi)];
-  const anteTawa = ijo.liSitelen ? lukinNimi.anteTawa : undefined;
+  const anteTawa = ijo.liSitelen() ? lukinNimi.anteTawa : undefined;
   
   const kulupuLukin = classNames(
     'leko',
-    { 'sitelen': ijo.liSitelen },
+    { 'sitelen': ijo.liSitelen() },
     { 'wawa': lukinWawa }
   );
   
@@ -45,7 +45,7 @@ export function Leko({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boolean })
 
 function insa(ijo: Ijo)
 {
-  if(ijo.liSitelen)
+  if(ijo.liSitelen())
     return <span>{ijo.nimi}</span>;
   else
   {

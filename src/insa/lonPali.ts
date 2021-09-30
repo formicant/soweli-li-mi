@@ -33,7 +33,7 @@ function panaEPali(lon: Lon, ijo: Ijo, nanpa: number, lonIjo: LonIjo, nasinMusi:
     .toSet();
   const nimiPiIjoSitelenAntePiLonSama = ijoAntePiLonSama
     .toSeq()
-    .filter(ni => ni.liSitelen)
+    .filter(ni => ni.liSitelen())
     .map(ni => ni.nimi as NimiIjo)
     .toSet();
   
@@ -41,12 +41,12 @@ function panaEPali(lon: Lon, ijo: Ijo, nanpa: number, lonIjo: LonIjo, nasinMusi:
   {
     const semeLiLon =
       nasin.seme.contains('ali') ||
-      (!ijo.liSitelen && nasin.seme.contains('nimi')) ||
-      (ijo.liSitelen && nasin.seme.contains(ijo.nimi));
+      (ijo.liNimi() && nasin.seme.contains('nimi')) ||
+      (ijo.liSitelen() && nasin.seme.contains(ijo.nimi));
     
     const lonSemeLiLon =
       nasin.lonSeme.contains('ali') ||
-      (nasin.lonSeme.contains('nimi') && ijoAntePiLonSama.some(ni => !ni.liSitelen)) ||
+      (nasin.lonSeme.contains('nimi') && ijoAntePiLonSama.some(ni => ni.liNimi())) ||
       (nasin.lonSeme.contains('kon') && ijoAntePiLonSama.isEmpty()) ||
       !nasin.lonSeme.intersect(nimiPiIjoSitelenAntePiLonSama).isEmpty();
     
