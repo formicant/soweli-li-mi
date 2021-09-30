@@ -1,11 +1,9 @@
 import Im from 'immutable';
 import { Ijo, LipuIjo } from './ijo';
-import { Lon, PokiLon } from './lon';
+import { Lon, NasinTawa } from './lon';
 import { paliELonIjo } from './lonIjo';
 import { LonPali, paliELonPali, panaENanpaTanPali } from './lonPali';
 import { panaENasinMusiAli } from './pilinToki';
-
-export type NasinTawa = 'sewi' | 'anpa' | 'soto' | 'teje';
 
 export interface Tawa
 {
@@ -43,10 +41,10 @@ export function panaEKulupuTawa(suliMa: Lon, lonPali: LonPali, nasin: NasinTawa)
         .mapEntries(([nanpa, _]) => [nanpa, lon]))
   );
 
-  function lukinEKulupuTawa(nanpa: number, lon: PokiLon): Im.Set<number>
+  function lukinEKulupuTawa(nanpa: number, lon: Lon): Im.Set<number>
   {
     const lukinNi = lonPali.get(lon);
-    const lonSin = tawaEPokiLon(lon, nasin);
+    const lonSin = lon.tawa(nasin);
     const lukinSin = lonPali.get(lonSin);
     const ken =
       liInsaMa(lonSin, suliMa) &&
@@ -75,31 +73,7 @@ export function panaEKulupuTawa(suliMa: Lon, lonPali: LonPali, nasin: NasinTawa)
   return kulupuTawaAli;
 }
 
-function tawaEPokiLon(lon: PokiLon, nasin: NasinTawa)
-{
-  switch(nasin)
-  {
-    case 'sewi': return lon.merge({ y: lon.y - 1 });
-    case 'anpa': return lon.merge({ y: lon.y + 1 });
-    case 'soto': return lon.merge({ x: lon.x - 1 });
-    case 'teje': return lon.merge({ x: lon.x + 1 });
-    default: throw Error('nasin li ike!');
-  }
-}
-
-export function tawaELon<T extends Lon>(lon: T, nasin: NasinTawa): T
-{
-  switch(nasin)
-  {
-    case 'sewi': return { ...lon, y: lon.y - 1 };
-    case 'anpa': return { ...lon, y: lon.y + 1 };
-    case 'soto': return { ...lon, x: lon.x - 1 };
-    case 'teje': return { ...lon, x: lon.x + 1 };
-    default: throw Error('nasin li ike!');
-  }
-}
-
-function liInsaMa<T extends Lon>(lon: T, suli: Lon)
+function liInsaMa(lon: Lon, suli: Lon)
 {
   return (
     lon.x >= 0 && lon.x < suli.x &&

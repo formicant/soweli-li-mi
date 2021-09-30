@@ -1,11 +1,11 @@
 import Im from 'immutable';
-import { PokiLon } from './lon';
+import { Lon } from './lon';
 import { Ijo } from './ijo';
 import { NimiIjo, NimiPali } from './nimiAli';
 import { LiSeme, NasinMusi } from './nasinMusi';
 import { LonIjo } from './lonIjo';
 
-export type LonPali = Im.Map<PokiLon, Im.Collection<number, Im.Set<LiSeme>>>;
+export type LonPali = Im.Map<Lon, Im.Collection<number, Im.Set<LiSeme>>>;
 
 export function paliELonPali(lonIjo: LonIjo, nasinMusi: readonly NasinMusi[]): LonPali
 {
@@ -25,7 +25,7 @@ export function panaENanpaTanPali(lukin: Im.Collection<number, Im.Set<LiSeme>> |
     return Im.Set.of<number>();
 }
 
-function panaEPali(lon: PokiLon, ijo: Ijo, nanpa: number, lonIjo: LonIjo, nasinMusi: readonly NasinMusi[])
+function panaEPali(lon: Lon, ijo: Ijo, nanpa: number, lonIjo: LonIjo, nasinMusi: readonly NasinMusi[])
 {
   const ijoAntePiLonSama = lonIjo
     .get(lon)!

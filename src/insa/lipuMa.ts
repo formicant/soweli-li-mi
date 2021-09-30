@@ -1,4 +1,5 @@
 import Im from 'immutable';
+import { Lon } from './lon';
 import { buildLexer, apply, expectSingleResult, expectEOF, tok, rep, alt, Parser } from 'typescript-parsec';
 import { nimiAli, nimiInsaKulupu } from './nimiAli';
 import { Ijo } from './ijo';
@@ -100,7 +101,7 @@ export function pilinELipuMa(lipuMa: LipuMa)
   if(suliLinja.size === 0)
     throw new Error('ma li jo e linja ala!');
   
-  const suli = { x: suliLinja.first()!, y: suliLinja.size };
+  const suli = new Lon(suliLinja.first()!, suliLinja.size);
   if(suli.x === 0)
     throw new Error('linja ma li jo e leko ala!');
   if(suliLinja.skip(1).some(ni => ni !== suli.x))
@@ -109,12 +110,7 @@ export function pilinELipuMa(lipuMa: LipuMa)
   const ijoAli = ma
     .flatMap((linja, y) =>
       Im.Seq(linja).flatMap((leko, x) =>
-        Im.Seq(leko).map(wan =>
-          ({
-            x: x,
-            y: y,
-            ...wan,
-          } as Ijo))))
+        Im.Seq(leko).map(wan => ({ lon: new Lon(x, y), ...wan } as Ijo))))
     .toArray();
   
   return {

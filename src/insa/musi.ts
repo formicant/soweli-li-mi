@@ -1,11 +1,11 @@
 import Im from "immutable";
 import { Ijo, LipuIjo } from "./ijo";
-import { Lon } from "./lon";
+import { Lon, NasinTawa } from "./lon";
 import { paliELonIjo } from "./lonIjo";
 import { LonPali, paliELonPali } from "./lonPali";
 import { NimiIjo, panaEKulupuNimi } from "./nimiAli";
 import { panaENasinMusiAli } from "./pilinToki";
-import { NasinTawa, Tawa, tawaOpen, panaEKulupuTawa, tawaELon } from "./tawa";
+import { Tawa, tawaOpen, panaEKulupuTawa } from "./tawa";
 
 export interface Musi
 {
@@ -52,7 +52,7 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
     .toKeyedSeq()
     .mapEntries(([_, nanpa]) => [nanpa, lipuIjo.get(nanpa)!]);
   
-  const kulupuTawaSin = kulupuTawa.map(ijo => tawaELon(ijo, nasin));
+  const kulupuTawaSin = kulupuTawa.map(ijo => ({ ...ijo, lon: ijo.lon.tawa(nasin) }));
   const lipuIjoSin = lipuIjo.merge(kulupuTawaSin);
   
   const lonIjoSin = paliELonIjo(lipuIjoSin);

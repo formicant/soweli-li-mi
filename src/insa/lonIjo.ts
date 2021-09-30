@@ -1,12 +1,12 @@
 import Im from 'immutable';
-import { PokiLon, paliEPokiLon } from './lon';
+import { Lon } from './lon';
 import { Ijo,  LipuIjo } from './ijo';
 
-export type LonIjo = Im.Map<PokiLon, Im.Collection<number, Ijo>>;
+export type LonIjo = Im.Map<Lon, Im.Collection<number, Ijo>>;
 
 export function paliELonIjo(lipuIjo: LipuIjo): LonIjo
 {
   return lipuIjo
-    .groupBy(ijo => paliEPokiLon(ijo))
+    .groupBy(ijo => ijo.lon)
     .toMap();
 }

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { monsiEKulupu } from "./insa/kepeken";
-import { NasinTawa } from "./insa/tawa";
+import { NasinTawa } from "./insa/lon";
 
 type TawaTenpo = 'monsi' | 'sinpin' | 'open' | 'pini';
 export type Palisa = NasinTawa | TawaTenpo;

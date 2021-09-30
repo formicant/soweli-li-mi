@@ -23,15 +23,15 @@ export function Leko({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boolean })
   const ijoMajuna = useMajuna(ijo);
   const [jasimaMajuna, sinEJasima] = useState<Jasima>('none');
   const jasima = ijoMajuna?.nimi === ijo.nimi
-    ? panaEJasima(jasimaMajuna, ijoMajuna, ijo, anteTawa)
+    ? panaEJasima(jasimaMajuna, ijoMajuna.lon, ijo.lon, anteTawa)
     : 'none';
   if(jasima !== jasimaMajuna)
     sinEJasima(jasima);
   
   const lukin =
   {
-    left: `${ijo.x}em`,
-    top: `${ijo.y}em`,
+    left: `${ijo.lon.x}em`,
+    top: `${ijo.lon.y}em`,
     transform: jasima,
     color: lukinNimi.kule,
   };
