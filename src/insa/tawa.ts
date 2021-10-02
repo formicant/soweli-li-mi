@@ -9,9 +9,10 @@ interface ITawa
 {
   readonly nasin?: NasinTawa;
   readonly lipuIjo: LipuIjo;
+  readonly lonPali: LonPali;
   readonly lukinWawa: Im.Set<number>;
 }
-const tawaAla: ITawa = { lipuIjo: Im.Map<number, Ijo>(), lukinWawa: Im.Set() };
+const tawaAla: ITawa = { lipuIjo: Im.Map<number, Ijo>(), lonPali: Im.Map<Lon, any>(), lukinWawa: Im.Set() };
 
 export class Tawa extends Im.Record<ITawa>(tawaAla) implements Tawa
 {
@@ -21,12 +22,12 @@ export class Tawa extends Im.Record<ITawa>(tawaAla) implements Tawa
   }
 }
 
-export function tawaOpen(suli: Lon, ijoAli: readonly Ijo[]): Tawa
+export function tawaOpen(suliMa: Lon, ijoAli: readonly Ijo[]): Tawa
 {
   const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq());
   
   const lonIjo = paliELonIjo(lipuIjo);
-  const nasinMusi = panaENasinMusiAli(suli, lonIjo);
+  const nasinMusi = panaENasinMusiAli(suliMa, lonIjo);
   const lonPali = paliELonPali(lonIjo, nasinMusi);
   
   const lukinWawa = Im.Seq(nasinMusi).flatMap(nasin => nasin.nanpaIjo)
@@ -35,6 +36,7 @@ export function tawaOpen(suli: Lon, ijoAli: readonly Ijo[]): Tawa
   
   return new Tawa({
     lipuIjo: lipuIjo,
+    lonPali: lonPali,
     lukinWawa: lukinWawa,
   });
 }

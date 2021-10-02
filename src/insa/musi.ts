@@ -54,9 +54,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
   tawa(nasin: NasinTawa): Musi
   {
     const lipuIjo = this.tawaNi.lipuIjo;
-    const lonIjo = paliELonIjo(lipuIjo);
-    const nasinMusi = panaENasinMusiAli(this.suliMa, lonIjo);
-    const lonPali = paliELonPali(lonIjo, nasinMusi);
+    const lonPali = this.tawaNi.lonPali;
     
     const kulupuTawa = panaEKulupuTawa(this.suliMa, lonPali, nasin)
       .toKeyedSeq()
@@ -85,7 +83,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
       return this
     else
     {
-      const tawaSin: Tawa = new Tawa({ nasin: nasin, lipuIjo: lipuIjoAnte, lukinWawa: lukinWawa });
+      const tawaSin: Tawa = new Tawa({ nasin: nasin, lipuIjo: lipuIjoAnte, lonPali: lonPaliAnte, lukinWawa: lukinWawa });
       const tenpoSin = this.tenpo.take(this.tenpoNi + 1).push(tawaSin);
       
       return this.merge({ tenpo: tenpoSin, tenpoNi: this.tenpoNi + 1 });
