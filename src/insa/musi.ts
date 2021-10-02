@@ -75,7 +75,7 @@ export function tawa(musi: Musi, nasin: NasinTawa): Musi
     return musi
   else
   {
-    const tawaSin: Tawa = { nasin: nasin, lipuIjo: lipuIjoAnte, lukinWawa: lukinWawa };
+    const tawaSin: Tawa = new Tawa({ nasin: nasin, lipuIjo: lipuIjoAnte, lukinWawa: lukinWawa });
     const tenpoSin = musi.tenpo.toSeq().take(musi.tenpoNi + 1).concat([tawaSin]).toList();
     
     return { ...musi, tenpo: tenpoSin, tenpoNi: musi.tenpoNi + 1 };

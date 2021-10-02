@@ -5,11 +5,20 @@ import { paliELonIjo } from './lonIjo';
 import { LonPali, paliELonPali, panaENanpaTanPali } from './lonPali';
 import { panaENasinMusiAli } from './pilinToki';
 
-export interface Tawa
+interface ITawa
 {
   readonly nasin?: NasinTawa;
   readonly lipuIjo: LipuIjo;
   readonly lukinWawa: Im.Set<number>;
+}
+const tawaAla: ITawa = { lipuIjo: Im.Map<number, Ijo>(), lukinWawa: Im.Set() };
+
+export class Tawa extends Im.Record<ITawa>(tawaAla) implements Tawa
+{
+  constructor(tawa: ITawa)
+  {
+    super(tawa);
+  }
 }
 
 export function tawaOpen(suli: Lon, ijoAli: readonly Ijo[]): Tawa
@@ -24,10 +33,10 @@ export function tawaOpen(suli: Lon, ijoAli: readonly Ijo[]): Tawa
     .concat(lonPali.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjo.get(nanpa)!.liSitelen() && !pali.isEmpty()).keySeq()))
     .toSet();
   
-  return {
+  return new Tawa({
     lipuIjo: lipuIjo,
     lukinWawa: lukinWawa,
-  };
+  });
 }
 
 
