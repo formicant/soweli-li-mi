@@ -15,7 +15,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "typed-immutable-record": "0.0.6",
     "typescript": "^4.4.2",
     "typescript-parsec": "^0.3.2",
     "web-vitals": "^1.1.2"

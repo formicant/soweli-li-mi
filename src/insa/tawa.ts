@@ -58,7 +58,7 @@ export function panaEKulupuTawa(suliMa: Lon, lonPali: LonPali, nasin: NasinTawa)
     const lonSin = lon.tawa(nasin);
     const lukinSin = lonPali.get(lonSin);
     const ken =
-      liInsaMa(lonSin, suliMa) &&
+      lonSin.liInsaMa(suliMa) &&
       panaENanpaTanPali(lukinNi, 'awen').isEmpty() &&
       panaENanpaTanPali(lukinSin, 'awen').isEmpty();
     
@@ -82,12 +82,4 @@ export function panaEKulupuTawa(suliMa: Lon, lonPali: LonPali, nasin: NasinTawa)
     .toSet();
   
   return kulupuTawaAli;
-}
-
-function liInsaMa(lon: Lon, suli: Lon)
-{
-  return (
-    lon.x >= 0 && lon.x < suli.x &&
-    lon.y >= 0 && lon.y < suli.y
-  );
 }

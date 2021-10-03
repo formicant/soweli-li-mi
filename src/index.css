@@ -2,13 +2,13 @@
 {
   font-family: truculenta-variable;
   /* wght 100.900, wdth 75..125, opsz 12..72 */
-  src: url('./fonts/Truculenta-VariableFont_opsz,wdth,wght.ttf') format('truetype');
+  src: url('./linja/Truculenta-VariableFont_opsz,wdth,wght.ttf') format('truetype');
 }
 
 @font-face
 {
   font-family: linja-pona;
-  src: url('./fonts/linja-pona-4.2.woff') format('woff');
+  src: url('./linja/linja-pona-4.2.woff') format('woff');
 }
 
 body

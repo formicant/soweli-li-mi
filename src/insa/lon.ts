@@ -7,8 +7,9 @@ interface ILon
   readonly x: number,
   readonly y: number;
 }
+const lonAla: ILon = { x: NaN, y: NaN };
 
-export class Lon extends Im.Record<ILon>({ x: NaN, y: NaN }) implements ILon
+export class Lon extends Im.Record<ILon>(lonAla) implements ILon
 {
   constructor(x: number, y: number)
   {
@@ -27,5 +28,13 @@ export class Lon extends Im.Record<ILon>({ x: NaN, y: NaN }) implements ILon
       case 'teje': return new Lon(this.x + 1, this.y);
       default: throw new Error('nasin li ike!');
     }
+  }
+
+  liInsaMa(suliMa: Lon)
+  {
+    return (
+      this.x >= 0 && this.x < suliMa.x &&
+      this.y >= 0 && this.y < suliMa.y
+    );
   }
 }
