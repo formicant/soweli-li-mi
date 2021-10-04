@@ -1,7 +1,6 @@
 import Im from 'immutable';
 import { apply, expectEOF, str, tok, seq, rep, alt, kmid, Parser } from 'typescript-parsec';
-import { LonIjo } from './lonIjo';
-import { Lon } from './lon';
+import { MaIjo } from './maIjo';
 import { panaETokiAli, Toki } from './toki';
 import { Seme, LiSeme, NasinMusi } from './nasinMusi';
 
@@ -61,9 +60,9 @@ const pilinPiNasinMusi = apply(
 
 const pilin = kmid(pilinJaki, pilinPiNasinMusi, pilinJaki);
 
-export function panaENasinMusiAli(suli: Lon, lonIjo: LonIjo): readonly NasinMusi[]
+export function panaENasinMusiAli(maIjo: MaIjo): readonly NasinMusi[]
 {
-  const tokiAli = Im.Seq(panaETokiAli(suli, lonIjo));
+  const tokiAli = Im.Seq(panaETokiAli(maIjo));
   const nasinAli = tokiAli
     .map(linja => expectEOF(pilin.parse(linja)))
     .filter(linja => linja.successful)

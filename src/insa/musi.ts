@@ -1,7 +1,7 @@
 import Im from "immutable";
 import { Ijo, LipuIjo } from "./ijo";
 import { Lon, NasinTawa } from "./lon";
-import { paliELonIjo } from "./lonIjo";
+import { paliEMaIjo } from "./maIjo";
 import { LonPali, paliELonPali } from "./lonPali";
 import { NimiIjo, panaEKulupuNimi } from "./nimiAli";
 import { panaENasinMusiAli } from "./pilinToki";
@@ -53,6 +53,8 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
 
   tawa(nasin: NasinTawa): Musi
   {
+    const t0 = Date.now();
+    
     const lipuIjo = this.tawaNi.lipuIjo;
     const lonPali = this.tawaNi.lonPali;
     
@@ -63,16 +65,18 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     const kulupuTawaSin = kulupuTawa.map(ijo => ijo.tawa(nasin));
     const lipuIjoSin = lipuIjo.merge(kulupuTawaSin);
     
-    const lonIjoSin = paliELonIjo(lipuIjoSin);
-    const nasinMusiSin = panaENasinMusiAli(this.suliMa, lonIjoSin);
-    const lonPaliSin = paliELonPali(lonIjoSin, nasinMusiSin);
+    const maIjoSin = paliEMaIjo(this.suliMa, lipuIjoSin);
+    const nasinMusiSin = panaENasinMusiAli(maIjoSin);
+    const lonPaliSin = paliELonPali(maIjoSin, nasinMusiSin);
     const ijoAnte = this.panaEIjoAnte(lonPaliSin, lipuIjoSin);
     
     const lipuIjoAnte = lipuIjoSin.merge(ijoAnte);
     
-    const lonIjoAnte = paliELonIjo(lipuIjoAnte);
-    const nasinMusiAnte = panaENasinMusiAli(this.suliMa, lonIjoAnte);
-    const lonPaliAnte = paliELonPali(lonIjoAnte, nasinMusiAnte);
+    
+    const maIjoAnte = paliEMaIjo(this.suliMa, lipuIjoAnte);
+    const nasinMusiAnte = panaENasinMusiAli(maIjoAnte);
+    const lonPaliAnte = paliELonPali(maIjoAnte, nasinMusiAnte);
+    
     
     // O PALI: ken ante e ijo wan tawa ijo mute!
     const lukinWawa = Im.Seq(nasinMusiAnte).flatMap(nasin => nasin.nanpaIjo)
@@ -85,6 +89,9 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     {
       const tawaSin: Tawa = new Tawa({ nasin: nasin, lipuIjo: lipuIjoAnte, lonPali: lonPaliAnte, lukinWawa: lukinWawa });
       const tenpoSin = this.tenpo.take(this.tenpoNi + 1).push(tawaSin);
+      
+      const t1 = Date.now();
+      console.log(`tawa: ${t1 - t0}`);
       
       return this.merge({ tenpo: tenpoSin, tenpoNi: this.tenpoNi + 1 });
     }

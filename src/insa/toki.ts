@@ -2,7 +2,7 @@ import Im from 'immutable';
 import { Token, TokenPosition } from 'typescript-parsec';
 import { KulupuNimi, panaEKulupuNimi } from './nimiAli';
 import { Lon } from './lon';
-import { LonIjo } from './lonIjo';
+import { MaIjo } from './maIjo';
 import { Ijo } from './ijo';
 
 type KulupuToki = KulupuNimi | 'ala';
@@ -12,19 +12,19 @@ export interface Toki extends Token<KulupuToki>
   nanpaIjo?: number;
 }
 
-export function* panaETokiAli(suli: Lon, lonIjo: LonIjo)
+export function* panaETokiAli(maIjo: MaIjo)
 {
-  yield* panaELinjaToki(suli, lonIjo, (x: number, y: number) => new Lon(x, y));
-  yield* panaELinjaToki(suli, lonIjo, (x: number, y: number) => new Lon(y, x));
+  yield* panaELinjaToki(maIjo, (x: number, y: number) => new Lon(x, y));
+  yield* panaELinjaToki(maIjo, (x: number, y: number) => new Lon(y, x));
 }
 
-function* panaELinjaToki(suli: Lon, lonIjo: LonIjo, paliELon: (x: number, y: number) => Lon)
+function* panaELinjaToki(maIjo: MaIjo, paliELon: (x: number, y: number) => Lon)
 {
-  for(let y = 0; y < suli.y; y++)
+  for(let y = 0; y < maIjo.suliMa.y; y++)
   {
     let linjaToki: Toki | undefined = undefined;
-    for(let x = suli.x - 1; x >= 0; x--)
-      linjaToki = paliEToki(x, lonIjo.get(paliELon(x, y)), linjaToki);
+    for(let x = maIjo.suliMa.x - 1; x >= 0; x--)
+      linjaToki = paliEToki(x, maIjo.lonIjo.get(paliELon(x, y)), linjaToki);
     yield linjaToki!;
   }
 }

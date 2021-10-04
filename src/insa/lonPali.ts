@@ -3,17 +3,17 @@ import { Lon } from './lon';
 import { Ijo } from './ijo';
 import { NimiIjo, NimiPali } from './nimiAli';
 import { LiSeme, NasinMusi } from './nasinMusi';
-import { LonIjo } from './lonIjo';
+import { MaIjo } from './maIjo';
 
 export type LonPali = Im.Map<Lon, Im.Collection<number, Im.Set<LiSeme>>>;
 
-export function paliELonPali(lonIjo: LonIjo, nasinMusi: readonly NasinMusi[]): LonPali
+export function paliELonPali(maIjo: MaIjo, nasinMusi: readonly NasinMusi[]): LonPali
 {
   // O PALI: nasin musi pi lukin ‘kon li ...’!
   
   return Im.Map(
-    lonIjo.mapEntries(([lon, ijoMute]) =>
-      [lon, ijoMute.map((ijo, nanpa) => panaEPali(lon, ijo, nanpa, lonIjo, nasinMusi))])
+    maIjo.lonIjo.mapEntries(([lon, ijoMute]) =>
+      [lon, ijoMute.map((ijo, nanpa) => panaEPali(lon, ijo, nanpa, maIjo, nasinMusi))])
   );
 }
 
@@ -25,9 +25,9 @@ export function panaENanpaTanPali(lukin: Im.Collection<number, Im.Set<LiSeme>> |
     return Im.Set.of<number>();
 }
 
-function panaEPali(lon: Lon, ijo: Ijo, nanpa: number, lonIjo: LonIjo, nasinMusi: readonly NasinMusi[])
+function panaEPali(lon: Lon, ijo: Ijo, nanpa: number, maIjo: MaIjo, nasinMusi: readonly NasinMusi[])
 {
-  const ijoAntePiLonSama = lonIjo
+  const ijoAntePiLonSama = maIjo.lonIjo
     .get(lon)!
     .filterNot((_, nanpaNi) => nanpaNi === nanpa)
     .toSet();
