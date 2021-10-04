@@ -3,7 +3,7 @@ import { Lon } from './lon';
 import { Ijo,  LipuIjo } from './ijo';
 
 /**
- * li jo e suli (poka en sewi) ma e ijo ali insa kulupu lon.
+ * li jo e suli ma, e ijo ali insa kulupu Lon.
  */
 export class MaIjo
 {

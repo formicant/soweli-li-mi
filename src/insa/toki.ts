@@ -7,18 +7,27 @@ import { Ijo } from './ijo';
 
 type KulupuToki = KulupuNimi | 'ala';
 
+/**
+ * li poki pi jo e nimi, e nanpa ijo, e namako mute.
+ * ilo PilinToki li moku e ona mute.
+ * Toki wan li ken lukin tawa Toki poka sinpin tan linja toki sama.
+ */
 export interface Toki extends Token<KulupuToki>
 {
   nanpaIjo?: number;
 }
 
-export function* panaETokiAli(maIjo: MaIjo)
+/**
+ * li pana e linja toki ali tan poka tawa poka,
+ * e linja toki ali tan sewi tawa anpa.
+ */
+export function* panaELinjaTokiAli(maIjo: MaIjo)
 {
-  yield* panaELinjaToki(maIjo, (x: number, y: number) => new Lon(x, y));
-  yield* panaELinjaToki(maIjo, (x: number, y: number) => new Lon(y, x));
+  yield* panaELinjaTokiMute(maIjo, (x: number, y: number) => new Lon(x, y));
+  yield* panaELinjaTokiMute(maIjo, (x: number, y: number) => new Lon(y, x));
 }
 
-function* panaELinjaToki(maIjo: MaIjo, paliELon: (x: number, y: number) => Lon)
+function* panaELinjaTokiMute(maIjo: MaIjo, paliELon: (x: number, y: number) => Lon)
 {
   for(let y = 0; y < maIjo.suliMa.y; y++)
   {

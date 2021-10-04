@@ -1,9 +1,13 @@
 import Im from "immutable";
 
-export function monsiEKulupu<TTan extends string, TTawa>(kulupu: { [tan in TTan]: readonly TTawa[] })
+/**
+ * li pali e lukin monsi tan lukin kulupu.
+ * @param lukin li lukin tan ijo pi nanpa wan tawa kulupu pi ijo pi nanpa tu.
+ * @returns e lukin tan ijo pi nanpa tu tawa ijo pi nanpa wan.
+ */
+export function monsiELukinKulupu<TWan extends string, TTu>(lukin: { [tan in TWan]: readonly TTu[] })
 {
-  return Im.Seq(kulupu)
-    .flatMap((tawaMute, tan) => Im.Seq(tawaMute as TTawa[]).map(tawa => [tawa, tan as TTan]))
+  return Im.Seq(lukin)
+    .flatMap((tawaMute, tan) => Im.Seq(tawaMute as readonly TTu[]).map(tawa => [tawa, tan as TWan]))
     .toMap();
-  // o pona e ni!
 }

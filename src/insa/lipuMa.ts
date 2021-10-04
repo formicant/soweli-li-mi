@@ -4,11 +4,68 @@ import { buildLexer, apply, expectSingleResult, expectEOF, tok, rep, alt, Parser
 import { Nimi, nimiAli, nimiInsaKulupu } from './nimiAli';
 import { Ijo, KulupuIjo } from './ijo';
 
-interface LipuMa
+/**
+ * ma wan tan lipu Json.
+ */
+ export interface LipuMa
+ {
+   readonly nimi: string;
+   readonly ma: string[];
+   readonly namako?: { [sitelen: string]: string | undefined };
+   // pona la, ni li { [sitelen: string]: string }. taso, ni li nasin pali pi ilo Import pi lipu Json.
+ }
+ 
+/**
+ * li pilin e lipu ma tan lipu Json.
+ * @param lipuMa li ma wan tan lipu Json.
+ * @returns e jo ali pi ma ni.
+ */
+export function pilinELipuMa(lipuMa: LipuMa)
 {
-  readonly nimi: string;
-  readonly ma: string[];
-  readonly namako?: { [sitelen: string]: string | undefined };
+  // O PALI: pilin ike la, pana e nimi ma, e nanpa pi linja ike!
+  
+  const namakoAli = lipuMa.namako !== undefined
+    ? Im.Map(lipuMa.namako).map(linja => pilin(pilinPiLinjaNamako, linja as string).flat())
+    : Im.Map<string, Wan[]>();
+  
+  const pilinPiIjoNamako = apply(
+    tok(KulupuToki.Namako),
+    (toki): readonly Wan[] =>
+    {
+      const namako = namakoAli.get(toki.text);
+      if(namako !== undefined)
+        return namako;
+      else
+        throw new Error(`namako ${toki.text} li lon ala!`);
+    }
+  );
+  const pilinPiLinjaMa = rep(alt(pilinPiIjoNimi, pilinPiIjoSitelen, pilinPiIjoNamako, pilinKon));
+  
+  const ma = Im.Seq(lipuMa.ma)
+    .map(linja => pilin(pilinPiLinjaMa, linja))
+    .cacheResult();
+  
+  const suliLinja = ma.map(linja => linja.length).toList();
+  if(suliLinja.size === 0)
+    throw new Error('ma li jo e linja ala!');
+  
+  const suliMa = new Lon(suliLinja.first()!, suliLinja.size);
+  if(suliMa.x === 0)
+    throw new Error('linja ma li jo e leko ala!');
+  if(suliLinja.skip(1).some(ni => ni !== suliMa.x))
+    throw new Error('suli pi linja ma li sama ala!');
+  const ijoAli = ma
+    .flatMap((linja, y) =>
+      Im.Seq(linja).flatMap((leko, x) =>
+        Im.Seq(leko).map(wan => ({  ...wan, lon: new Lon(x, y) }))))
+    .map((ijo, nanpa) => new Ijo({ ...ijo, nanpa: nanpa }))
+    .toArray();
+  
+  return {
+    nimiMa: lipuMa.nimi,
+    suliMa: suliMa,
+    ijoAli: ijoAli,
+  };
 }
 
 enum KulupuToki { Nimi, Sitelen, Namako, Kon, Insa }
@@ -72,51 +129,4 @@ const pilinPiLinjaNamako = rep(alt(pilinPiIjoNimi, pilinPiIjoSitelen));
 function pilin<T>(pilinLinja: Parser<KulupuToki, T>, linja: string)
 {
   return expectSingleResult(expectEOF(pilinLinja.parse(mamaToki.parse(linja))))
-}
-
-export function pilinELipuMa(lipuMa: LipuMa)
-{
-  const namakoAli = lipuMa.namako !== undefined
-    ? Im.Map(lipuMa.namako).map(linja => pilin(pilinPiLinjaNamako, linja as string).flat())
-    : Im.Map<string, Wan[]>();
-
-  const pilinPiIjoNamako = apply(
-    tok(KulupuToki.Namako),
-    (toki): readonly Wan[] =>
-    {
-      const namako = namakoAli.get(toki.text);
-      if(namako !== undefined)
-        return namako;
-      else
-        throw new Error(`namako ${toki.text} li lon ala!`);
-    }
-  );
-  const pilinPiLinjaMa = rep(alt(pilinPiIjoNimi, pilinPiIjoSitelen, pilinPiIjoNamako, pilinKon));
-  
-  const ma = Im.Seq(lipuMa.ma)
-    .map(linja => pilin(pilinPiLinjaMa, linja))
-    .cacheResult();
-  
-  const suliLinja = ma.map(linja => linja.length).toList();
-  if(suliLinja.size === 0)
-    throw new Error('ma li jo e linja ala!');
-  
-  const suli = new Lon(suliLinja.first()!, suliLinja.size);
-  if(suli.x === 0)
-    throw new Error('linja ma li jo e leko ala!');
-  if(suliLinja.skip(1).some(ni => ni !== suli.x))
-    throw new Error('suli pi linja ma li sama ala!');
-  
-  const ijoAli = ma
-    .flatMap((linja, y) =>
-      Im.Seq(linja).flatMap((leko, x) =>
-        Im.Seq(leko).map(wan => ({  ...wan, lon: new Lon(x, y) }))))
-    .map((ijo, nanpa) => new Ijo({ ...ijo, nanpa: nanpa }))
-    .toArray();
-  
-  return {
-    nimiMa: lipuMa.nimi,
-    suliMa: suli,
-    ijoAli: ijoAli,
-  };
 }

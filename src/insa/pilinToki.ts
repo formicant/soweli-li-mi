@@ -1,9 +1,28 @@
 import Im from 'immutable';
 import { apply, expectEOF, str, tok, seq, rep, alt, kmid, Parser } from 'typescript-parsec';
 import { MaIjo } from './maIjo';
-import { panaETokiAli, Toki } from './toki';
+import { panaELinjaTokiAli, Toki } from './toki';
 import { Seme, LiSeme, NasinMusi } from './nasinMusi';
 
+/**
+ * li lukin e nimi ali lon ma ijo li pilin e nasin musi ali li pana e ona.
+ * @param maIjo li ijo ali insa kulupu lon.
+ * @returns nasin musi ali pi ma ni.
+ */
+ export function panaENasinMusiAli(maIjo: MaIjo): readonly NasinMusi[]
+ {
+   const tokiAli = Im.Seq(panaELinjaTokiAli(maIjo));
+   const nasinAli = tokiAli
+     .map(linja => expectEOF(pilin.parse(linja)))
+     .filter(linja => linja.successful)
+     .flatMap(linja => linja.successful
+       ? Im.Seq(linja.candidates).map(ken => ken.result).cacheResult().update(wekaENasinMusiInsa)
+       : undefined as never)
+     .toArray();
+   
+   return nasinAli;
+ }
+ 
 const pilinJaki = rep(alt(tok('ala'), tok('ijo'), tok('kulupu'), tok('toki'), tok('pali')));
 
 const pilinIjo    = tok('ijo'    as const);
@@ -59,20 +78,6 @@ const pilinPiNasinMusi = apply(
 );
 
 const pilin = kmid(pilinJaki, pilinPiNasinMusi, pilinJaki);
-
-export function panaENasinMusiAli(maIjo: MaIjo): readonly NasinMusi[]
-{
-  const tokiAli = Im.Seq(panaETokiAli(maIjo));
-  const nasinAli = tokiAli
-    .map(linja => expectEOF(pilin.parse(linja)))
-    .filter(linja => linja.successful)
-    .flatMap(linja => linja.successful
-      ? Im.Seq(linja.candidates).map(ken => ken.result).cacheResult().update(wekaENasinMusiInsa)
-      : undefined as never)
-    .toArray();
-  
-  return nasinAli;
-}
 
 function wekaENasinMusiInsa(nasinMute: Im.Seq.Indexed<NasinMusi>)
 {

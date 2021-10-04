@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { monsiEKulupu } from "./insa/kepeken";
+import { monsiELukinKulupu } from "./insa/kepeken";
 import { NasinTawa } from "./insa/lon";
 
 type TawaTenpo = 'monsi' | 'sinpin' | 'open' | 'pini';
@@ -18,7 +18,7 @@ const palisaAli: { [palisa in Palisa]: ReadonlyArray<string> } =
   'pini':   ['KeyT', 'End'],
 } as const;
 
-const palisaPiNimiPalisa = monsiEKulupu(palisaAli);
+const palisaPiNimiPalisa = monsiELukinKulupu(palisaAli);
 
 export interface JoPiIloPalisa
 {

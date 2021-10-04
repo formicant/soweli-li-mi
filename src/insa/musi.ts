@@ -14,6 +14,7 @@ interface IMusi
   readonly tenpo: Im.List<Tawa>;
   readonly tenpoNi: number;
 }
+// ni li ike. taso, ni li nasin pali pi ilo Im.Record:
 const musiAla: IMusi = { nimiMa: '', suliMa: new Lon(NaN, NaN), tenpo: Im.List(), tenpoNi: NaN };
 
 export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi

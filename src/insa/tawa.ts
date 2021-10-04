@@ -12,8 +12,12 @@ interface ITawa
   readonly lonPali: LonPali;
   readonly lukinWawa: Im.Set<number>;
 }
+// ni li ike. taso, ni li nasin pali pi ilo Im.Record:
 const tawaAla: ITawa = { lipuIjo: Im.Map<number, Ijo>(), lonPali: Im.Map<Lon, any>(), lukinWawa: Im.Set() };
 
+/**
+ * tawa wan lon tenpo musi.
+ */
 export class Tawa extends Im.Record<ITawa>(tawaAla) implements Tawa
 {
   constructor(tawa: ITawa)
