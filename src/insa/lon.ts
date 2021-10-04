@@ -16,8 +16,6 @@ export class Lon extends Im.Record<ILon>(lonAla) implements ILon
     super({ x: x, y: y });
   }
   
-  anteEPokaESewi() { return new Lon(this.y, this.x); }
-  
   tawa(nasin: NasinTawa)
   {
     switch(nasin)

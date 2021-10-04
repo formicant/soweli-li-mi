@@ -63,7 +63,7 @@ const pilin = kmid(pilinJaki, pilinPiNasinMusi, pilinJaki);
 
 export function panaENasinMusiAli(suli: Lon, lonIjo: LonIjo): readonly NasinMusi[]
 {
-  const tokiAli = panaETokiAli(suli, lonIjo);
+  const tokiAli = Im.Seq(panaETokiAli(suli, lonIjo));
   const nasinAli = tokiAli
     .map(linja => expectEOF(pilin.parse(linja)))
     .filter(linja => linja.successful)

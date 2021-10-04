@@ -1,13 +1,13 @@
 import './leko.css';
 import classNames from 'classnames';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 import { Ijo } from './insa/ijo';
 import { lukinPiKulupuNimi, lukinPiIjoAli } from './lukinIjo'
 import { kipisiENimi } from './kipisiENimi';
 import { Jasima, panaEJasima } from './jasima';
 import { panaEKulupuNimi } from './insa/nimiAli';
 
-export function Leko({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boolean })
+export const Leko = memo(function({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boolean })
 {
   const lukinNimi = ijo.liSitelen()
     ? lukinPiIjoAli[ijo.nimi]
@@ -41,7 +41,7 @@ export function Leko({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boolean })
       {insa(ijo)}
     </div>
   );
-}
+});
 
 function insa(ijo: Ijo)
 {

@@ -12,62 +12,41 @@ export interface Toki extends Token<KulupuToki>
   nanpaIjo?: number;
 }
 
-export function panaETokiAli(suli: Lon, lonIjo: LonIjo)
+export function* panaETokiAli(suli: Lon, lonIjo: LonIjo)
 {
-  return panaELinja(suli, lonIjo, false)
-    .concat(panaELinja(suli, lonIjo, true));
+  yield* panaELinjaToki(suli, lonIjo, (x: number, y: number) => new Lon(x, y));
+  yield* panaELinjaToki(suli, lonIjo, (x: number, y: number) => new Lon(y, x));
 }
 
-function panaELinja(suli: Lon, lonIjo: LonIjo, anteEPokaESewi: boolean)
+function* panaELinjaToki(suli: Lon, lonIjo: LonIjo, paliELon: (x: number, y: number) => Lon)
 {
-  const ante = anteEPokaESewi
-    ? (lon: Lon) => lon.anteEPokaESewi()
-    : (lon: Lon) => lon;
-  const suliAnte = ante(suli);
-  
-  return Im.Range(0, suliAnte.y).map(y =>
-    Im.Range(0, suliAnte.x)
-      .map(x => paliEToki(x, lonIjo.get(ante(new Lon(x, y)))))
-      .update(panaELinjaToki));
+  for(let y = 0; y < suli.y; y++)
+  {
+    let linjaToki: Toki | undefined = undefined;
+    for(let x = suli.x - 1; x >= 0; x--)
+      linjaToki = paliEToki(x, lonIjo.get(paliELon(x, y)), linjaToki);
+    yield linjaToki!;
+  }
 }
 
-function panaELinjaToki(tokiMute: Im.Seq.Indexed<Toki>)
-{
-  const palisaToki = tokiMute.toStack();
-  return linjaEPalisaToki(palisaToki);
-}
-
-function linjaEPalisaToki(palisaToki: Im.Stack<Toki>): Toki
-{
-  if(palisaToki.size > 1)
-    return {
-      ...palisaToki.peek()!,
-      next: linjaEPalisaToki(palisaToki.pop())
-    };
-  else if(palisaToki.size === 1)
-    return palisaToki.peek()!;
-  else
-    throw Error('palisa toki li jo e ala!');
-}
-
-function paliEToki(x: number, ijoENanpa: Im.Collection<number, Ijo> | undefined): Toki
+function paliEToki(x: number, ijoENanpa: Im.Collection<number, Ijo> | undefined, tokiSinpin?: Toki): Toki
 {
   const lonToki = panaELonToki(x);
+  
   if(ijoENanpa !== undefined)
   {
     const nimiWan = ijoENanpa.filterNot(ijo => ijo.liSitelen()).entrySeq().first();
     // O PALI: lon wan li ken jo e nimi mute. o pali pana e ken ali!
     if(nimiWan !== undefined)
     {
-      const [nanpa, ijo] = nimiWan;
-      const nimi = ijo.nimi;
+      const [nanpa, { nimi }] = nimiWan;
       const kulupu = panaEKulupuNimi(nimi);
       return {
         nanpaIjo: nanpa,
         kind: kulupu,
         text: nimi,
         pos: lonToki,
-        next: undefined,
+        next: tokiSinpin,
       };
     }
   }
@@ -76,7 +55,7 @@ function paliEToki(x: number, ijoENanpa: Im.Collection<number, Ijo> | undefined)
     kind: 'ala',
     text: '',
     pos: lonToki,
-    next: undefined,
+    next: tokiSinpin,
   };
 }
 
