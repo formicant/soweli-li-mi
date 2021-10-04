@@ -1,7 +1,7 @@
 import Im from "immutable";
 import { Ijo, LipuIjo } from "./ijo";
 import { Lon, NasinTawa } from "./lon";
-import { paliEMaIjo } from "./maIjo";
+import { MaIjo } from "./maIjo";
 import { LonPali, paliELonPali } from "./lonPali";
 import { NimiIjo, panaEKulupuNimi } from "./nimiAli";
 import { panaENasinMusiAli } from "./pilinToki";
@@ -65,7 +65,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     const kulupuTawaSin = kulupuTawa.map(ijo => ijo.tawa(nasin));
     const lipuIjoSin = lipuIjo.merge(kulupuTawaSin);
     
-    const maIjoSin = paliEMaIjo(this.suliMa, lipuIjoSin);
+    const maIjoSin = new MaIjo(this.suliMa, lipuIjoSin);
     const nasinMusiSin = panaENasinMusiAli(maIjoSin);
     const lonPaliSin = paliELonPali(maIjoSin, nasinMusiSin);
     const ijoAnte = this.panaEIjoAnte(lonPaliSin, lipuIjoSin);
@@ -73,7 +73,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     const lipuIjoAnte = lipuIjoSin.merge(ijoAnte);
     
     
-    const maIjoAnte = paliEMaIjo(this.suliMa, lipuIjoAnte);
+    const maIjoAnte = new MaIjo(this.suliMa, lipuIjoAnte);
     const nasinMusiAnte = panaENasinMusiAli(maIjoAnte);
     const lonPaliAnte = paliELonPali(maIjoAnte, nasinMusiAnte);
     

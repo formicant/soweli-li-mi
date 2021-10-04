@@ -1,7 +1,7 @@
 import Im from 'immutable';
 import { Ijo, LipuIjo } from './ijo';
 import { Lon, NasinTawa } from './lon';
-import { paliEMaIjo } from './maIjo';
+import { MaIjo } from './maIjo';
 import { LonPali, paliELonPali, panaENanpaTanPali } from './lonPali';
 import { panaENasinMusiAli } from './pilinToki';
 
@@ -26,7 +26,7 @@ export function tawaOpen(suliMa: Lon, ijoAli: readonly Ijo[]): Tawa
 {
   const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq());
   
-  const maIjo = paliEMaIjo(suliMa, lipuIjo);
+  const maIjo = new MaIjo(suliMa, lipuIjo);
   const nasinMusi = panaENasinMusiAli(maIjo);
   const lonPali = paliELonPali(maIjo, nasinMusi);
   
