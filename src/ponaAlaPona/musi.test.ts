@@ -21,6 +21,29 @@ test.each([
       ]
     }
   },
+  {
+    open: {
+      nimi: 'tawa e ijo',
+      ma: [
+        'NIM EN  KIW LI  TAW',
+        'ma   .  kiw  .   . ',
+        ' .  SOW LI  MI  sow',
+        'AKE LI  AWE  .  kiw',
+        'MA  LI   .   .  ake',
+      ]
+    },
+    nasin: '↓←←↑↑←↓↑↑↑←←↑←→',
+    pini: {
+      nimi: '',
+      ma: [
+        'NIM EN  KIW LI  TAW',
+        'ma  kiw  .  ake kiw',
+        'SOW LI  sow  .   . ',
+        'AKE LI  MI   .   . ',
+        'MA  LI  AWE  .   . ',
+      ]
+    }
+  },
 ])('musi', ({ open, nasin, pini }) =>
 {
   const musiOpen = new Musi(open);
@@ -31,6 +54,7 @@ test.each([
   const maPini = pilinELipuMa(pini);
   const ijoWile = wekaENanpa(maPini.ijoAli);
   
+  // O PALI pona e ni:
   expect(ijoLon).toEqual(expect.arrayContaining(ijoWile));
   expect(ijoWile).toEqual(expect.arrayContaining(ijoLon));
 });
