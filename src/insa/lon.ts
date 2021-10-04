@@ -2,10 +2,9 @@ import Im from 'immutable';
 
 /**
  * nasin pi tawa e ijo.
- * (‘soto’ en ‘teje’ li nimi pi pu ala, li poka tu:
- *   soto ← · → teje)
+ * (sewi, anpa, soto, teje.)
  */
-export type NasinTawa = 'sewi' | 'anpa' | 'soto' | 'teje';
+export type NasinTawa = '↑' | '↓' | '←' | '→';
 
 interface ILon
 {
@@ -34,10 +33,10 @@ export class Lon extends Im.Record<ILon>(lonAla) implements ILon
   {
     switch(nasin)
     {
-      case 'sewi': return new Lon(this.x, this.y - 1);
-      case 'anpa': return new Lon(this.x, this.y + 1);
-      case 'soto': return new Lon(this.x - 1, this.y);
-      case 'teje': return new Lon(this.x + 1, this.y);
+      case '↑': return new Lon(this.x, this.y - 1);
+      case '↓': return new Lon(this.x, this.y + 1);
+      case '←': return new Lon(this.x - 1, this.y);
+      case '→': return new Lon(this.x + 1, this.y);
       default: throw new RangeError('nasin li ike!');
     }
   }

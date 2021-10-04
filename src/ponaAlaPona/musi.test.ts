@@ -1,8 +1,4 @@
-import Im from "immutable";
 import { pilinELipuMa } from '../insa/lipuMa';
-import { MaIjo } from "../insa/maIjo";
-import { panaENasinMusiAli } from '../insa/pilinToki';
-import { tokiENasinMusi } from "../insa/nasinMusi";
 import { Musi } from "../insa/musi";
 import { NasinTawa } from "../insa/lon";
 import { Ijo } from "../insa/ijo";

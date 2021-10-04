@@ -1,6 +1,6 @@
 import assert from "assert";
 import Im from "immutable";
-import { Ijo, LipuIjo } from "./ijo";
+import { LipuIjo } from "./ijo";
 import { Lon, NasinTawa } from "./lon";
 import { MaIjo } from "./maIjo";
 import { LonPali, paliELonPali } from "./lonPali";

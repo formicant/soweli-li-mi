@@ -13,10 +13,15 @@ export interface NasinMusi{
 
 export function tokiENasinMusi(nasin: NasinMusi)
 {
-  const seme = `${nasin.seme.join(' en ')}`;
+  const seme = `${en(nasin.seme)}`;
   const lonSeme = nasin.lonSeme.equals(Im.Set.of('ali'))
     ? ''
-    : ` lon ${nasin.lonSeme.join(' en ')}`;
-  const liSeme = ` li ${nasin.liSeme.join(' li ')}`;
+    : ` lon ${en(nasin.lonSeme)}`;
+  const liSeme = ` li ${en(nasin.liSeme, 'li')}`;
   return `${seme}${lonSeme}${liSeme}`;
+}
+
+function en<T>(nimiMute: Im.Set<T>, insa: string = 'en')
+{
+  return nimiMute.toSeq().sort().join(` ${insa} `);
 }
