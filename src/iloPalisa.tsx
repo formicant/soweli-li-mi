@@ -7,10 +7,10 @@ export type Palisa = NasinTawa | TawaTenpo;
 
 const palisaAli: { [palisa in Palisa]: ReadonlyArray<string> } =
 {
-  'sewi':   ['KeyW', 'ArrowUp'],
-  'anpa':   ['KeyS', 'ArrowDown'],
-  'soto':   ['KeyA', 'ArrowLeft'],
-  'teje':   ['KeyD', 'ArrowRight'],
+  '↑':      ['KeyW', 'ArrowUp'],
+  '↓':      ['KeyS', 'ArrowDown'],
+  '←':      ['KeyA', 'ArrowLeft'],
+  '→':      ['KeyD', 'ArrowRight'],
   
   'monsi':  ['KeyZ', 'Backspace'],
   'sinpin': ['KeyX', 'Space'],
