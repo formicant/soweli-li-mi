@@ -1,3 +1,4 @@
+import assert from "assert";
 import Im from "immutable";
 import { Ijo, LipuIjo } from "./ijo";
 import { Lon, NasinTawa } from "./lon";
@@ -6,6 +7,7 @@ import { LonPali, paliELonPali } from "./lonPali";
 import { NimiIjo, panaEKulupuNimi } from "./nimiAli";
 import { panaENasinMusiAli } from "./pilinToki";
 import { Tawa, tawaOpen, panaEKulupuTawa } from "./tawa";
+import { LipuMa, pilinELipuMa } from "./lipuMa";
 
 interface IMusi
 {
@@ -19,12 +21,13 @@ const musiAla: IMusi = { nimiMa: '', suliMa: new Lon(NaN, NaN), tenpo: Im.List()
 
 export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
 {
-  constructor(nimiMa: string, suliMa: Lon, ijoAli: readonly Ijo[])
+  constructor(lipuMa: LipuMa)
   {
+    const ma = pilinELipuMa(lipuMa);
     super({
-      nimiMa: nimiMa,
-      suliMa: suliMa,
-      tenpo: Im.List.of(tawaOpen(suliMa, ijoAli)),
+      nimiMa: ma.nimiMa,
+      suliMa: ma.suliMa,
+      tenpo: Im.List.of(tawaOpen(ma.suliMa, ma.ijoAli)),
       tenpoNi: 0,
     });
   }
@@ -32,14 +35,14 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
   get tawaNi()
   {
     const ni = this.tenpo.get(this.tenpoNi);
-    if(ni) return ni;
-    else throw Error('tenpo ni li ike!');
+    assert(ni, 'tenpo ni li ike!');
+    return ni;
   }
   
   tenpoMonsi(ali: boolean = false): Musi
   {
     if(this.tenpoNi > 0)
-      return this.merge({ tenpoNi: ali ? 0 : this.tenpoNi - 1 });
+      return this.set('tenpoNi', ali ? 0 : this.tenpoNi - 1);
     else
       return this;
   }
@@ -47,7 +50,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
   tenpoSinpin(ali: boolean = false): Musi
   {
     if(this.tenpoNi < this.tenpo.size - 1)
-      return this.merge({ tenpoNi: ali ? this.tenpo.size - 1 : this.tenpoNi + 1 });
+      return this.set('tenpoNi', ali ? this.tenpo.size - 1 : this.tenpoNi + 1);
     else
       return this;
   }

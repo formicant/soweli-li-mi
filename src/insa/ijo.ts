@@ -1,3 +1,4 @@
+import assert from 'assert';
 import Im from 'immutable';
 import { Lon, NasinTawa } from './lon';
 import { liInsaKulupu, Nimi, NimiIjo } from './nimiAli'
@@ -27,8 +28,10 @@ export class Ijo extends Im.Record<IIjo>(ijoAla) implements IIjo
   constructor(ijo: IIjo)
   {
     super(ijo);
-    if(ijo.kulupu === 'sitelen' && !liInsaKulupu(ijo.nimi, 'ijo'))
-      throw new Error(`ijo sitelen li ken ala jo e nimi '${ijo.nimi}'!`);
+    assert(
+      ijo.kulupu !== 'sitelen' || liInsaKulupu(ijo.nimi, 'ijo'),
+      `ijo sitelen li ken ala jo e nimi '${ijo.nimi}'!`
+    );
   }
   
   /**

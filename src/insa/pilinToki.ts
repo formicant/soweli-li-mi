@@ -1,5 +1,5 @@
 import Im from 'immutable';
-import { apply, expectEOF, str, tok, seq, rep, alt, kmid, Parser } from 'typescript-parsec';
+import { apply, expectEOF, str, tok, seq, rep, alt, kmid, Parser, ParserOutput } from 'typescript-parsec';
 import { MaIjo } from './maIjo';
 import { panaELinjaTokiAli, Toki } from './toki';
 import { Seme, LiSeme, NasinMusi } from './nasinMusi';
@@ -11,16 +11,12 @@ import { Seme, LiSeme, NasinMusi } from './nasinMusi';
  */
  export function panaENasinMusiAli(maIjo: MaIjo): readonly NasinMusi[]
  {
-   const tokiAli = Im.Seq(panaELinjaTokiAli(maIjo));
-   const nasinAli = tokiAli
+   const tokiAli = panaELinjaTokiAli(maIjo);
+   const nasinAli = Im.Seq(tokiAli)
      .map(linja => expectEOF(pilin.parse(linja)))
-     .filter(linja => linja.successful)
-     .flatMap(linja => linja.successful
-       ? Im.Seq(linja.candidates).map(ken => ken.result).cacheResult().update(wekaENasinMusiInsa)
-       : undefined as never)
-     .toArray();
+     .flatMap(panaENasinMusiLinja);
    
-   return nasinAli;
+   return nasinAli.toArray();
  }
  
 const pilinJaki = rep(alt(tok('ala'), tok('ijo'), tok('kulupu'), tok('toki'), tok('pali')));
@@ -79,12 +75,20 @@ const pilinPiNasinMusi = apply(
 
 const pilin = kmid(pilinJaki, pilinPiNasinMusi, pilinJaki);
 
-function wekaENasinMusiInsa(nasinMute: Im.Seq.Indexed<NasinMusi>)
+function panaENasinMusiLinja(linja: ParserOutput<string, NasinMusi>)
 {
-  return nasinMute
+  const nasinLinja = linja.successful
+    ? linja.candidates.map(ken => ken.result)
+    : [];
+  return Im.Seq(nasinLinja)
     .filterNot(nasinNi =>
-      nasinMute.some(nasinAnte =>
-        nasinAnte !== nasinNi && nasinNi.nanpaIjo.isSubset(nasinAnte.nanpaIjo)));
+      nasinLinja.some(nasinAnte => liLiliPiNasinMusiAnte(nasinNi.nanpaIjo, nasinAnte.nanpaIjo)));
+}
+
+function liLiliPiNasinMusiAnte(nanpaIjoMuteNi: Im.Set<number>, nanpaIjoMuteAnte: Im.Set<number>)
+{
+  return nanpaIjoMuteNi.size < nanpaIjoMuteAnte.size &&
+    nanpaIjoMuteNi.isSubset(nanpaIjoMuteAnte);
 }
 
 function muteEnInsa<TKulupu, TMute, TInsa>(

@@ -11,8 +11,8 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
   constructor(jo: { })
   {
     super(jo);
-    const lipuMa = pilinELipuMa(lipuMaAli[1]);
-    this.state = { musi: new Musi(lipuMa.nimiMa, lipuMa.suliMa, lipuMa.ijoAli) };
+    const lipuMa = lipuMaAli[1];
+    this.state = { musi: new Musi(lipuMa) };
   }
   
   render()

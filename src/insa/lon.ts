@@ -38,7 +38,7 @@ export class Lon extends Im.Record<ILon>(lonAla) implements ILon
       case 'anpa': return new Lon(this.x, this.y + 1);
       case 'soto': return new Lon(this.x - 1, this.y);
       case 'teje': return new Lon(this.x + 1, this.y);
-      default: throw new Error('nasin li ike!');
+      default: throw new RangeError('nasin li ike!');
     }
   }
   
