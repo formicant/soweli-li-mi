@@ -1,4 +1,4 @@
-import { Lon } from './insa/lon';
+import { Lon } from '../insa/lon';
 import { AnteTawa } from './lukinIjo'
 
 export type Jasima = 'none' | `scaleX(${-1 | 1})` | `rotate(${number}turn)`;

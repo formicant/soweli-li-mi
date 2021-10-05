@@ -1,13 +1,13 @@
-import assert from "assert";
-import Im from "immutable";
-import { LipuIjo } from "./ijo";
-import { Lon, NasinTawa } from "./lon";
-import { MaIjo } from "./maIjo";
-import { LonPali, paliELonPali } from "./lonPali";
-import { NimiIjo, panaEKulupuNimi } from "./nimiAli";
-import { panaENasinMusiAli } from "./pilinToki";
-import { Tawa, tawaOpen, panaEKulupuTawa } from "./tawa";
-import { LipuMa, pilinELipuMa } from "./lipuMa";
+import assert from 'assert';
+import Im from 'immutable';
+import { LipuIjo } from './ijo';
+import { Lon, NasinTawa } from './lon';
+import { MaIjo } from './maIjo';
+import { LonPali, paliELonPali } from './lonPali';
+import { NimiIjo, panaEKulupuNimi } from './nimiAli';
+import { panaENasinMusiAli } from './pilinToki';
+import { Tawa, tawaOpen, panaEKulupuTawa } from './tawa';
+import { LipuMa, pilinELipuMa } from './lipuMa';
 
 interface IMusi
 {

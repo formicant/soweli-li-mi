@@ -1,10 +1,9 @@
 import './lukinMusi.css';
-import lipuMaAli from './lipu/lipuMa.json'
+import lipuMaAli from '../lipu/lipuMa.json'
 import { Component } from 'react';
-import { Musi } from './insa/musi';
+import { Musi } from '../insa/musi';
 import { IloPalisa, Palisa } from './iloPalisa';
 import { Ma } from './ma';
-import { pilinELipuMa } from './insa/lipuMa';
 
 export class LukinMusi extends Component<{ }, { musi: Musi }>
 {
@@ -43,10 +42,10 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
   
   private paliPalisa: { [palisa in Palisa]: (musi: Musi) => Musi } =
   {
-    'sewi':   musi => musi.tawa('sewi'),
-    'anpa':   musi => musi.tawa('anpa'),
-    'soto':   musi => musi.tawa('soto'),
-    'teje':   musi => musi.tawa('teje'),
+    '↑':      musi => musi.tawa('↑'),
+    '↓':      musi => musi.tawa('↓'),
+    '←':      musi => musi.tawa('←'),
+    '→':      musi => musi.tawa('→'),
     'monsi':  musi => musi.tenpoMonsi(),
     'sinpin': musi => musi.tenpoSinpin(),
     'open':   musi => musi.tenpoMonsi(true),

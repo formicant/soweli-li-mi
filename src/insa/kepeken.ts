@@ -1,4 +1,4 @@
-import Im from "immutable";
+import Im from 'immutable';
 
 /**
  * li pali e lukin monsi tan lukin kulupu.

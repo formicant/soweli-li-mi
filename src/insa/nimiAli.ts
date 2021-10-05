@@ -1,4 +1,4 @@
-import { monsiELukinKulupu } from "./kepeken";
+import { monsiELukinKulupu } from './kepeken';
 
 /**
  * nimi ali li insa kulupu mute:

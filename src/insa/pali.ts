@@ -1,3 +1,3 @@
-import Im from "immutable";
+import Im from 'immutable';
 
 export { };

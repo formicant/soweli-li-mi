@@ -1,5 +1,5 @@
 import Im from 'immutable' ;
-import { Nimi, nimiAli } from './insa/nimiAli';
+import { Nimi, nimiAli } from '../insa/nimiAli';
 
 interface LinjaNimi
 {

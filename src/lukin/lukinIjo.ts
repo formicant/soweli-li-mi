@@ -1,4 +1,4 @@
-import { KulupuNimi, NimiIjo } from './insa/nimiAli';
+import { KulupuNimi, NimiIjo } from '../insa/nimiAli';
 import { Kule } from './kule';
 
 export type AnteTawa = 'poka' | 'sikePoka' | 'sikeSewi';

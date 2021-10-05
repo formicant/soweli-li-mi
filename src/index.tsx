@@ -1,7 +1,7 @@
 import './index.css';
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
-import { Sijelo } from './sijelo';
+import { Sijelo } from './lukin/sijelo';
 import reportWebVitals from './reportWebVitals';
 
 render(

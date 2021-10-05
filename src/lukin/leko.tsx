@@ -1,11 +1,11 @@
 import './leko.css';
 import classNames from 'classnames';
 import { useState, useRef, useEffect, memo } from 'react';
-import { Ijo } from './insa/ijo';
+import { Ijo } from '../insa/ijo';
 import { lukinPiKulupuNimi, lukinPiIjoAli } from './lukinIjo'
 import { kipisiENimi } from './kipisiENimi';
 import { Jasima, panaEJasima } from './jasima';
-import { panaEKulupuNimi } from './insa/nimiAli';
+import { panaEKulupuNimi } from '../insa/nimiAli';
 
 export const Leko = memo(function({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boolean })
 {

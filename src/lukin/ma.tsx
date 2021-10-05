@@ -1,8 +1,8 @@
 import './ma.css';
-import Im from "immutable";
+import Im from 'immutable';
 import { Component } from 'react';
-import { Lon } from './insa/lon';
-import { LipuIjo } from './insa/ijo';
+import { Lon } from '../insa/lon';
+import { LipuIjo } from '../insa/ijo';
 import { Leko } from './leko';
 
 interface JoMa
