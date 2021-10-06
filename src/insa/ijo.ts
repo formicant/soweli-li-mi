@@ -20,6 +20,8 @@ interface IIjo
 // ni li ike. taso, ni li nasin pali pi ilo Im.Record:
 const ijoAla: IIjo = { nanpa: NaN, lon: new Lon(NaN, NaN), kulupu: 'nimi', nimi: 'ala' };
 
+export type AnteIjo = Partial<IIjo>;
+
 /**
  * ijo wan lon ma musi, li nimi anu sitelen.
  */

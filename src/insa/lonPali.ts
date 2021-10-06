@@ -1,7 +1,7 @@
 import Im from 'immutable';
 import { Lon } from './lon';
 import { Ijo } from './ijo';
-import { NimiIjo, NimiPali } from './nimiAli';
+import { NimiIjo } from './nimiAli';
 import { LiSeme, NasinMusi } from './nasinMusi';
 import { MaIjo } from './maIjo';
 
@@ -15,14 +15,6 @@ export function paliELonPali(maIjo: MaIjo, nasinMusi: readonly NasinMusi[]): Lon
     maIjo.lonIjo.mapEntries(([lon, ijoMute]) =>
       [lon, ijoMute.map((ijo, nanpa) => panaEPali(lon, ijo, nanpa, maIjo, nasinMusi))])
   );
-}
-
-export function panaENanpaTanPali(lukin: Im.Collection<number, Im.Set<LiSeme>> | undefined, pali: NimiPali)
-{
-  if(lukin !== undefined)
-    return lukin.filter(paliMute => paliMute.contains(pali)).keySeq().toSet();
-  else
-    return Im.Set.of<number>();
 }
 
 function panaEPali(lon: Lon, ijo: Ijo, nanpa: number, maIjo: MaIjo, nasinMusi: readonly NasinMusi[])

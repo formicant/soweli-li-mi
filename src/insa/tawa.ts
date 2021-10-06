@@ -2,88 +2,59 @@ import Im from 'immutable';
 import { Ijo, LipuIjo } from './ijo';
 import { Lon, NasinTawa } from './lon';
 import { MaIjo } from './maIjo';
-import { LonPali, paliELonPali, panaENanpaTanPali } from './lonPali';
+import { LonPali, paliELonPali } from './lonPali';
 import { panaENasinMusiAli } from './pilinToki';
+import { Pali } from './pali';
 
 interface ITawa
 {
   readonly nasin?: NasinTawa;
+  readonly suliMa: Lon;
   readonly lipuIjo: LipuIjo;
   readonly lonPali: LonPali;
   readonly lukinWawa: Im.Set<number>;
 }
 // ni li ike. taso, ni li nasin pali pi ilo Im.Record:
-const tawaAla: ITawa = { lipuIjo: Im.Map<number, Ijo>(), lonPali: Im.Map<Lon, any>(), lukinWawa: Im.Set() };
+const tawaAla: ITawa = { suliMa: new Lon(NaN, NaN), lipuIjo: Im.Map<number, Ijo>(), lonPali: Im.Map<Lon, any>(), lukinWawa: Im.Set() };
 
 /**
  * tawa wan lon tenpo musi.
  */
 export class Tawa extends Im.Record<ITawa>(tawaAla) implements Tawa
 {
-  constructor(tawa: ITawa)
+  constructor(suliMa: Lon, lipuIjo: LipuIjo, nasin?: NasinTawa)
   {
-    super(tawa);
-  }
-}
-
-export function tawaOpen(suliMa: Lon, ijoAli: readonly Ijo[]): Tawa
-{
-  const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq());
-  
-  const maIjo = new MaIjo(suliMa, lipuIjo);
-  const nasinMusi = panaENasinMusiAli(maIjo);
-  const lonPali = paliELonPali(maIjo, nasinMusi);
-  
-  const lukinWawa = Im.Seq(nasinMusi).flatMap(nasin => nasin.nanpaIjo)
-    .concat(lonPali.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjo.get(nanpa)!.liSitelen() && !pali.isEmpty()).keySeq()))
-    .toSet();
-  
-  return new Tawa({
-    lipuIjo: lipuIjo,
-    lonPali: lonPali,
-    lukinWawa: lukinWawa,
-  });
-}
-
-
-export function panaEKulupuTawa(suliMa: Lon, lonPali: LonPali, nasin: NasinTawa)
-{
-  const miMute = Im.Seq.Keyed(
-    lonPali.entrySeq().flatMap(([lon, mute]) =>
-      mute
-        .filter(pali => pali.contains('mi'))
-        .toKeyedSeq()
-        .mapEntries(([nanpa, _]) => [nanpa, lon]))
-  );
-
-  function lukinEKulupuTawa(nanpa: number, lon: Lon): Im.Set<number>
-  {
-    const lukinNi = lonPali.get(lon);
-    const lonSin = lon.tawa(nasin);
-    const lukinSin = lonPali.get(lonSin);
-    const ken =
-      lonSin.liInsaMa(suliMa) &&
-      panaENanpaTanPali(lukinNi, 'awen').isEmpty() &&
-      panaENanpaTanPali(lukinSin, 'awen').isEmpty();
+    const maIjo = new MaIjo(suliMa, lipuIjo);
+    const nasinMusi = panaENasinMusiAli(maIjo);
+    const lonPali = paliELonPali(maIjo, nasinMusi);
     
-    if(ken)
-    {
-      const tawa = panaENanpaTanPali(lukinSin, 'tawa')
-        .union(panaENanpaTanPali(lukinSin, 'mi'));
-      const lukinTawa = tawa.toSeq().map(ni => lukinEKulupuTawa(ni, lonSin));
-      if(lukinTawa.some(ni => ni.isEmpty()))
-        return Im.Set.of<number>();
-      else
-        return Im.Set.of(nanpa).union(...lukinTawa);
-    }
-    else
-      return Im.Set.of<number>();
+    // O PALI: ken ante e ijo wan tawa ijo mute!
+    const lukinWawa = Im.Seq(nasinMusi).flatMap(nasin => nasin.nanpaIjo)
+      .concat(lonPali.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjo.get(nanpa)!.liSitelen() && !pali.isEmpty()).keySeq()))
+      .toSet();
+      
+    super({
+      nasin: nasin,
+      suliMa: suliMa,
+      lipuIjo: lipuIjo,
+      lonPali: lonPali,
+      lukinWawa: lukinWawa,
+    });
   }
   
-  const kulupuTawaAli = miMute
-    .map((lon, nanpa) => lukinEKulupuTawa(nanpa, lon))
-    .valueSeq().flatMap(ni => ni)
-    .toSet();
-  
-  return kulupuTawaAli;
+  /**
+   * pali e tawa sin tan tawa ni.
+   * @param pali tawa kepeken pali seme?
+   * @param nasin nasin tawa.
+   * @returns tawa sin.
+   */
+  sin(pali: Pali, nasin: NasinTawa): Tawa
+  {
+    const anteMute = pali(this.suliMa, this.lonPali, nasin);
+    const lipuIjoSin = this.lipuIjo.merge(
+      // O PALI: ante e ijo wan tawa ijo ala!
+      anteMute.map((ante, nanpa) => this.lipuIjo.get(nanpa)!.merge(ante))
+    );
+    return new Tawa(this.suliMa, lipuIjoSin, nasin);
+  }
 }

@@ -1,13 +1,9 @@
 import assert from 'assert';
 import Im from 'immutable';
-import { LipuIjo } from './ijo';
 import { Lon, NasinTawa } from './lon';
-import { MaIjo } from './maIjo';
-import { LonPali, paliELonPali } from './lonPali';
-import { NimiIjo, panaEKulupuNimi } from './nimiAli';
-import { panaENasinMusiAli } from './pilinToki';
-import { Tawa, tawaOpen, panaEKulupuTawa } from './tawa';
+import { Tawa } from './tawa';
 import { LipuMa, pilinELipuMa } from './lipuMa';
+import { paliAnte, paliTawa } from './pali';
 
 interface IMusi
 {
@@ -23,15 +19,21 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
 {
   constructor(lipuMa: LipuMa)
   {
-    const ma = pilinELipuMa(lipuMa);
+    const { nimiMa, suliMa, ijoAli } = pilinELipuMa(lipuMa);
+    const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq());
+    const tenpoOpen = Im.List.of(new Tawa(suliMa, lipuIjo));
+    
     super({
-      nimiMa: ma.nimiMa,
-      suliMa: ma.suliMa,
-      tenpo: Im.List.of(tawaOpen(ma.suliMa, ma.ijoAli)),
+      nimiMa: nimiMa,
+      suliMa: suliMa,
+      tenpo: tenpoOpen,
       tenpoNi: 0,
     });
   }
-
+  
+  /**
+   * jan musi li lukin e tawa ni.
+   */
   get tawaNi()
   {
     const ni = this.tenpo.get(this.tenpoNi);
@@ -46,7 +48,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     else
       return this;
   }
-
+  
   tenpoSinpin(ali: boolean = false): Musi
   {
     if(this.tenpoNi < this.tenpo.size - 1)
@@ -54,63 +56,24 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     else
       return this;
   }
-
+  
   tawa(nasin: NasinTawa): Musi
   {
     const t0 = Date.now();
     
-    const lipuIjo = this.tawaNi.lipuIjo;
-    const lonPali = this.tawaNi.lonPali;
+    const tawaNi = this.tawaNi;
+    const tawaInsa = tawaNi.sin(paliTawa, nasin);
+    const tawaSin = tawaInsa.sin(paliAnte, nasin);
     
-    const kulupuTawa = panaEKulupuTawa(this.suliMa, lonPali, nasin)
-      .toKeyedSeq()
-      .mapEntries(([_, nanpa]) => [nanpa, lipuIjo.get(nanpa)!]);
+    if(tawaSin.lipuIjo.equals(tawaNi.lipuIjo))
+      return this;  // ala li ante
     
-    const kulupuTawaSin = kulupuTawa.map(ijo => ijo.tawa(nasin));
-    const lipuIjoSin = lipuIjo.merge(kulupuTawaSin);
+    const tenpoSin = this.tenpo.take(this.tenpoNi + 1).push(tawaSin);
     
-    const maIjoSin = new MaIjo(this.suliMa, lipuIjoSin);
-    const nasinMusiSin = panaENasinMusiAli(maIjoSin);
-    const lonPaliSin = paliELonPali(maIjoSin, nasinMusiSin);
-    const ijoAnte = this.panaEIjoAnte(lonPaliSin, lipuIjoSin);
+    const t1 = Date.now();
+    console.log(`tawa: ${t1 - t0}`);
     
-    const lipuIjoAnte = lipuIjoSin.merge(ijoAnte);
-    
-    
-    const maIjoAnte = new MaIjo(this.suliMa, lipuIjoAnte);
-    const nasinMusiAnte = panaENasinMusiAli(maIjoAnte);
-    const lonPaliAnte = paliELonPali(maIjoAnte, nasinMusiAnte);
-    
-    
-    // O PALI: ken ante e ijo wan tawa ijo mute!
-    const lukinWawa = Im.Seq(nasinMusiAnte).flatMap(nasin => nasin.nanpaIjo)
-      .concat(lonPaliAnte.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjoAnte.get(nanpa)!.liSitelen() && !pali.isEmpty()).keySeq()))
-      .toSet();
-    
-    if(lipuIjoAnte.equals(lipuIjo))
-      return this
-    else
-    {
-      const tawaSin: Tawa = new Tawa({ nasin: nasin, lipuIjo: lipuIjoAnte, lonPali: lonPaliAnte, lukinWawa: lukinWawa });
-      const tenpoSin = this.tenpo.take(this.tenpoNi + 1).push(tawaSin);
-      
-      const t1 = Date.now();
-      console.log(`tawa: ${t1 - t0}`);
-      
-      return this.merge({ tenpo: tenpoSin, tenpoNi: this.tenpoNi + 1 });
-    }
-  }
-
-  private panaEIjoAnte(lonPali: LonPali, lipuIjo: LipuIjo)
-  {
-    return Im.Seq.Keyed(
-      lonPali.entrySeq().flatMap(([_, mute]) =>
-        mute
-          .map(paliMute => paliMute.filter(pali => panaEKulupuNimi(pali) === 'ijo') as Im.Set<NimiIjo>)
-          .filterNot(paliMute => paliMute.isEmpty())
-          .toKeyedSeq()
-      )
-    ).map((anteMute, nanpa) => lipuIjo.get(nanpa)!.merge({ kulupu: 'sitelen', nimi: anteMute.first()! }));
+    return this.merge({ tenpo: tenpoSin, tenpoNi: this.tenpoNi + 1 });
   }
 }
 
