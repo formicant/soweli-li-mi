@@ -12,23 +12,20 @@ interface JoMa
   readonly lukinWawa: Im.Set<number>;
 }
 
-export class Ma extends Component<JoMa>
+export function Ma(jo: JoMa)
 {
-  render()
-  {
-    const lekoAli = this.props.lipuIjo
-      .map((ijo, nanpaTaso) =>
-        <Leko key={nanpaTaso} ijo={ijo} lukinWawa={this.props.lukinWawa.contains(nanpaTaso)} />
-      )
-      .toIndexedSeq();
-    
-    return (
-      <div className='ma' style={{
-        width: `${this.props.suli.x}em`,
-        height: `${this.props.suli.y}em`,
-      }}>
-        {lekoAli}
-      </div>
-    );
-  }
+  const lekoAli = jo.lipuIjo
+    .map((ijo, nanpaTaso) =>
+      <Leko key={nanpaTaso} ijo={ijo} lukinWawa={jo.lukinWawa.contains(nanpaTaso)} />
+    )
+    .toIndexedSeq();
+  
+  return (
+    <div className='ma' style={{
+      width: `${jo.suli.x}em`,
+      height: `${jo.suli.y}em`,
+    }}>
+      {lekoAli}
+    </div>
+  );
 }

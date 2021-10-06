@@ -5,7 +5,7 @@ import { NasinTawa } from '../insa/lon';
 type TawaTenpo = 'monsi' | 'sinpin' | 'open' | 'pini';
 export type Palisa = NasinTawa | TawaTenpo;
 
-const palisaAli: { [palisa in Palisa]: ReadonlyArray<string> } =
+const palisaAli: Record<Palisa, readonly string[]> =
 {
   '↑':      ['KeyW', 'ArrowUp'],
   '↓':      ['KeyS', 'ArrowDown'],

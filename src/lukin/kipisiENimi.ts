@@ -7,7 +7,7 @@ interface LinjaNimi
   readonly suliPoka: number;
 }
 
-export function kipisiENimi(nimi: Nimi): ReadonlyArray<LinjaNimi>
+export function kipisiENimi(nimi: Nimi): readonly LinjaNimi[]
 {
   if(!kipisiPiNimiAli)
     kipisiPiNimiAli = paliEKipisiPiNimiAli();
@@ -15,7 +15,7 @@ export function kipisiENimi(nimi: Nimi): ReadonlyArray<LinjaNimi>
   return kipisiPiNimiAli[nimi];
 }
 
-type KipisiPiNimiAli = { [nimi in Nimi]: ReadonlyArray<LinjaNimi> };
+type KipisiPiNimiAli = Record<Nimi, readonly LinjaNimi[]>;
 let kipisiPiNimiAli: KipisiPiNimiAli | undefined;
 
 function paliEKipisiPiNimiAli(): KipisiPiNimiAli
@@ -30,7 +30,7 @@ function paliEKipisiPiNimiAli(): KipisiPiNimiAli
     return { nimiLili: nimiLili, suliPoka: suliPoka };
   }
   
-  function kipisiENimi(nimi: string): ReadonlyArray<LinjaNimi>
+  function kipisiENimi(nimi: string): readonly LinjaNimi[]
   {
     if(nimi.length < 4)
       return [paliELinja(nimi, nanpaSuliPiLinjaWan)];
@@ -46,7 +46,7 @@ function paliEKipisiPiNimiAli(): KipisiPiNimiAli
     }
   }
   
-  const kipisi: { [nimi: string]: ReadonlyArray<LinjaNimi> } = { };
+  const kipisi: { [nimi: string]: readonly LinjaNimi[] } = { };
   for(const nimi of nimiAli)
     kipisi[nimi] = kipisiENimi(nimi);
   

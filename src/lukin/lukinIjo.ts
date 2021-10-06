@@ -9,7 +9,7 @@ export interface LukinIjo
   readonly anteTawa?: AnteTawa;
 }
 
-export const lukinPiKulupuNimi: { [kulupu in KulupuNimi]: LukinIjo } =
+export const lukinPiKulupuNimi: Record<KulupuNimi, LukinIjo> =
 {
   ijo:    { kule: '#26a' },
   toki:   { kule: '#555' },
@@ -17,7 +17,7 @@ export const lukinPiKulupuNimi: { [kulupu in KulupuNimi]: LukinIjo } =
   pali:   { kule: '#b52' },
 } as const;
 
-export const lukinPiIjoAli: { [nimi in NimiIjo]: LukinIjo } =
+export const lukinPiIjoAli: Record<NimiIjo, LukinIjo> =
 {
   soweli: { kule: '#444', anteTawa: 'poka' },
   waso:   { kule: '#678', anteTawa: 'poka' },

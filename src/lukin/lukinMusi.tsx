@@ -40,7 +40,7 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
     this.setState({ musi: pali(this.state.musi) });
   };
   
-  private paliPalisa: { [palisa in Palisa]: (musi: Musi) => Musi } =
+  private paliPalisa: Record<Palisa, (musi: Musi) => Musi> =
   {
     '↑':      musi => musi.tawa('↑'),
     '↓':      musi => musi.tawa('↓'),
