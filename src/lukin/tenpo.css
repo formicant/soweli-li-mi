@@ -1,0 +1,48 @@
+.pokiTenpo
+{
+  margin: 30px auto 0;
+  width: 810px;
+  height: 30px;
+  font-size: 30px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s;
+}
+
+.tenpo
+{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  transition: left 0.25s;
+}
+
+.tawa
+{
+  display: flex;
+  justify-content: center;
+
+  width: 1em;
+  height: 0.9em;
+}
+
+.tawa button
+{
+  width: 1.8em;
+  /* margin: 0 0.1em; */
+  text-align: center;
+  font-family: bitter;
+  font-weight: 500;
+  font-size: 0.5em;
+  background-color: #fff;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 12px -1px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.kama
+{
+  opacity: 0.25;
+  z-index: 1;
+}

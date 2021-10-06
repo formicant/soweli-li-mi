@@ -4,6 +4,7 @@ import { Component } from 'react';
 import { Musi } from '../insa/musi';
 import { IloPalisa, Palisa } from './iloPalisa';
 import { Ma } from './ma';
+import { Tenpo } from './tenpo';
 
 export class LukinMusi extends Component<{ }, { musi: Musi }>
 {
@@ -29,9 +30,15 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
           lipuIjo={tawaNi.lipuIjo}
           lukinWawa={tawaNi.lukinWawa}
         />
+        <Tenpo tenpo={musi.lukinNasin} tenpoNi={musi.tenpoNi} palisaLa={this.lukaTenpo} />
         <IloPalisa palisaLa={this.lukaPalisa} />
       </main>
     );
+  }
+  
+  private lukaTenpo = (nanpa: number) =>
+  {
+    this.setState({ musi: this.state.musi.tenpoNanpa(nanpa) });
   }
   
   private lukaPalisa = (palisa: Palisa) =>

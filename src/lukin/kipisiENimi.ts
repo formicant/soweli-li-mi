@@ -22,7 +22,7 @@ function paliEKipisiPiNimiAli(): KipisiPiNimiAli
 {
   const lipuSitelen = document.createElement('canvas');
   const lonSitelen = lipuSitelen.getContext('2d')!;
-  lonSitelen.font = 'normal 100px truculenta-variable';
+  lonSitelen.font = 'normal 100px truculenta';
   
   function paliELinja(nimiLili: string, suliPokaAli: number): LinjaNimi
   {

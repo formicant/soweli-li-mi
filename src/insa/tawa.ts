@@ -8,14 +8,14 @@ import { Pali } from './pali';
 
 interface ITawa
 {
-  readonly nasin?: NasinTawa;
+  readonly nasin: NasinTawa | undefined;
   readonly suliMa: Lon;
   readonly lipuIjo: LipuIjo;
   readonly lonPali: LonPali;
   readonly lukinWawa: Im.Set<number>;
 }
 // ni li ike. taso, ni li nasin pali pi ilo Im.Record:
-const tawaAla: ITawa = { suliMa: new Lon(NaN, NaN), lipuIjo: Im.Map<number, Ijo>(), lonPali: Im.Map<Lon, any>(), lukinWawa: Im.Set() };
+const tawaAla: ITawa = { nasin: undefined, suliMa: new Lon(NaN, NaN), lipuIjo: Im.Map<number, Ijo>(), lonPali: Im.Map<Lon, any>(), lukinWawa: Im.Set() };
 
 /**
  * tawa wan lon tenpo musi.

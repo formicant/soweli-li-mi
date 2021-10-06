@@ -15,6 +15,13 @@ interface IMusi
 // ni li ike. taso, ni li nasin pali pi ilo Im.Record:
 const musiAla: IMusi = { nimiMa: '', suliMa: new Lon(NaN, NaN), tenpo: Im.List(), tenpoNi: NaN };
 
+export interface LukinTawa
+{
+  readonly nanpa: number;
+  readonly nasin: NasinTawa | undefined;
+  readonly liKama: boolean;
+}
+
 export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
 {
   constructor(lipuMa: LipuMa)
@@ -41,6 +48,13 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     return ni;
   }
   
+  get lukinNasin(): readonly LukinTawa[]
+  {
+    return this.tenpo
+      .map((tawa, nanpa) => ({ nanpa: nanpa, nasin: tawa.nasin, liKama: nanpa > this.tenpoNi }))
+      .toArray();
+  }
+  
   tenpoMonsi(ali: boolean = false): Musi
   {
     if(this.tenpoNi > 0)
@@ -57,9 +71,20 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
       return this;
   }
   
+  tenpoNanpa(nanpa: number): Musi
+  {
+    if(nanpa >= 0 && nanpa < this.tenpo.size)
+      return this.set('tenpoNi', nanpa);
+    else
+      return this;
+  }
+  
   tawa(nasin: NasinTawa): Musi
   {
     // const t0 = Date.now();
+    const tenpoNiSin = this.tenpoNi + 1;
+    if(this.tenpo.get(tenpoNiSin)?.nasin === nasin)
+      return this.tenpoSinpin();  // tawa sama
     
     const tawaNi = this.tawaNi;
     const tawaInsa = tawaNi.sin(paliTawa, nasin);
@@ -68,12 +93,12 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     if(tawaSin.lipuIjo.equals(tawaNi.lipuIjo))
       return this;  // ala li ante
     
-    const tenpoSin = this.tenpo.take(this.tenpoNi + 1).push(tawaSin);
+    const tenpoSin = this.tenpo.take(tenpoNiSin).push(tawaSin);
     
     // const t1 = Date.now();
     // console.log(`tawa: ${t1 - t0}`);
     
-    return this.merge({ tenpo: tenpoSin, tenpoNi: this.tenpoNi + 1 });
+    return this.merge({ tenpo: tenpoSin, tenpoNi: tenpoNiSin });
   }
 }
 
