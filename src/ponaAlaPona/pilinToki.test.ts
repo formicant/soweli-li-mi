@@ -12,13 +12,14 @@ test.each([
     },
     nasinMusi: ['soweli li mi']
   },
+  
   {
     lipuMa: {
       nimi: 'linja anpa en linja poka',
       ma: [
-        ' .  Sow  . ',
-        'Tom Li  Pin',
-        ' .  Mi   . ',
+        ' .  SOW  . ',
+        'TOM LI  PIN',
+        ' .  MI   . ',
       ]
     },
     nasinMusi: [
@@ -26,6 +27,7 @@ test.each([
       'tomo li pini',
     ]
   },
+  
   {
     lipuMa: {
       nimi: 'nasin mute lon linja wan',
@@ -34,8 +36,22 @@ test.each([
     nasinMusi: [
       'kala lon kon en ma li moli',
       'akesi en pipi li mi',
-      'kiwen li tawa'],
+      'kiwen li tawa',
+    ],
   },
+  
+  {
+    lipuMa: {
+      nimi: 'pali ike nasa',
+      ma: [
+        ' .  .  . KAL',
+        ' .  .  . LI ',
+        ' .  .  . WEK',
+      ]
+    },
+    nasinMusi: ['kala li weka'],
+  },
+  
   // O PALI: leko wan li wile ken jo e nimi mute!
   // {
   //   lipuMa: {
@@ -61,11 +77,12 @@ test.each([
   //     'kiwen li awen',
   //   ]
   // },
+  
 ])('', ({ lipuMa, nasinMusi }) =>
 {
-  const ma = pilinELipuMa(lipuMa);
-  const lipuIjo = Im.Map(Im.Seq(ma.ijoAli).toKeyedSeq());
-  const maIjo = new MaIjo(ma.suliMa, lipuIjo);
+  const { suliMa, ijoAli } = pilinELipuMa(lipuMa);
+  const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq());
+  const maIjo = new MaIjo(suliMa, lipuIjo);
   const nasinMusiAli = panaENasinMusiAli(maIjo);
   const toki = nasinMusiAli.map(tokiENasinMusi);
   

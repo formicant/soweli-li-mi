@@ -20,7 +20,7 @@ const tawaAla: ITawa = { suliMa: new Lon(NaN, NaN), lipuIjo: Im.Map<number, Ijo>
 /**
  * tawa wan lon tenpo musi.
  */
-export class Tawa extends Im.Record<ITawa>(tawaAla) implements Tawa
+export class Tawa extends Im.Record<ITawa>(tawaAla) implements ITawa
 {
   constructor(suliMa: Lon, lipuIjo: LipuIjo, nasin?: NasinTawa)
   {

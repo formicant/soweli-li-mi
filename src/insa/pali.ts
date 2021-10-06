@@ -1,5 +1,5 @@
 import Im from 'immutable';
-import { AnteIjo, LipuIjo } from './ijo';
+import { AnteIjo } from './ijo';
 import { Lon, NasinTawa } from './lon';
 import { LonPali } from './lonPali';
 import { LiSeme } from './nasinMusi';

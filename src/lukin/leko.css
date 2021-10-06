@@ -10,7 +10,7 @@
   position: absolute;
   transition: all 0.25s;
   cursor: default;
-  opacity: 0.4;
+  opacity: 0.5;
   z-index: 1;
 }
 

@@ -29,10 +29,11 @@ export function* panaELinjaTokiAli(maIjo: MaIjo)
 
 function* panaELinjaTokiMute(maIjo: MaIjo, paliELon: (x: number, y: number) => Lon)
 {
-  for(let y = 0; y < maIjo.suliMa.y; y++)
+  const suli = paliELon(maIjo.suliMa.x, maIjo.suliMa.y);
+  for(let y = 0; y < suli.y; y++)
   {
     let linjaToki: Toki | undefined = undefined;
-    for(let x = maIjo.suliMa.x - 1; x >= 0; x--)
+    for(let x = suli.x - 1; x >= 0; x--)
       linjaToki = paliEToki(x, maIjo.lonIjo.get(paliELon(x, y)), linjaToki);
     yield linjaToki!;
   }

@@ -59,7 +59,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
   
   tawa(nasin: NasinTawa): Musi
   {
-    const t0 = Date.now();
+    // const t0 = Date.now();
     
     const tawaNi = this.tawaNi;
     const tawaInsa = tawaNi.sin(paliTawa, nasin);
@@ -70,8 +70,8 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     
     const tenpoSin = this.tenpo.take(this.tenpoNi + 1).push(tawaSin);
     
-    const t1 = Date.now();
-    console.log(`tawa: ${t1 - t0}`);
+    // const t1 = Date.now();
+    // console.log(`tawa: ${t1 - t0}`);
     
     return this.merge({ tenpo: tenpoSin, tenpoNi: this.tenpoNi + 1 });
   }

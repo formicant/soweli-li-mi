@@ -21,6 +21,7 @@ test.each([
       ]
     }
   },
+  
   {
     open: {
       nimi: 'tawa e ijo',
@@ -44,6 +45,7 @@ test.each([
       ]
     }
   },
+  
 ])('musi', ({ open, nasin, pini }) =>
 {
   const musiOpen = new Musi(open);
@@ -51,8 +53,8 @@ test.each([
     .reduce((musi, nasinTawa) => musi.tawa(nasinTawa as NasinTawa), musiOpen);
   const ijoLon = wekaENanpa(musiPini.tawaNi.lipuIjo.valueSeq().toArray());
   
-  const maPini = pilinELipuMa(pini);
-  const ijoWile = wekaENanpa(maPini.ijoAli);
+  const { ijoAli } = pilinELipuMa(pini);
+  const ijoWile = wekaENanpa(ijoAli);
   
   // O PALI pona e ni:
   expect(ijoLon).toEqual(expect.arrayContaining(ijoWile));
