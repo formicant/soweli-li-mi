@@ -1,6 +1,6 @@
 import assert from 'assert';
 import Im from 'immutable';
-import { Lon, NasinTawa } from './lon';
+import { liSitelenPiNasinTawa, Lon, NasinTawa } from './lon';
 import { Tawa } from './tawa';
 import { LipuMa, pilinELipuMa } from './lipuMa';
 import { paliAnte, paliTawa } from './pali';
@@ -99,6 +99,17 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     // console.log(`tawa: ${t1 - t0}`);
     
     return this.merge({ tenpo: tenpoSin, tenpoNi: tenpoNiSin });
+  }
+  
+  sinETenpoAli(tokiNasin: string): Musi
+  {
+    const nasin = Im.Seq(tokiNasin.split('')).filter(liSitelenPiNasinTawa).cacheResult();
+    if(nasin.size === 0)
+      return this;  // tokiNasin li ala anu ike
+    
+    const musiOpen = this.tenpoMonsi(true);
+    const musiSin = nasin.reduce((musi, nasinTawa) => musi.tawa(nasinTawa), musiOpen);
+    return musiSin.tenpoMonsi(true);
   }
 }
 

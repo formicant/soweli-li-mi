@@ -30,16 +30,17 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
           lipuIjo={tawaNi.lipuIjo}
           lukinWawa={tawaNi.lukinWawa}
         />
-        <Tenpo tenpo={musi.lukinNasin} tenpoNi={musi.tenpoNi} palisaLa={this.lukaTenpo} />
+        <Tenpo tenpo={musi.lukinNasin} tenpoNi={musi.tenpoNi} tenpoNanpaLa={this.lukaTenpoNanpa} panaTanPokiLa={this.lukaPanaTanPoki} />
         <IloPalisa palisaLa={this.lukaPalisa} />
       </main>
     );
   }
   
-  private lukaTenpo = (nanpa: number) =>
-  {
+  private lukaTenpoNanpa = (nanpa: number) =>
     this.setState({ musi: this.state.musi.tenpoNanpa(nanpa) });
-  }
+  
+  private lukaPanaTanPoki = (nasin: string) =>
+    this.setState({ musi: this.state.musi.sinETenpoAli(nasin) });
   
   private lukaPalisa = (palisa: Palisa) =>
   {

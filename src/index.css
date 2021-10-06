@@ -13,9 +13,8 @@
 
 @font-face
 {
-  font-family: bitter;
-  /* wght ?..? */
-  src: url('./linja/Bitter-VariableFont_wght.ttf') format('truetype');
+  font-family: material-icons;
+  src: url('./linja/MaterialIcons.woff2') format('woff2');
 }
 
 body
