@@ -38,8 +38,7 @@ button
   outline: none;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 12px -1px;
   cursor: pointer;
-  transition: transform 0.05s;
-  transition: box-shadow 0.05s;
+  transition: all 0.05s;
 }
 
 button:active

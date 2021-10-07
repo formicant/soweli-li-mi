@@ -25,10 +25,21 @@ export const Tenpo = ({ nasin, tenpoNi, tenpoNanpaLa, panaTanPokiLa }: JoTenpo) 
         )}
       </div>
     </div>
+    
     <div className='panaTenpo'>
-      <button title='pana e tenpo tawa poki' onClick={() => panaTawaPoki(nasin, tenpoNi)}>content_copy</button>
-      <button title='pana e tenpo tan poki' onClick={() => panaTanPoki(panaTanPokiLa)}>content_paste</button>
-      <textarea id='panaTanPoki' />
+      <button
+        className={classNames({ 'kama': tenpoNi === 0 })}
+        title='pana e tenpo tawa poki'
+        onClick={tenpoNi > 0 ? () => panaTawaPoki(nasin, tenpoNi) : () => {}}
+      >
+        content_copy
+      </button>
+      <button
+        title={'pana e tenpo tan poki.\npali ala lon ilo lukin Firefox :('}
+        onClick={() => panaTanPoki(panaTanPokiLa)}
+      >
+        content_paste
+      </button>
     </div>
   </>;
 
