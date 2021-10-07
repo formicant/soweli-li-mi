@@ -10,7 +10,7 @@ import { liInsaKulupu, Nimi, NimiIjo } from './nimiAli'
  */
 export type KulupuIjo = 'nimi' | 'sitelen';
 
-interface IIjo
+export interface IIjo
 {
   readonly nanpa: number;
   readonly lon: Lon;
@@ -19,8 +19,6 @@ interface IIjo
 }
 // ni li ike. taso, ni li nasin pali pi ilo Im.Record:
 const ijoAla: IIjo = { nanpa: NaN, lon: new Lon(NaN, NaN), kulupu: 'nimi', nimi: 'ala' };
-
-export type AnteIjo = Partial<IIjo>;
 
 /**
  * ijo wan lon ma musi, li nimi anu sitelen.
@@ -63,8 +61,3 @@ export class Ijo extends Im.Record<IIjo>(ijoAla) implements IIjo
     return this.set('lon', this.lon.tawa(nasin));
   }
 }
-
-/**
- * ijo mute en nanpa ona.
- */
-export type LipuIjo = Im.Map<number, Ijo>;

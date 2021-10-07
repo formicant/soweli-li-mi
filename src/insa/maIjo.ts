@@ -1,6 +1,7 @@
 import Im from 'immutable';
 import { Lon } from './lon';
-import { Ijo,  LipuIjo } from './ijo';
+import { Ijo } from './ijo';
+import { LipuIjo } from './lipuIjo';
 
 /**
  * li jo e suli ma, e ijo ali insa kulupu Lon.

@@ -29,13 +29,13 @@ export const Tenpo = ({ nasin, tenpoNi, tenpoNanpaLa, panaTanPokiLa }: JoTenpo) 
     <div className='panaTenpo'>
       <button
         className={classNames({ 'kama': tenpoNi === 0 })}
-        title='pana e tenpo tawa poki'
+        title='pana e nasin tawa poki'
         onClick={tenpoNi > 0 ? () => panaTawaPoki(nasin, tenpoNi) : () => {}}
       >
         content_copy
       </button>
       <button
-        title={'pana e tenpo tan poki.\npali ala lon ilo lukin Firefox :('}
+        title={'pana e nasin tan poki.\npali ala lon ilo lukin Firefox :('}
         onClick={() => panaTanPoki(panaTanPokiLa)}
       >
         content_paste

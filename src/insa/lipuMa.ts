@@ -14,6 +14,8 @@ import { Ijo, KulupuIjo } from './ijo';
    readonly namako?: { [sitelen: string]: string | undefined };
    // pona la, ni li { [sitelen: string]: string }. taso, ni li nasin pali pi ilo Import pi lipu Json.
  }
+
+enum KulupuToki { Nimi, Sitelen, Namako, Kon, Insa }
  
 /**
  * li pilin e lipu ma tan lipu Json.
@@ -67,8 +69,6 @@ export function pilinELipuMa(lipuMa: LipuMa)
     ijoAli: ijoAli,
   };
 }
-
-enum KulupuToki { Nimi, Sitelen, Namako, Kon, Insa }
 
 const mamaToki = buildLexer<KulupuToki>([
   [true,  /^[A-Z][A-Za-z]*/g,      KulupuToki.Nimi   ],

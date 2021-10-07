@@ -1,27 +1,52 @@
 import Im from 'immutable';
-import { AnteIjo } from './ijo';
+import { AntePiLipuIjo } from './lipuIjo';
 import { Lon, NasinTawa } from './lon';
 import { LonPali } from './lonPali';
 import { LiSeme } from './nasinMusi';
 import { liInsaKulupu, NimiIjo, NimiPali } from './nimiAli';
 
-export type Pali = (suliMa: Lon, lonPali: LonPali, nasin: NasinTawa) => Im.Seq.Keyed<number, AnteIjo>;
+export type Pali = (suliMa: Lon, lonPali: LonPali, nasin: NasinTawa) => AntePiLipuIjo;
 
 export const paliAnte: Pali = (suliMa, lonPali, nasin) =>
-  Im.Seq.Keyed(
+{
+  const ante = Im.Seq.Keyed(
     lonPali.entrySeq().flatMap(([_, mute]) =>
       mute
         .map(paliMute => paliMute.filter(pali => liInsaKulupu(pali, 'ijo')) as Im.Set<NimiIjo>)
         .filterNot(paliMute => paliMute.isEmpty())
         .toKeyedSeq()
     )
-  // O PALI: ante e ijo wan tawa ijo mute, tawa ijo ala!
-  ).map(anteMute => ({ kulupu: 'sitelen', nimi: anteMute.first()! }));
+  // O PALI: ante e ijo wan tawa ijo mute!
+  ).map(anteMute => ({ kulupu: 'sitelen' as const, nimi: anteMute.first()! }));
+  
+  const weka = lonPali
+    .toIndexedSeq()
+    .map(panaENanpaWeka)
+    .flatMap(ni => ni);
+  
+  return { anteMute: ante, wekaMute: weka };
+}
+
+function panaENanpaWeka(paliLeko: Im.Collection<number, Im.Set<LiSeme>>)
+{
+  const lekoLiMoli = paliLeko.some(pali => pali.contains('moli'));
+  return paliLeko
+    .filter(pali => pali.contains('weka') || (lekoLiMoli && pali.contains('mi')))
+    .keySeq();
+}
+
+function liKamaWeka(paliNi: Im.Set<LiSeme>, lekoSama: Im.Set<LiSeme>)
+{
+  return paliNi.contains('weka') ||
+    (paliNi.contains('mi') && lekoSama.contains('moli'));
+}
 
 export const paliTawa: Pali = (suliMa, lonPali, nasin) =>
-  panaEKulupuTawa(suliMa, lonPali, nasin)
-    .toKeyedSeq()
-    .map((lon, nanpa) => ({ lon: lon.tawa(nasin) }));
+  ({
+    anteMute: panaEKulupuTawa(suliMa, lonPali, nasin)
+      .toKeyedSeq()
+      .map(lon => ({ lon: lon.tawa(nasin) }))
+  });
 
 
 function panaEKulupuTawa(suliMa: Lon, lonPali: LonPali, nasin: NasinTawa)

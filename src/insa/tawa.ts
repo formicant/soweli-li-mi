@@ -1,5 +1,6 @@
 import Im from 'immutable';
-import { Ijo, LipuIjo } from './ijo';
+import { Ijo } from './ijo';
+import { anteELipuIjo, LipuIjo } from './lipuIjo';
 import { Lon, NasinTawa } from './lon';
 import { MaIjo } from './maIjo';
 import { LonPali, paliELonPali } from './lonPali';
@@ -50,11 +51,8 @@ export class Tawa extends Im.Record<ITawa>(tawaAla) implements ITawa
    */
   sin(pali: Pali, nasin: NasinTawa): Tawa
   {
-    const anteMute = pali(this.suliMa, this.lonPali, nasin);
-    const lipuIjoSin = this.lipuIjo.merge(
-      // O PALI: ante e ijo wan tawa ijo ala!
-      anteMute.map((ante, nanpa) => this.lipuIjo.get(nanpa)!.merge(ante))
-    );
+    const antePiLipuIjo = pali(this.suliMa, this.lonPali, nasin);
+    const lipuIjoSin = anteELipuIjo(this.lipuIjo, antePiLipuIjo);
     return new Tawa(this.suliMa, lipuIjoSin, nasin);
   }
 }
