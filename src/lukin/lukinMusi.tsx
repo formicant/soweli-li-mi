@@ -30,7 +30,12 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
           lipuIjo={tawaNi.lipuIjo}
           lukinWawa={tawaNi.lukinWawa}
         />
-        <Tenpo tenpo={musi.lukinNasin} tenpoNi={musi.tenpoNi} tenpoNanpaLa={this.lukaTenpoNanpa} panaTanPokiLa={this.lukaPanaTanPoki} />
+        <Tenpo
+          nasin={musi.panaENasin(true)}
+          tenpoNi={musi.tenpoNi}
+          tenpoNanpaLa={this.lukaTenpoNanpa}
+          panaTanPokiLa={this.lukaPanaTanPoki}
+        />
         <IloPalisa palisaLa={this.lukaPalisa} />
       </main>
     );

@@ -15,13 +15,6 @@ interface IMusi
 // ni li ike. taso, ni li nasin pali pi ilo Im.Record:
 const musiAla: IMusi = { nimiMa: '', suliMa: new Lon(NaN, NaN), tenpo: Im.List(), tenpoNi: NaN };
 
-export interface LukinTawa
-{
-  readonly nanpa: number;
-  readonly nasin: NasinTawa | undefined;
-  readonly liKama: boolean;
-}
-
 export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
 {
   constructor(lipuMa: LipuMa)
@@ -48,10 +41,13 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     return ni;
   }
   
-  get lukinNasin(): readonly LukinTawa[]
+  panaENasin(kamaKin: boolean = false): readonly (NasinTawa | undefined)[]
   {
-    return this.tenpo
-      .map((tawa, nanpa) => ({ nanpa: nanpa, nasin: tawa.nasin, liKama: nanpa > this.tenpoNi }))
+    const tenpo = kamaKin
+      ? this.tenpo
+      : this.tenpo.take(this.tenpoNi + 1)
+    return tenpo
+      .map(tawa => tawa.nasin)
       .toArray();
   }
   

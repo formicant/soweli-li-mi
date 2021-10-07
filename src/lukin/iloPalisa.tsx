@@ -13,7 +13,7 @@ const palisaAli: Record<Palisa, readonly string[]> =
   '→':      ['KeyD', 'ArrowRight'],
   
   'monsi':  ['KeyZ', 'Backspace'],
-  'sinpin': ['KeyX', 'Space'],
+  'sinpin': ['KeyX', 'Insert'],
   'open':   ['KeyR', 'Home'],
   'pini':   ['KeyT', 'End'],
 } as const;
@@ -45,4 +45,10 @@ export class IloPalisa extends Component<JoPiIloPalisa>
     if(palisa)
       this.props.palisaLa(palisa);
   }
+}
+
+export function panaENimiPalisa(palisa: Palisa): readonly string[]
+{
+  return palisaAli[palisa]
+    .map(nimi => `[${nimi.replace(/^Key/, '')}]`);
 }

@@ -1,27 +1,32 @@
 import classNames from 'classnames';
 import { NasinTawa } from '../insa/lon';
-import { LukinTawa } from '../insa/musi';
+import { panaENimiPalisa } from './iloPalisa';
 import './tenpo.css';
 
 interface JoTenpo
 {
-  readonly tenpo: readonly LukinTawa[];
+  readonly nasin: readonly (NasinTawa | undefined)[];
   readonly tenpoNi: number;
   readonly tenpoNanpaLa: (nanpa: number) => void;
   readonly panaTanPokiLa: (nasin: string) => void;
 }
 
-export const Tenpo = ({ tenpo, tenpoNi, tenpoNanpaLa, panaTanPokiLa }: JoTenpo) =>
+export const Tenpo = ({ nasin, tenpoNi, tenpoNanpaLa, panaTanPokiLa }: JoTenpo) =>
   <>
     <div className='pokiTenpo'>
-      <div className='tenpo' style={{ left: `${lon(tenpoNi, tenpo.length)}em` }}>
-        {tenpo.map(lukinTawa =>
-          <Tawa key={lukinTawa.nanpa} lukinTawa={lukinTawa} tenpoNanpaLa={tenpoNanpaLa} />
+      <div className='tenpo' style={{ left: `${lon(tenpoNi, nasin.length)}em` }}>
+        {nasin.map((nasinTawa, nanpa) =>
+          <Tawa
+            key={nanpa}
+            nasinTawa={nasinTawa}
+            nanpaTanNi={nanpa - tenpoNi}
+            paliLa={() => tenpoNanpaLa(nanpa)}
+          />
         )}
       </div>
     </div>
     <div className='panaTenpo'>
-      <button title='pana e tenpo tawa poki' onClick={() => panaTawaPoki(tenpo, tenpoNi)}>content_copy</button>
+      <button title='pana e tenpo tawa poki' onClick={() => panaTawaPoki(nasin, tenpoNi)}>content_copy</button>
       <button title='pana e tenpo tan poki' onClick={() => panaTanPoki(panaTanPokiLa)}>content_paste</button>
       <textarea id='panaTanPoki' />
     </div>
@@ -29,19 +34,39 @@ export const Tenpo = ({ tenpo, tenpoNi, tenpoNanpaLa, panaTanPokiLa }: JoTenpo) 
 
 interface JoTawa
 {
-  readonly lukinTawa: LukinTawa;
-  readonly tenpoNanpaLa: (nanpa: number) => void;
+  readonly nasinTawa: NasinTawa | undefined;
+  readonly nanpaTanNi: number;
+  readonly paliLa: () => void;
 }
 
-const Tawa = ({ lukinTawa, tenpoNanpaLa }: JoTawa) =>
-  <div className='tawa'>
-    <button
-      className={classNames({ 'kama': lukinTawa.liKama })}
-      onClick={() => tenpoNanpaLa(lukinTawa.nanpa)}
-    >
-      {lukinTawa.nasin ? nimiNasin[lukinTawa.nasin] : ''}
-    </button>
-  </div>;
+function Tawa({ nasinTawa, nanpaTanNi, paliLa }: JoTawa)
+{
+  const kulupuLukin = classNames({ 'kama': nanpaTanNi > 0 });
+  const sitelen = nasinTawa ? nimiNasin[nasinTawa] : '';
+  
+  const nanpaTawa = Math.abs(nanpaTanNi);
+  const nimiNanpa = nanpaTawa <= 2 ? nanpaTawa === 1 ? 'wan' : 'tu' : 'mute';
+  const sinpinAnuMonsi = nanpaTanNi > 0 ? 'sinpin': 'monsi';
+  const insaLinja = '\n';
+  const palisa = nanpaTawa === 1 ? `${insaLinja}palisa ${panaENimiPalisa(sinpinAnuMonsi).join(' anu ')}` : '';
+  const toki = nasinTawa
+    ? nanpaTanNi === 0
+      ? 'tenpo ni'
+      : `tawa ${nimiNanpa} ${sinpinAnuMonsi}${palisa}`
+    : `open musi${insaLinja}palisa ${panaENimiPalisa('open').join(' anu ')}`;
+  
+  return (
+    <div className='tawa'>
+      <button
+        className={kulupuLukin}
+        title={toki}
+        onClick={paliLa}
+      >
+        {sitelen}
+      </button>
+    </div>
+  );
+}
 
 function lon(ni: number, nanpa: number)
 {
@@ -57,10 +82,10 @@ function lon(ni: number, nanpa: number)
 const suli = 24;
 const namako = 1.5;
 
-function panaTawaPoki(tenpo: readonly LukinTawa[], tenpoNi: number)
+function panaTawaPoki(nasin: readonly (NasinTawa | undefined)[], tenpoNi: number)
 {
-  const nasin = tenpo.slice(1, tenpoNi + 1).map(tawa => tawa.nasin).join('');
-  navigator.clipboard.writeText(nasin);
+  const tokiNasin = nasin.slice(1, tenpoNi + 1).join('');
+  navigator.clipboard.writeText(tokiNasin);
 }
 
 function panaTanPoki(panaTanPokiLa: (nasin: string) => void)
