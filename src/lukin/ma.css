@@ -8,3 +8,45 @@
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px -10px;
 }
+
+.pini
+{
+  position: absolute;
+  background: radial-gradient(rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0));
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: kamaLukin ease-out 1s;
+}
+
+.pona
+{
+  color: #f41;
+  text-align: center;
+  text-shadow: #fff 0 10px 0;
+}
+
+.pona.sitelen
+{
+  font-family: linja-pona;
+  font-size: 3em;
+  animation: sikePoka 0.5s ease-in-out alternate infinite;
+}
+
+.pona.toki
+{
+  font-size: 2em;
+}
+
+@keyframes kamaLukin
+{ 
+  0%   { opacity: 0; } 
+  100% { opacity: 1; } 
+}
+
+@keyframes sikePoka
+{ 
+  0%   { transform:rotate(-15deg); } 
+  100% { transform:rotate(15deg); } 
+}

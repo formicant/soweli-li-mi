@@ -98,3 +98,18 @@ function panaENanpaTanPali(lukin: Im.Collection<number, Im.Set<LiSeme>> | undefi
   else
     return Im.Set.of<number>();
 }
+
+export function panaEPilinMusi(lonPali: LonPali)
+{
+  if(lonPali.some(liPini))
+    return 'pini';
+  else
+    return 'palisa';
+}
+
+function liPini(paliLeko: Im.Collection<number, Im.Set<LiSeme>>)
+{
+  const lekoLiPini = paliLeko.some(pali => pali.contains('pini'));
+  const lekoLiMi = paliLeko.some(pali => pali.contains('mi'));
+  return lekoLiPini && lekoLiMi;
+}

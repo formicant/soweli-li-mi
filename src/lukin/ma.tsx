@@ -9,6 +9,7 @@ interface JoMa
   readonly suli: Lon;
   readonly lipuIjo: LipuIjo;
   readonly lukinWawa: Im.Set<number>;
+  readonly liPini: boolean;
 }
 
 export function Ma(jo: JoMa)
@@ -19,12 +20,23 @@ export function Ma(jo: JoMa)
     )
     .toIndexedSeq();
   
-  return (
-    <div className='ma' style={{
+    const suli = {
       width: `${jo.suli.x}em`,
       height: `${jo.suli.y}em`,
-    }}>
-      {lekoAli}
+    };
+  
+  return (
+    <div className='ma' style={suli}>
+      <div>
+        {lekoAli}
+      </div>
+      {
+        jo.liPini &&
+          <div className='pini' style={suli}>
+            <p className='pona sitelen'>pona</p>
+            <p className='pona toki'>pona!</p>
+          </div>
+      }
     </div>
   );
 }

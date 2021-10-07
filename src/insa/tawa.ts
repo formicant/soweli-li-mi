@@ -5,7 +5,12 @@ import { Lon, NasinTawa } from './lon';
 import { MaIjo } from './maIjo';
 import { LonPali, paliELonPali } from './lonPali';
 import { panaENasinMusiAli } from './pilinToki';
-import { Pali } from './pali';
+import { Pali, panaEPilinMusi } from './pali';
+
+export type PilinMusi =
+  | 'pini'   // musi li pini pona
+  | 'palisa' // jan musi li ken kepeken e ilo palisa
+  | 'tawa';  // musi li wile tawa sin
 
 interface ITawa
 {
@@ -14,9 +19,10 @@ interface ITawa
   readonly lipuIjo: LipuIjo;
   readonly lonPali: LonPali;
   readonly lukinWawa: Im.Set<number>;
+  readonly pilin: PilinMusi;
 }
 // ni li ike. taso, ni li nasin pali pi ilo Im.Record:
-const tawaAla: ITawa = { nasin: undefined, suliMa: new Lon(NaN, NaN), lipuIjo: Im.Map<number, Ijo>(), lonPali: Im.Map<Lon, any>(), lukinWawa: Im.Set() };
+const tawaAla: ITawa = { nasin: undefined, suliMa: new Lon(NaN, NaN), lipuIjo: Im.Map<number, Ijo>(), lonPali: Im.Map<Lon, any>(), lukinWawa: Im.Set(), pilin: 'pini' };
 
 /**
  * tawa wan lon tenpo musi.
@@ -33,6 +39,8 @@ export class Tawa extends Im.Record<ITawa>(tawaAla) implements ITawa
     const lukinWawa = Im.Seq(nasinMusi).flatMap(nasin => nasin.nanpaIjo)
       .concat(lonPali.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjo.get(nanpa)!.liSitelen() && !pali.isEmpty()).keySeq()))
       .toSet();
+    
+    const pilin = panaEPilinMusi(lonPali);
       
     super({
       nasin: nasin,
@@ -40,6 +48,7 @@ export class Tawa extends Im.Record<ITawa>(tawaAla) implements ITawa
       lipuIjo: lipuIjo,
       lonPali: lonPali,
       lukinWawa: lukinWawa,
+      pilin: pilin,
     });
   }
   

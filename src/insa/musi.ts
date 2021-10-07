@@ -103,7 +103,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     if(nasin.size === 0)
       return this;  // tokiNasin li ala anu ike
     
-    const musiOpen = this.tenpoMonsi(true);
+    const musiOpen = this.tenpoMonsi(true);  // O PALI: weka e tenpo!
     const musiSin = nasin.reduce((musi, nasinTawa) => musi.tawa(nasinTawa), musiOpen);
     return musiSin.tenpoMonsi(true);
   }

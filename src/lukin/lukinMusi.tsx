@@ -5,13 +5,14 @@ import { Musi } from '../insa/musi';
 import { IloPalisa, Palisa } from './iloPalisa';
 import { Ma } from './ma';
 import { Tenpo } from './tenpo';
+import { liSitelenPiNasinTawa } from '../insa/lon';
 
 export class LukinMusi extends Component<{ }, { musi: Musi }>
 {
   constructor(jo: { })
   {
     super(jo);
-    const lipuMa = lipuMaAli[1];
+    const lipuMa = lipuMaAli[0];
     this.state = { musi: new Musi(lipuMa) };
   }
   
@@ -29,6 +30,7 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
           suli={musi.suliMa}
           lipuIjo={tawaNi.lipuIjo}
           lukinWawa={tawaNi.lukinWawa}
+          liPini={tawaNi.pilin === 'pini'}
         />
         <Tenpo
           nasin={musi.panaENasin(true)}
@@ -49,8 +51,12 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
   
   private lukaPalisa = (palisa: Palisa) =>
   {
-    const pali = this.paliPalisa[palisa];
-    this.setState({ musi: pali(this.state.musi) });
+    if(!liSitelenPiNasinTawa(palisa) ||
+      this.state.musi.tawaNi.pilin === 'palisa')
+    {
+      const pali = this.paliPalisa[palisa];
+      this.setState({ musi: pali(this.state.musi) });
+    }
   };
   
   private paliPalisa: Record<Palisa, (musi: Musi) => Musi> =
