@@ -17,7 +17,7 @@
   src: url('./linja/MaterialIcons.woff2') format('woff2');
 }
 
-body
+body, button
 {
   background-color: #ded;
   color: #222;

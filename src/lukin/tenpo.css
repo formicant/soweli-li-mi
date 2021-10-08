@@ -27,7 +27,7 @@
   height: 0.8em;
 }
 
-button
+.tenpo button, .panaTenpo button
 {
   text-align: center;
   font-family: material-icons;
@@ -41,7 +41,7 @@ button
   transition: all 0.05s;
 }
 
-button:active
+.tenpo button:active, .panaTenpo button:active
 {
   transform: translateY(1px);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px -1px;

@@ -35,12 +35,6 @@ function panaENanpaWeka(paliLeko: Im.Collection<number, Im.Set<LiSeme>>)
     .keySeq();
 }
 
-function liKamaWeka(paliNi: Im.Set<LiSeme>, lekoSama: Im.Set<LiSeme>)
-{
-  return paliNi.contains('weka') ||
-    (paliNi.contains('mi') && lekoSama.contains('moli'));
-}
-
 export const paliTawaMi: Pali = (suliMa, lonPali, nasin) =>
   ({
     anteMute: panaEKulupuTawa('mi', suliMa, lonPali, nasin)

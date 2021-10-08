@@ -1,5 +1,4 @@
 import './lukinMusi.css';
-import lipuMaAli from '../lipu/lipuMa.json'
 import { Component } from 'react';
 import { Musi } from '../insa/musi';
 import { IloPalisa, Palisa } from './iloPalisa';
@@ -7,14 +6,19 @@ import { Ma } from './ma';
 import { Tenpo } from './tenpo';
 import { liNasinTawa } from '../insa/lon';
 import { IloTenpo } from './iloTenpo';
+import { LipuMa } from '../insa/lipuMa';
 
-export class LukinMusi extends Component<{ }, { musi: Musi }>
+export interface JoPiLukinMusi
 {
-  constructor(jo: { })
+  readonly lipuMa: LipuMa;
+}
+
+export class LukinMusi extends Component<JoPiLukinMusi, { musi: Musi }>
+{
+  constructor(jo: JoPiLukinMusi)
   {
     super(jo);
-    const lipuMa = lipuMaAli[0];
-    this.state = { musi: new Musi(lipuMa) };
+    this.state = { musi: new Musi(jo.lipuMa) };
   }
   
   render()

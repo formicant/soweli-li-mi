@@ -1,0 +1,33 @@
+.maSeme
+{
+  text-align: center;
+  margin-top: 2em;
+}
+
+.pokiMa
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.5em auto;
+  width: 300px;
+}
+
+.maSeme button
+{
+  margin: 0.5em 0;
+  text-align: center;
+  background-color: #fff;
+  color: #222;
+  border: none;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 12px -1px;
+  cursor: pointer;
+  transition: all 0.05s;
+}
+
+.maSeme button:active
+{
+  transform: translateY(1px);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px -1px;
+}

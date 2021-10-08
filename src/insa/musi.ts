@@ -78,7 +78,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
   tawaPalisa(nasin: NasinTawa): Musi
   {
     const tawaNi = this.tawaNi;
-    assert(this.tawaNi.pilin === 'palisa', 'ken ala tawaPalisa!');
+    assert(tawaNi.pilin === 'palisa', 'ken ala tawaPalisa!');
     return this.tawa(nasin, paliTawaMi, this.tenpoNi + 1);
   }
   
