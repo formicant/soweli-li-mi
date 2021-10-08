@@ -5,7 +5,7 @@ import { Musi } from '../insa/musi';
 import { IloPalisa, Palisa } from './iloPalisa';
 import { Ma } from './ma';
 import { Tenpo } from './tenpo';
-import { liSitelenPiNasinTawa } from '../insa/lon';
+import { liNasinTawa } from '../insa/lon';
 
 export class LukinMusi extends Component<{ }, { musi: Musi }>
 {
@@ -51,7 +51,7 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
   
   private lukaPalisa = (palisa: Palisa) =>
   {
-    if(!liSitelenPiNasinTawa(palisa) ||
+    if(!liNasinTawa(palisa) ||
       this.state.musi.tawaNi.pilin === 'palisa')
     {
       const pali = this.paliPalisa[palisa];
