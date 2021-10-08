@@ -71,7 +71,7 @@ function Tawa({ nasinTawa, nanpaTanNi, paliLa }: JoTawa)
       <button
         className={kulupuLukin}
         title={toki}
-        onClick={paliLa}
+        onClick={nanpaTanNi !== 0 ? paliLa : () => { }}
       >
         {sitelen}
       </button>
