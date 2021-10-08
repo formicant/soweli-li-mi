@@ -25,7 +25,7 @@ export class IloTenpo extends Component<JoPiIloTenpo>
     this.weka();
   }
   
-  private suli = 20;
+  private suli = 220;
   
   private timer?: NodeJS.Timeout;
   

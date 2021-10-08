@@ -82,10 +82,6 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     const tawaNi = this.tawaNi;
     assert(tawaNi.pilin !== 'pini', 'musi li pini. ken ala tawa!');
     
-    const tenpoNiSin = this.tenpoNi + 1;
-    if(this.tenpo.get(tenpoNiSin)?.nasin === nasin)
-      return this.tenpoSinpin();  // tawa sama
-    
     const paliTawa = tawaNi.pilin === 'palisa' ? paliTawaMi : paliTawaTawa;
     const tawaInsa = tawaNi.sin(paliTawa, nasin);
     const tawaSin = tawaInsa.sin(paliAnte, nasin);
@@ -93,6 +89,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     if(tawaSin.lipuIjo.equals(tawaNi.lipuIjo))
       return this;  // ala li ante
     
+    const tenpoNiSin = this.tenpoNi + (tawaNi.pilin === 'palisa' ? 1 : 0);
     const tenpoSin = this.tenpo.take(tenpoNiSin).push(tawaSin);
     
     const t1 = Date.now();
@@ -107,7 +104,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     if(nasin.size === 0)
       return this;  // tokiNasin li ala anu ike
     
-    const musiOpen = this.tenpoMonsi(true);  // O PALI: weka e tenpo!
+    const musiOpen = this.tenpoMonsi(true);
     const musiSin = nasin.reduce((musi, nasinTawa) => musi.tawa(nasinTawa), musiOpen);
     return musiSin.tenpoMonsi(true);
   }

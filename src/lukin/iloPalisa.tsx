@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { monsiELukinKulupu } from '../insa/kepeken';
-import { NasinTawa } from '../insa/lon';
+import { liNasinTawa, NasinTawa } from '../insa/lon';
 
 type TawaTenpo = 'monsi' | 'sinpin' | 'open' | 'pini';
 export type Palisa = NasinTawa | TawaTenpo;
@@ -42,7 +42,7 @@ export class IloPalisa extends Component<JoPiIloPalisa>
   private lukaPalisa = (pali: KeyboardEvent) =>
   {
     const palisa = palisaPiNimiPalisa.get(pali.code);
-    if(palisa)
+    if(palisa && !(pali.repeat && liNasinTawa(palisa)))
     {
       this.props.palisaLa(palisa);
       pali.preventDefault();
