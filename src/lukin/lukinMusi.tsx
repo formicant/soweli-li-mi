@@ -6,6 +6,7 @@ import { IloPalisa, Palisa } from './iloPalisa';
 import { Ma } from './ma';
 import { Tenpo } from './tenpo';
 import { liNasinTawa } from '../insa/lon';
+import { IloTenpo } from './iloTenpo';
 
 export class LukinMusi extends Component<{ }, { musi: Musi }>
 {
@@ -39,9 +40,19 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
           panaTanPokiLa={this.lukaPanaTanPoki}
         />
         <IloPalisa palisaLa={this.lukaPalisa} />
+        <IloTenpo tenpoLa={this.lukaIloTenpo} />
       </main>
     );
   }
+  
+  private lukaIloTenpo = () =>
+  {
+    if(this.state.musi.tawaNi.pilin === 'tawa')
+    {
+      const nasin = this.state.musi.tawaNi.nasin!;
+      this.setState({ musi: this.state.musi.tawa(nasin) });
+    }
+  };
   
   private lukaTenpoNanpa = (nanpa: number) =>
     this.setState({ musi: this.state.musi.tenpoNanpa(nanpa) });

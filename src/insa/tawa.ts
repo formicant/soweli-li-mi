@@ -40,8 +40,8 @@ export class Tawa extends Im.Record<ITawa>(tawaAla) implements ITawa
       .concat(lonPali.valueSeq().flatMap(mute => mute.filter((pali, nanpa) => lipuIjo.get(nanpa)!.liSitelen() && !pali.isEmpty()).keySeq()))
       .toSet();
     
-    const pilin = panaEPilinMusi(lonPali);
-      
+    const pilin = panaEPilinMusi(suliMa, lonPali);
+    
     super({
       nasin: nasin,
       suliMa: suliMa,

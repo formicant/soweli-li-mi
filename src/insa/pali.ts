@@ -41,20 +41,32 @@ function liKamaWeka(paliNi: Im.Set<LiSeme>, lekoSama: Im.Set<LiSeme>)
     (paliNi.contains('mi') && lekoSama.contains('moli'));
 }
 
-export const paliTawa: Pali = (suliMa, lonPali, nasin) =>
+export const paliTawaMi: Pali = (suliMa, lonPali, nasin) =>
   ({
-    anteMute: panaEKulupuTawa(suliMa, lonPali, nasin)
+    anteMute: panaEKulupuTawa('mi', suliMa, lonPali, nasin)
       .toKeyedSeq()
       .map(lon => ({ lon: lon.tawa(nasin) }))
   });
 
+export const paliTawaTawa: Pali = (suliMa, lonPali, nasin) =>
+{
+  const anpa = panaEKulupuTawa('anpa', suliMa, lonPali, '↓')
+    .toKeyedSeq()
+    .map(lon => ({ lon: lon.tawa('↓') }))
+  const sewi = panaEKulupuTawa('sewi', suliMa, lonPali, '↑')
+    .toKeyedSeq()
+    .map(lon => ({ lon: lon.tawa('↑') }))
+  return {
+    anteMute: anpa.concat(sewi)
+  };
+}
 
-function panaEKulupuTawa(suliMa: Lon, lonPali: LonPali, nasin: NasinTawa)
+function panaEKulupuTawa(mamaTawa: NimiPali, suliMa: Lon, lonPali: LonPali, nasin: NasinTawa)
 {
   const miMute = Im.Seq.Keyed(
     lonPali.entrySeq().flatMap(([lon, mute]) =>
       mute
-        .filter(pali => pali.contains('mi'))
+        .filter(pali => pali.contains(mamaTawa))
         .toKeyedSeq()
         .mapEntries(([nanpa, _]) => [nanpa, lon]))
   );
@@ -87,9 +99,10 @@ function panaEKulupuTawa(suliMa: Lon, lonPali: LonPali, nasin: NasinTawa)
     .map((lon, nanpa) => lukinEKulupuTawa(nanpa, lon))
     .valueSeq().flatMap(ni => ni)
   );
-  
+
   return kulupuTawaAli;
 }
+
 
 function panaENanpaTanPali(lukin: Im.Collection<number, Im.Set<LiSeme>> | undefined, pali: NimiPali)
 {
@@ -99,10 +112,12 @@ function panaENanpaTanPali(lukin: Im.Collection<number, Im.Set<LiSeme>> | undefi
     return Im.Set.of<number>();
 }
 
-export function panaEPilinMusi(lonPali: LonPali)
+export function panaEPilinMusi(suliMa: Lon, lonPali: LonPali)
 {
   if(lonPali.some(liPini))
     return 'pini';
+  else if(liTawa(suliMa, lonPali))
+    return 'tawa';
   else
     return 'palisa';
 }
@@ -112,4 +127,11 @@ function liPini(paliLeko: Im.Collection<number, Im.Set<LiSeme>>)
   const lekoLiPini = paliLeko.some(pali => pali.contains('pini'));
   const lekoLiMi = paliLeko.some(pali => pali.contains('mi'));
   return lekoLiPini && lekoLiMi;
+}
+
+function liTawa(suliMa: Lon, lonPali: LonPali)
+{
+  const anpa = panaEKulupuTawa('anpa', suliMa, lonPali, '↓');
+  const sewi = panaEKulupuTawa('sewi', suliMa, lonPali, '↑');
+  return anpa.size > 0 || sewi.size > 0;
 }

@@ -3,7 +3,7 @@ import Im from 'immutable';
 import { liNasinTawa, Lon, NasinTawa } from './lon';
 import { Tawa } from './tawa';
 import { LipuMa, pilinELipuMa } from './lipuMa';
-import { paliAnte, paliTawa } from './pali';
+import { paliAnte, paliTawaMi, paliTawaTawa } from './pali';
 
 interface IMusi
 {
@@ -79,11 +79,14 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
   {
     const t0 = Date.now();
     
+    const tawaNi = this.tawaNi;
+    assert(tawaNi.pilin !== 'pini', 'musi li pini. ken ala tawa!');
+    
     const tenpoNiSin = this.tenpoNi + 1;
     if(this.tenpo.get(tenpoNiSin)?.nasin === nasin)
       return this.tenpoSinpin();  // tawa sama
     
-    const tawaNi = this.tawaNi;
+    const paliTawa = tawaNi.pilin === 'palisa' ? paliTawaMi : paliTawaTawa;
     const tawaInsa = tawaNi.sin(paliTawa, nasin);
     const tawaSin = tawaInsa.sin(paliAnte, nasin);
     
