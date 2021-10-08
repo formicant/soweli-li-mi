@@ -90,7 +90,7 @@ function lon(ni: number, nanpa: number)
 }
 
 // O PALI pona e ni!
-const suli = 24;
+const suli = 23;
 const namako = 1.5;
 
 function panaTawaPoki(nasin: readonly (NasinTawa | undefined)[], tenpoNi: number)

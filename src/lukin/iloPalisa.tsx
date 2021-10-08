@@ -43,7 +43,10 @@ export class IloPalisa extends Component<JoPiIloPalisa>
   {
     const palisa = palisaPiNimiPalisa.get(pali.code);
     if(palisa)
+    {
       this.props.palisaLa(palisa);
+      pali.preventDefault();
+    }
   }
 }
 
