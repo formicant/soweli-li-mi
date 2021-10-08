@@ -1,26 +1,5 @@
 [
   {
-    "nimi": "ma pona",
-    "ma": [
-      "Soweli Li Mi...Lipu Li Awen",
-      " . . . . # # # # . ",
-      " . . # # # . . # . ",
-      " . . # . . 0 . # # ",
-      " & . 0 . . . . ^ # ",
-      " . . # . 0 . . # # ",
-      " . . # . . # # # . ",
-      " . . # # # # . . . ",
-      "Sike Li Tawa...Tomo Li Pini"
-    ],
-    "namako": {
-      "&": "soweli",
-      "#": "lipu",
-      "0": "sike",
-      "^": "tomo"
-    }
-  },
-  
-  {
     "nimi": "lon poka telo",
     "ma": [
       "tom TOM LI  PIN  .   .   .   .   .   .   .   .   .  SOW EN  KAL LON KON LI  ANP",
@@ -42,6 +21,19 @@
     "namako": {
       "@": "telo kala"
     }
+  },
+  
+  {
+    "nimi": "nimi namako",
+    "ma": [
+      "AKE LI  MI   .    .  ake AKE TOM LI  PIN",
+      " .  LI   .   .    .  EN   .   .  NIM  . ",
+      " .   .   .  LON  kas tel kas  .   .   . ",
+      " .  KAS  .   .   tel tom tel MOL  .   . ",
+      "KAS  .   .  KAS  kas tel kas  .   .  TEL",
+      "LI MOL   .   .    .   .   .   .  EN  LI ",
+      "AWE  .   .   .   NIM LI  TAW  .   .  MOL"
+    ]
   },
   
   {
