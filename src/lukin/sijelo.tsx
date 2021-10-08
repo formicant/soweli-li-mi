@@ -1,4 +1,5 @@
 import './sijelo.css';
+//import lipuMaAli from '../lipu/lipuMa.json'  // O WEKA
 import { LukinMusi } from './lukinMusi';
 import { MaSeme } from './maSeme';
 import { LipuMa } from '../insa/lipuMa';
@@ -15,6 +16,8 @@ export class Sijelo extends Component<{ }, InsaSijelo>
   {
     super(jo);
     this.state = { };
+    // pali la:
+    //this.state = { lipuMa: lipuMaAli[0] };
   }
   
   render()

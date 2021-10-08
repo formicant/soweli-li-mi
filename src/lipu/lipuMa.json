@@ -2,56 +2,36 @@
   {
     "nimi": "lon poka telo",
     "ma": [
-      "tom TOM LI  PIN  .   .   .   .  SOW LON KON EN  TEL LI  ANP KAL LON KON LI  ANP",
-      " .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . ",
-      " .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  was  .   . ",
-      " .   .   .   .  SOW LI  MI   .   .   .   .   .   .   .   .   .   .   .   .   . ",
-      " .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . ",
-      " .   .   .   .  kil  .   .   .   .   .   .   .   .   .   .   .   .   .   .   . ",
-      " .  sow  .   .  kas  .   .   .   .   .   .   .   .   .   .   .   .   .   .   . ",
-      "ma  ma  ma  ma  ma  ma   .  pan pan pan  .   .   .   .   .   .   .   .   .   . ",
-      "ma  MA  LI  AWE ma  ma  ma  ma  ma  ma  pan pan pan pan  .   .   .   .   .   . ",
-      "ma  KIW LI  TAW LI  ANP ma  ma  ma  ma  tel tel tel tel tel tel tel tel tel tel",
-      "ma  ma  ma  ma  ma  ma  ma  ma  ma  ma  tel tel tel tel tel tel tel tel tel tel",
-      "ma   .  WAS KAL  .  PIP kiw kiw tel ma  tel tel tel tel tel tel tel tel pan tel",
-      "ma   .  ma  ma  LI  ma  ma  ma  tel tel tel tel tel tel tel kiw tel  @  kas tel",
-      "ma   .   .  pip MI  ma  ma  ma  ma  kas tel kas tel pan kiw kiw kiw kas kas kas",
-      "NIM EN  SOW EN  WAS EN  KAL LI  TAW ma  ma  ma  ma  ma  ma  WAS LON TEL LI  SEW"
+      "tom TOM LI  PIN  .  SOW EN  KAL LON KON LI  ANP  .  WAS EN  PIP LON TOM LI  WEK",
+      " .   .   .   .   .  LI  MI   .   .   .   .   .   .   .   .   .   .   .   .  was",
+      " .   .   .   .  KAL  .   .   .   .   .   .   .   .   .   .   .   .   .   .  kas",
+      " .   .   .   .  kil  .   .   .   .   .   .   .   .   .   .   .   .   .   .  pal",
+      " .  sow  .   .  kas  .   .   .   .   .   .   .   .   .   .   .   .   .   .  pal",
+      "ma  ma  ma  ma  ma  ma   .  pan pan pan  .   .   .   .   .   .   .   .   .  pal",
+      "ma  MA  LI  AWE ma  ma  ma  ma  ma  ma   .  WAS LI  SEW pan  .   .   .  ma  ma ",
+      "ma  KIW LI  TAW ma  KIW LI  ANP ma  ma  tel tel tel tel tel tel SOW LI  MI  ma ",
+      "ma  ma  ma  ma  ma  ma  ma  ma  ma  ma  tel tel tel tel tel tel LON ma  ma  ma ",
+      "ma   .   .  WAS  .  PIP kiw kiw tel ma  tel tel tel tel tel tel TEL TOM WAS ma ",
+      "ma   .  ma  ma  LI  ma  ma  ma  tel tel tel tel tel pan ~cx tel LI  kiw LI   . ",
+      "ma   .   .  pip MI  ma  ma  ma  ma  kas tel kas tel pan kas tel ANP WEK  .  ma ",
+      "NIM EN  SOW EN  KAL LI  TAW ma  ma  ma  ma  ma  ma  ma  ma  WAS LON TEL LI  SEW"
     ],
     "namako": {
-      "@": "telo kala"
+      "~cx": "telo kala",
+      "~0 ": "telo kiwen"
     }
   },
   
   {
     "nimi": "nimi namako",
     "ma": [
-      "AKE LI  MI   .    .  ake AKE TOM LI  PIN",
+      "SOW LI  MI   .    .  sow AKE TOM LI  PIN",
       " .  LI   .   .    .  EN   .   .  NIM  . ",
       " .   .   .  LON  kas tel kas  .   .   . ",
       " .  KAS  .   .   tel tom tel MOL  .   . ",
       "KAS  .   .  KAS  kas tel kas  .   .  TEL",
       "LI MOL   .   .    .   .   .   .  EN  LI ",
       "AWE  .   .   .   NIM LI  TAW  .   .  MOL"
-    ]
-  },
-  
-  {
-    "nimi": "lukin e ijo",
-    "ma": [
-      ". . . . . . . . . . . . . . . . .",
-      ".sow.was.kal.ake.pip.jan.mij.mel.",
-      ". . . . . . . . . . . . . . . . .",
-      ".tom.ma .kiw.tel.ko .kil.kas.pan.",
-      ". . . . . . . . . . . . . . . . .",
-      ".sik.lip.nen.lup.pok.sup.pal.ilo.",
-      ". . . . . . . . . . . . . . . . .",
-      ".len.man.lin.jak.sun.mun.pil.oli.",
-      ". . . . . . . . . . . . . . . . .",
-      ".ten.sij.law.luk.nok.uta.kut.oko.",
-      ". . . . . . . . . . . . . . . . .",
-      ".pu . . . . . . . . . . . . . . .",
-      ". . . . . . . . . . . . . .ALI LI MI"
     ]
   }
 ]
