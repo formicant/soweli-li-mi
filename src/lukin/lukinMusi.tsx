@@ -40,19 +40,16 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
           panaTanPokiLa={this.lukaPanaTanPoki}
         />
         <IloPalisa palisaLa={this.lukaPalisa} />
-        <IloTenpo tenpoLa={this.lukaIloTenpo} />
+        {
+          tawaNi.pilin === 'tawa' &&
+            <IloTenpo tenpoLa={this.lukaIloTenpo} />
+        }
       </main>
     );
   }
   
   private lukaIloTenpo = () =>
-  {
-    if(this.state.musi.tawaNi.pilin === 'tawa')
-    {
-      const nasin = this.state.musi.tawaNi.nasin!;
-      this.setState({ musi: this.state.musi.tawa(nasin) });
-    }
-  };
+    this.setState({ musi: this.state.musi.tawaTawa() });
   
   private lukaTenpoNanpa = (nanpa: number) =>
     this.setState({ musi: this.state.musi.tenpoNanpa(nanpa) });
@@ -72,10 +69,10 @@ export class LukinMusi extends Component<{ }, { musi: Musi }>
   
   private paliPalisa: Record<Palisa, (musi: Musi) => Musi> =
   {
-    '↑':      musi => musi.tawa('↑'),
-    '↓':      musi => musi.tawa('↓'),
-    '←':      musi => musi.tawa('←'),
-    '→':      musi => musi.tawa('→'),
+    '↑':      musi => musi.tawaPalisa('↑'),
+    '↓':      musi => musi.tawaPalisa('↓'),
+    '←':      musi => musi.tawaPalisa('←'),
+    '→':      musi => musi.tawaPalisa('→'),
     'monsi':  musi => musi.tenpoMonsi(),
     'sinpin': musi => musi.tenpoSinpin(),
     'open':   musi => musi.tenpoMonsi(true),

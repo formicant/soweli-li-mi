@@ -3,7 +3,7 @@ import Im from 'immutable';
 import { liNasinTawa, Lon, NasinTawa } from './lon';
 import { Tawa } from './tawa';
 import { LipuMa, pilinELipuMa } from './lipuMa';
-import { paliAnte, paliTawaMi, paliTawaTawa } from './pali';
+import { Pali, paliAnte, paliTawaMi, paliTawaTawa } from './pali';
 
 interface IMusi
 {
@@ -75,21 +75,32 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
       return this;
   }
   
-  tawa(nasin: NasinTawa): Musi
+  tawaPalisa(nasin: NasinTawa): Musi
+  {
+    const tawaNi = this.tawaNi;
+    assert(this.tawaNi.pilin === 'palisa', 'ken ala tawaPalisa!');
+    return this.tawa(nasin, paliTawaMi, this.tenpoNi + 1);
+  }
+  
+  tawaTawa(): Musi
+  {
+    const tawaNi = this.tawaNi;
+    assert(this.tawaNi.pilin === 'tawa', 'ken ala tawaTawa!');
+    assert(tawaNi.nasin, 'O PALI: tawaTawa tan open musi.');  // O PALI!
+    return this.tawa(tawaNi.nasin, paliTawaTawa, this.tenpoNi);
+  }
+  
+  private tawa(nasin: NasinTawa, paliTawa: Pali, tenpoNiSin: number): Musi
   {
     const t0 = Date.now();
     
     const tawaNi = this.tawaNi;
-    assert(tawaNi.pilin !== 'pini', 'musi li pini. ken ala tawa!');
-    
-    const paliTawa = tawaNi.pilin === 'palisa' ? paliTawaMi : paliTawaTawa;
     const tawaInsa = tawaNi.sin(paliTawa, nasin);
     const tawaSin = tawaInsa.sin(paliAnte, nasin);
     
     if(tawaSin.lipuIjo.equals(tawaNi.lipuIjo))
       return this;  // ala li ante
     
-    const tenpoNiSin = this.tenpoNi + (tawaNi.pilin === 'palisa' ? 1 : 0);
     const tenpoSin = this.tenpo.take(tenpoNiSin).push(tawaSin);
     
     const t1 = Date.now();
@@ -104,8 +115,16 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     if(nasin.size === 0)
       return this;  // tokiNasin li ala anu ike
     
+    function tawa(musi: Musi)
+    {
+      let musiSin = musi;
+      while(musiSin.tawaNi.pilin === 'tawa')
+        musiSin = musiSin.tawaTawa();
+      return musiSin;
+    }
+    
     const musiOpen = this.tenpoMonsi(true);
-    const musiSin = nasin.reduce((musi, nasinTawa) => musi.tawa(nasinTawa), musiOpen);
+    const musiSin = nasin.reduce((musi, nasinTawa) => tawa(musi.tawaPalisa(nasinTawa)), musiOpen);
     return musiSin.tenpoMonsi(true);
   }
 }
