@@ -2,7 +2,7 @@
   {
     "nimi": "lon poka telo",
     "ma": [
-      "tom TOM LI  PIN  .  SOW EN  KAL LON KON LI  ANP  .  WAS EN  PIP LON TOM LI  WEK",
+      "tom TOM LI  PIN  .  SOW EN  KAL LON KON LI  ANP  .  WAS EN  KAL LON TOM LI  WEK",
       " .   .   .   .   .  LI  MI   .   .   .   .   .   .   .   .   .   .   .   .  was",
       " .   .   .   .  KAL  .   .   .   .   .   .   .   .   .   .   .   .  kas kas kas",
       " .   .   .   .  kil  .   .   .   .   .   .   .   .   .   .   .   .   .  pal  . ",
@@ -10,11 +10,11 @@
       "ma  ma  ma  ma  ma  ma   .  pan pan pan  .   .   .   .   .   .   .   .  pal  . ",
       "ma  MA  LI  AWE ma  ma  ma  ma  ma  ma   .  WAS LI  SEW pan  .   .  ma  ma  ma ",
       "ma  KIW LI  TAW ma  KIW LI  ANP ma  ma  tel tel tel tel tel tel SOW LI  MI  ma ",
-      "ma  ma  ma  ma  ma  ma  ma  ma  ma  ma  tel tel tel tel tel tel LON ma  ma  ma ",
+      "ma  NIM LON TEL LI  WEK ma  ma  ma  ma  tel tel tel tel tel tel LON ma  ma  ma ",
       "ma   .   .  WAS  .  PIP kiw kiw tel ma  tel tel tel tel tel tel TEL TOM WAS ma ",
       "ma   .  ma  ma  LI  ma  ma  ma  tel tel tel tel tel pan ~cx tel LI  kiw LI   . ",
       "ma   .   .  pip MI  ma  ma  ma  ma  kas tel kas tel pan kas tel ANP WEK  .  ma ",
-      "NIM EN  SOW EN  KAL LI  TAW ma  ma  ma  ma  ma  ma  NIM EN  WAS LON TEL LI  SEW"
+      "NIM EN  SOW EN  KAL LI  TAW ma  ma  ma  ma  ma  ma  ma  ma  WAS LON TEL LI  SEW"
     ],
     "namako": {
       "~cx": "telo kala"
