@@ -17,7 +17,8 @@ export const Leko = memo(function({ ijo, lukinWawa }: { ijo: Ijo, lukinWawa: boo
   const kulupuLukin = classNames(
     'leko',
     { 'sitelen': ijo.liSitelen() },
-    { 'wawa': lukinWawa }
+    { 'wawa': lukinWawa },
+    { 'lonAla': !ijo.liLon }
   );
   
   const ijoMajuna = useMajuna(ijo);

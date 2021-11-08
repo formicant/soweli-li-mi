@@ -13,7 +13,6 @@ export interface AntePiLipuIjo
 {
   readonly anteMute?: Im.Seq.Keyed<number, AnteIjo>;
   readonly sinMute?: Im.Seq.Indexed<IjoSin>;
-  readonly wekaMute?: Im.Seq.Indexed<number>;
 }
 
 export function anteELipuIjo(lipuIjoMajuna: LipuIjo, ante: AntePiLipuIjo): LipuIjo
@@ -21,8 +20,5 @@ export function anteELipuIjo(lipuIjoMajuna: LipuIjo, ante: AntePiLipuIjo): LipuI
   let lipu = lipuIjoMajuna;
   if(ante.anteMute)
     lipu = lipu.merge(ante.anteMute.map((ante, nanpa) => lipu.get(nanpa)!.merge(ante)));
-  // O PALI: sinMute
-  if(ante.wekaMute)
-    lipu = lipu.removeAll(ante.wekaMute);
   return lipu;
 }

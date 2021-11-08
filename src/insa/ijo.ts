@@ -13,12 +13,13 @@ export type KulupuIjo = 'nimi' | 'sitelen';
 export interface IIjo
 {
   readonly nanpa: number;
+  readonly liLon: boolean;
   readonly lon: Lon;
   readonly kulupu: KulupuIjo;
   readonly nimi: Nimi;
 }
 // ni li ike. taso, ni li nasin pali pi ilo Im.Record:
-const ijoAla: IIjo = { nanpa: NaN, lon: new Lon(NaN, NaN), kulupu: 'nimi', nimi: 'ala' };
+const ijoAla: IIjo = { nanpa: NaN, liLon: false, lon: new Lon(NaN, NaN), kulupu: 'nimi', nimi: 'ala' };
 
 /**
  * ijo wan lon ma musi, li nimi anu sitelen.

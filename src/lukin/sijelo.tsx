@@ -15,9 +15,9 @@ export class Sijelo extends Component<{ }, InsaSijelo>
   constructor(jo: { })
   {
     super(jo);
-    // this.state = { };
+    this.state = { };
     // pali la:
-    this.state = { lipuMa: lipuMaAli[0] };
+    // this.state = { lipuMa: lipuMaAli[0] };
   }
   
   render()
