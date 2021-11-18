@@ -19,12 +19,15 @@ export const paliAnte: Pali = (suliMa, lonPali, nasin) =>
   // O PALI: ante e ijo wan tawa ijo mute!
   ).map(anteMute => ({ kulupu: 'sitelen' as const, nimi: anteMute.first()! }));
   
-  const weka = lonPali
-    .toIndexedSeq()
-    .map(panaENanpaWeka)
-    .flatMap(ni => ni);
+  const weka = Im.Seq.Keyed(
+    lonPali
+      .toIndexedSeq()
+      .map(panaENanpaWeka)
+      .flatMap(ni => ni)
+      .map(nanpa => [nanpa, { liLon: false }])
+  );
   
-  return { anteMute: ante, wekaMute: weka };
+  return { anteMute: ante.concat(weka) };
 }
 
 function panaENanpaWeka(paliLeko: Im.Collection<number, Im.Set<LiSeme>>)

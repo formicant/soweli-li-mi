@@ -60,7 +60,7 @@ export function pilinELipuMa(lipuMa: LipuMa)
     .flatMap((linja, y) =>
       Im.Seq(linja).flatMap((leko, x) =>
         Im.Seq(leko).map(wan => ({  ...wan, lon: new Lon(x, y) }))))
-    .map((ijo, nanpa) => new Ijo({ ...ijo, nanpa: nanpa }))
+    .map((ijo, nanpa) => new Ijo({ ...ijo, nanpa: nanpa, liLon: true }))
     .toArray();
   
   return {
