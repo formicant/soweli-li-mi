@@ -46,5 +46,33 @@
       "LI MOL   .   .    .   .   .   .  EN  LI ",
       "AWE  .   .   .   NIM LI  TAW  .   .  MOL"
     ]
+  },
+
+  {
+    "nimi": "suno en mun",
+    "ma": [
+      "WAS LI  MI  TOM KAS EN  NEN LI  AWE NIM nen",
+      "nen  .   .  LI   .  kiw kas  .  nen EN  kas",
+      "was kas  .  nen  .  kiw  .  PIN  .  MUN KIW",
+      "KIW  .   .  LON  .  nen sun kas  .  EN  LI ",
+      "LI   .   .   .   .  kas  .   .   .  SUN TAW",
+      "ANP mun  .   .   .   .  nen MUN  .  LI  kas",
+      " .   .   .   .   .  LI   .   .   .  TAW tom",
+      " .   .  SUN  .  nen  .   .   .   .  pan pan"
+    ]
+  },
+
+  {
+    "nimi": "suno en mun la kin",
+    "ma": [
+      "WAS LI  MI  TOM KAS EN  NEN LI  AWE NIM nen",
+      "nen  .   .  LI   .  kiw kas  .  nen EN  kas",
+      "was kas  .  nen  .  kiw  .  PIN  .  MUN KIW",
+      "KIW  .   .  LON  .  nen sun kas  .  EN  LI ",
+      "LI   .   .   .   .  kas  .   .   .  SUN TAW",
+      "ANP mun  .   .   .   .  nen MUN  .  LI  kas",
+      " .   .   .   .   .  LI   .   .   .  TAW tom",
+      " .   .  SUN  .  nen  .   .   .  kiw pan pan"
+    ]
   }
 ]
