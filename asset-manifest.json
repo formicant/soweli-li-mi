@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/soweli-li-mi/static/css/main.2e461f20.chunk.css",
-    "main.js": "/soweli-li-mi/static/js/main.3e4a3755.chunk.js",
-    "main.js.map": "/soweli-li-mi/static/js/main.3e4a3755.chunk.js.map",
+    "main.css": "/soweli-li-mi/static/css/main.e332058b.chunk.css",
+    "main.js": "/soweli-li-mi/static/js/main.a30d10e1.chunk.js",
+    "main.js.map": "/soweli-li-mi/static/js/main.a30d10e1.chunk.js.map",
     "runtime-main.js": "/soweli-li-mi/static/js/runtime-main.6fad9c16.js",
     "runtime-main.js.map": "/soweli-li-mi/static/js/runtime-main.6fad9c16.js.map",
-    "static/js/2.6cd13685.chunk.js": "/soweli-li-mi/static/js/2.6cd13685.chunk.js",
-    "static/js/2.6cd13685.chunk.js.map": "/soweli-li-mi/static/js/2.6cd13685.chunk.js.map",
+    "static/js/2.de6bfdfd.chunk.js": "/soweli-li-mi/static/js/2.de6bfdfd.chunk.js",
+    "static/js/2.de6bfdfd.chunk.js.map": "/soweli-li-mi/static/js/2.de6bfdfd.chunk.js.map",
     "static/js/3.1db27f61.chunk.js": "/soweli-li-mi/static/js/3.1db27f61.chunk.js",
     "static/js/3.1db27f61.chunk.js.map": "/soweli-li-mi/static/js/3.1db27f61.chunk.js.map",
     "index.html": "/soweli-li-mi/index.html",
-    "static/css/main.2e461f20.chunk.css.map": "/soweli-li-mi/static/css/main.2e461f20.chunk.css.map",
-    "static/js/2.6cd13685.chunk.js.LICENSE.txt": "/soweli-li-mi/static/js/2.6cd13685.chunk.js.LICENSE.txt",
+    "static/css/main.e332058b.chunk.css.map": "/soweli-li-mi/static/css/main.e332058b.chunk.css.map",
+    "static/js/2.de6bfdfd.chunk.js.LICENSE.txt": "/soweli-li-mi/static/js/2.de6bfdfd.chunk.js.LICENSE.txt",
     "static/media/index.css": "/soweli-li-mi/static/media/linja-pona-4.2.8f2e3142.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.6fad9c16.js",
-    "static/js/2.6cd13685.chunk.js",
-    "static/css/main.2e461f20.chunk.css",
-    "static/js/main.3e4a3755.chunk.js"
+    "static/js/2.de6bfdfd.chunk.js",
+    "static/css/main.e332058b.chunk.css",
+    "static/js/main.a30d10e1.chunk.js"
   ]
 }
