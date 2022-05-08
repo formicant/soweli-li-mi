@@ -11,6 +11,7 @@ export interface NasinMusi{
   readonly nanpaIjo: Im.Set<number>;
 }
 
+// ni li kepeken lon ni taso: pona ala pona
 export function tokiENasinMusi(nasin: NasinMusi)
 {
   const seme = `${en(nasin.seme)}`;

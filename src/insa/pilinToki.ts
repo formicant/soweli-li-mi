@@ -41,6 +41,17 @@ const pilinSeme = apply(
   } as const)
 );
 
+const pilinLonSeme = apply(
+  muteEnSinpin(alt(pilinIjo, pilinKulupu), pilinLon),
+  ([mute, lon]) =>
+  ({
+    seme: Im.Seq(mute).map(ni => ni.text as Seme).toSet(),
+    nanpaIjo: Im.Seq(mute).map((ni: Toki) => ni.nanpaIjo!)
+      .concat(Im.Seq(lon).map((ni: Toki) => ni.nanpaIjo!))
+      .toSet()
+  } as const)
+);
+
 const pilinLeko = alt(
   apply(
     pilinSeme,
@@ -52,12 +63,12 @@ const pilinLeko = alt(
     })
   ),
   apply(
-    seq(pilinSeme, pilinLon, pilinSeme),
-    ([seme, lon, lonSeme]) =>
+    seq(pilinSeme, pilinLonSeme),
+    ([seme, lonSeme]) =>
     ({
       seme: seme.seme,
       lonSeme: lonSeme.seme,
-      nanpaIjo: Im.Set.of((lon as Toki).nanpaIjo!).union(seme.nanpaIjo, lonSeme.nanpaIjo)
+      nanpaIjo: seme.nanpaIjo.union(lonSeme.nanpaIjo)
     })
   )
 );
@@ -102,6 +113,21 @@ function muteEnInsa<TKulupu, TMute, TInsa>(
     [
       [lawa].concat(sijelo.map(([insa, mute]) => mute)),
       sijelo.map(([insa, mute]) => insa)
+    ]
+  );
+}
+
+function muteEnSinpin<TKulupu, TMute, TSinpin>(
+  pilinMute: Parser<TKulupu, TMute>,
+  pilinSinpin: Parser<TKulupu, TSinpin>
+): Parser<TKulupu, [TMute[], TSinpin[]]>
+{
+  return apply(
+    rep(seq(pilinSinpin, pilinMute)),
+    (tu) =>
+    [
+      tu.map(([sinpin, mute]) => mute),
+      tu.map(([sinpin, mute]) => sinpin)
     ]
   );
 }
