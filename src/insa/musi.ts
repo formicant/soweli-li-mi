@@ -1,4 +1,3 @@
-import assert from 'assert';
 import Im from 'immutable';
 import { liNasinTawa, Lon, NasinTawa } from './lon';
 import { Tawa } from './tawa';
@@ -37,7 +36,8 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
   get tawaNi()
   {
     const ni = this.tenpo.get(this.tenpoNi);
-    assert(ni, 'tenpo ni li ike!');
+    if (ni === undefined)
+      throw Error('tenpo ni li ike!');
     return ni;
   }
   
@@ -78,21 +78,24 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
   tawaPalisa(nasin: NasinTawa): Musi
   {
     const tawaNi = this.tawaNi;
-    assert(tawaNi.pilin === 'palisa', 'ken ala tawaPalisa!');
+    if (tawaNi.pilin !== 'palisa')
+      throw Error('ken ala tawaPalisa!');
     return this.tawa(nasin, paliTawaMi, this.tenpoNi + 1);
   }
   
   tawaTawa(): Musi
   {
     const tawaNi = this.tawaNi;
-    assert(this.tawaNi.pilin === 'tawa', 'ken ala tawaTawa!');
-    assert(tawaNi.nasin, 'O PALI: tawaTawa tan open musi.');  // O PALI!
+    if (this.tawaNi.pilin !== 'tawa')
+      throw Error('ken ala tawaTawa!');
+    if (tawaNi.nasin === undefined)
+      throw Error('O PALI: tawaTawa tan open musi.');  // O PALI!
     return this.tawa(tawaNi.nasin, paliTawaTawa, this.tenpoNi);
   }
   
   private tawa(nasin: NasinTawa, paliTawa: Pali, tenpoNiSin: number): Musi
   {
-    const t0 = Date.now();
+    // const t0 = Date.now();
     
     const tawaNi = this.tawaNi;
     const tawaInsa = tawaNi.sin(paliTawa, nasin);
@@ -103,8 +106,8 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     
     const tenpoSin = this.tenpo.take(tenpoNiSin).push(tawaSin);
     
-    const t1 = Date.now();
-    console.log(`tawa: ${t1 - t0}`);
+    // const t1 = Date.now();
+    // console.log(`tawa: ${t1 - t0}`);
     
     return this.merge({ tenpo: tenpoSin, tenpoNi: tenpoNiSin });
   }

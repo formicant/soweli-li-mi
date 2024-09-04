@@ -1,5 +1,5 @@
 import './sijelo.css';
-import lipuMaAli from '../lipu/lipuMa.json'  // O WEKA
+// import lipuMaAli from '../lipu/lipuMa.json'  // O WEKA
 import { LukinMusi } from './lukinMusi';
 import { MaSeme } from './maSeme';
 import { LipuMa } from '../insa/lipuMa';

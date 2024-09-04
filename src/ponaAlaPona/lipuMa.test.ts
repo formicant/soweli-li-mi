@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import { pilinELipuMa } from '../insa/lipuMa'
 import { Lon } from '../insa/lon';
 

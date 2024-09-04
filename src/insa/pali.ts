@@ -7,7 +7,7 @@ import { liInsaKulupu, NimiIjo, NimiPali } from './nimiAli';
 
 export type Pali = (suliMa: Lon, lonPali: LonPali, nasin: NasinTawa) => AntePiLipuIjo;
 
-export const paliAnte: Pali = (suliMa, lonPali, nasin) =>
+export const paliAnte: Pali = (_suliMa, lonPali, _nasin) =>
 {
   const ante = Im.Seq.Keyed(
     lonPali.entrySeq().flatMap(([_, mute]) =>
@@ -45,7 +45,7 @@ export const paliTawaMi: Pali = (suliMa, lonPali, nasin) =>
       .map(lon => ({ lon: lon.tawa(nasin) }))
   });
 
-export const paliTawaTawa: Pali = (suliMa, lonPali, nasin) =>
+export const paliTawaTawa: Pali = (suliMa, lonPali, _nasin) =>
 {
   const anpa = panaEKulupuTawa('anpa', suliMa, lonPali, '↓')
     .toKeyedSeq()
