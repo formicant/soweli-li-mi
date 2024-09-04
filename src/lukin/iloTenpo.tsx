@@ -14,7 +14,7 @@ export class IloTenpo extends Component<JoPiIloTenpo>
     this.pali();
   }
   
-  componentDidUpdate(prevProps: JoPiIloTenpo)
+  componentDidUpdate(_prevProps: JoPiIloTenpo)
   {
     this.weka();
     this.pali();
@@ -27,7 +27,7 @@ export class IloTenpo extends Component<JoPiIloTenpo>
   
   private suli = 220;
   
-  private timer?: NodeJS.Timeout;
+  private timer?: ReturnType<typeof setInterval>;
   
   private lukaTenpo = () =>
   {
