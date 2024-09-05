@@ -1,12 +1,12 @@
+import { test, expect } from 'vitest';
 import { pilinELipuMa } from '../insa/lipuMa';
 import { Musi } from "../insa/musi";
-import { NasinTawa } from "../insa/lon";
 import { Ijo } from "../insa/ijo";
 
 test.each([
   {
+    nimi: 'mi tawa',
     open: {
-      nimi: 'mi tawa',
       ma: [
         ' .  sow  . ',
         'SOW LI  MI ',
@@ -14,7 +14,6 @@ test.each([
     },
     nasin: '←↓↓→→→↑',
     pini: {
-      nimi: '',
       ma: [
         ' .   .  sow',
         'SOW LI  MI ',
@@ -23,8 +22,8 @@ test.each([
   },
   
   {
+    nimi: 'tawa e ijo',
     open: {
-      nimi: 'tawa e ijo',
       ma: [
         'NIM EN  KIW LI  TAW',
         'ma   .  kiw  .   . ',
@@ -35,7 +34,6 @@ test.each([
     },
     nasin: '↓←←↑↑←↓↑↑↑←←↑←→',
     pini: {
-      nimi: '',
       ma: [
         'NIM EN  KIW LI  TAW',
         'ma  kiw  .  ake kiw',
@@ -47,8 +45,8 @@ test.each([
   },
   
   {
+    nimi: 'weka en moli',
     open: {
-      nimi: 'weka en moli',
       ma: [
         'sow kiw KIW LI  AWE KIW LI  WEK',
         'sow kil KIL LI  MOL  .   .  SOW',
@@ -58,7 +56,6 @@ test.each([
     },
     nasin: '→',
     pini: {
-      nimi: '',
       ma: [
         'sow  .  KIW LI  AWE KIW LI  WEK',
         ' .  kil KIL LI  MOL  .   .  SOW',
@@ -68,14 +65,13 @@ test.each([
     }
   },
   
-])('musi', ({ open, nasin, pini }) =>
+])('musi', ({ nimi, open, nasin, pini }) =>
 {
-  const musiOpen = new Musi(open);
-  const musiPini = nasin.split('')
-    .reduce((musi, nasinTawa) => musi.tawa(nasinTawa as NasinTawa), musiOpen);
+  const musiOpen = new Musi({ nimi: nimi, ...open });
+  const musiPini = musiOpen.tawaNasin(nasin);
   const ijoLon = wekaENanpa(musiPini.tawaNi.lipuIjo.valueSeq().toArray());
   
-  const { ijoAli } = pilinELipuMa(pini);
+  const { ijoAli } = pilinELipuMa({ nimi: nimi, ...pini });
   const ijoWile = wekaENanpa(ijoAli);
   
   // O PALI pona e ni:
@@ -85,5 +81,7 @@ test.each([
 
 function wekaENanpa(ijoMute: readonly Ijo[])
 {
-  return ijoMute.map(ijo => ({ lon: ijo.lon, kulupu: ijo.kulupu, nimi: ijo.nimi }));
+  return ijoMute
+    .filter(ijo => ijo.liLon)
+    .map(ijo => ({ lon: ijo.lon, kulupu: ijo.kulupu, nimi: ijo.nimi }));
 }

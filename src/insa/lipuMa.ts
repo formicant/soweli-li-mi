@@ -121,7 +121,7 @@ const pilinPiIjoSitelen = apply(
 
 const pilinKon = apply(
   tok(KulupuToki.Kon),
-  (toki): readonly Wan[] => []
+  (_toki): readonly Wan[] => []
 );
   
 const pilinPiLinjaNamako = rep(alt(pilinPiIjoNimi, pilinPiIjoSitelen));

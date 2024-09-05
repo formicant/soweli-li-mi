@@ -1,52 +1,46 @@
 {
   "name": "soweli-li-mi",
-  "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^12.20.21",
-    "@types/react": "^17.0.19",
-    "@types/react-dom": "^17.0.9",
-    "classnames": "^2.3.1",
-    "immutable": "^4.0.0-rc.14",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.4.2",
-    "typescript-parsec": "^0.3.2",
-    "web-vitals": "^1.1.2"
+  "version": "0.2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/formicant/soweli-li-mi.git"
   },
+  "keywords": [
+    "musi",
+    "toki pona"
+  ],
+  "author": "formicant <formicant@gmail.com>",
+  "license": "MIT",
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "vitest",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "classnames": "^2.5.1",
+    "immutable": "^4.3.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript-parsec": "^0.3.4"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "homepage": "http://formicant.github.io/soweli-li-mi",
   "devDependencies": {
-    "gh-pages": "^3.2.3"
+    "@eslint/js": "^9.9.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "gh-pages": "^6.1.1",
+    "globals": "^15.9.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.0.1",
+    "vite": "^5.4.1",
+    "vitest": "^2.0.5"
   }
 }

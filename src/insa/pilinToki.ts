@@ -111,8 +111,8 @@ function muteEnInsa<TKulupu, TMute, TInsa>(
     seq(pilinMute, rep(seq(pilinInsa, pilinMute))),
     ([lawa, sijelo]) =>
     [
-      [lawa].concat(sijelo.map(([insa, mute]) => mute)),
-      sijelo.map(([insa, mute]) => insa)
+      [lawa].concat(sijelo.map(([_insa, mute]) => mute)),
+      sijelo.map(([insa, _mute]) => insa)
     ]
   );
 }

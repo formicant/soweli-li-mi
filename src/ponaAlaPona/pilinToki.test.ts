@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import Im from "immutable";
 import { pilinELipuMa } from '../insa/lipuMa';
 import { MaIjo } from "../insa/maIjo";
