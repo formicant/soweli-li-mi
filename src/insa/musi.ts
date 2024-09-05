@@ -93,6 +93,30 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     return this.tawa(tawaNi.nasin, paliTawaTawa, this.tenpoNi);
   }
   
+  tawaNasin(tokiNasin: string): Musi
+  {
+    const nasin = Im.Seq(tokiNasin.split('')).filter(liNasinTawa);
+    if(nasin.size === 0)
+      return this;  // tokiNasin li ala anu ike
+    
+    function tawaWan(musi: Musi, nasinTawa: NasinTawa)
+    {
+      let musiSin = musi.tawaPalisa(nasinTawa);
+      while(musiSin.tawaNi.pilin === 'tawa')
+        musiSin = musiSin.tawaTawa();
+      return musiSin;
+    }
+    
+    return nasin.reduce(tawaWan, this as Musi);
+  }
+  
+  sinETenpoAli(tokiNasin: string): Musi
+  {
+    const musiOpen = this.tenpoMonsi(true);
+    const musiSin = musiOpen.tawaNasin(tokiNasin);
+    return musiSin.tenpoMonsi(true);
+  }
+  
   private tawa(nasin: NasinTawa, paliTawa: Pali, tenpoNiSin: number): Musi
   {
     // const t0 = Date.now();
@@ -110,25 +134,6 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi
     // console.log(`tawa: ${t1 - t0}`);
     
     return this.merge({ tenpo: tenpoSin, tenpoNi: tenpoNiSin });
-  }
-  
-  sinETenpoAli(tokiNasin: string): Musi
-  {
-    const nasin = Im.Seq(tokiNasin.split('')).filter(liNasinTawa).cacheResult();
-    if(nasin.size === 0)
-      return this;  // tokiNasin li ala anu ike
-    
-    function tawa(musi: Musi)
-    {
-      let musiSin = musi;
-      while(musiSin.tawaNi.pilin === 'tawa')
-        musiSin = musiSin.tawaTawa();
-      return musiSin;
-    }
-    
-    const musiOpen = this.tenpoMonsi(true);
-    const musiSin = nasin.reduce((musi, nasinTawa) => tawa(musi.tawaPalisa(nasinTawa)), musiOpen);
-    return musiSin.tenpoMonsi(true);
   }
 }
 

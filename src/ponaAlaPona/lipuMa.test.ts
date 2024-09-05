@@ -28,9 +28,9 @@ test.each([
   expect(suliMa.y).toBe(2);
   expect(ijoAli).toHaveLength(3)
   expect(ijoAli).toEqual(expect.arrayContaining([
-    expect.objectContaining({ lon: new Lon(0, 0), kulupu: 'nimi', nimi: 'kon' }),
-    expect.objectContaining({ lon: new Lon(1, 0), kulupu: 'sitelen', nimi: 'akesi' }),
-    expect.objectContaining({ lon: new Lon(1, 1), kulupu: 'nimi', nimi: 'pini' }),
+    expect.objectContaining({ lon: new Lon(0, 0), liLon: true, kulupu: 'nimi', nimi: 'kon' }),
+    expect.objectContaining({ lon: new Lon(1, 0), liLon: true, kulupu: 'sitelen', nimi: 'akesi' }),
+    expect.objectContaining({ lon: new Lon(1, 1), liLon: true, kulupu: 'nimi', nimi: 'pini' }),
   ]));
 });
 
@@ -69,13 +69,13 @@ test.each([
   expect(suliMa.y).toBe(2);
   expect(ijoAli).toHaveLength(7)
   expect(ijoAli).toEqual(expect.arrayContaining([
-    expect.objectContaining({ lon: new Lon(1, 0), kulupu: 'sitelen', nimi: 'soweli' }),
-    expect.objectContaining({ lon: new Lon(2, 0), kulupu: 'sitelen', nimi: 'telo' }),
-    expect.objectContaining({ lon: new Lon(2, 0), kulupu: 'nimi', nimi: 'li' }),
-    expect.objectContaining({ lon: new Lon(0, 1), kulupu: 'nimi', nimi: 'soweli' }),
-    expect.objectContaining({ lon: new Lon(1, 1), kulupu: 'sitelen', nimi: 'telo' }),
-    expect.objectContaining({ lon: new Lon(1, 1), kulupu: 'nimi', nimi: 'li' }),
-    expect.objectContaining({ lon: new Lon(2, 1), kulupu: 'nimi', nimi: 'mi' }),
+    expect.objectContaining({ lon: new Lon(1, 0), liLon: true, kulupu: 'sitelen', nimi: 'soweli' }),
+    expect.objectContaining({ lon: new Lon(2, 0), liLon: true, kulupu: 'sitelen', nimi: 'telo' }),
+    expect.objectContaining({ lon: new Lon(2, 0), liLon: true, kulupu: 'nimi', nimi: 'li' }),
+    expect.objectContaining({ lon: new Lon(0, 1), liLon: true, kulupu: 'nimi', nimi: 'soweli' }),
+    expect.objectContaining({ lon: new Lon(1, 1), liLon: true, kulupu: 'sitelen', nimi: 'telo' }),
+    expect.objectContaining({ lon: new Lon(1, 1), liLon: true, kulupu: 'nimi', nimi: 'li' }),
+    expect.objectContaining({ lon: new Lon(2, 1), liLon: true, kulupu: 'nimi', nimi: 'mi' }),
   ]));
 });
 

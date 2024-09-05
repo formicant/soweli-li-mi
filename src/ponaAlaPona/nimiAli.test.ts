@@ -1,5 +1,5 @@
 import { test, assert } from 'vitest';
-import { nimiInsaKulupu } from '../insa//nimiAli';
+import { nimiInsaKulupu } from '../insa/nimiAli';
 
 test('nimi tu sama li lon ala', () => {
   const nimiAli = [
