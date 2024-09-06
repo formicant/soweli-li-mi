@@ -1,58 +1,39 @@
-import { test, expect } from 'vitest';
-import Im from "immutable";
-import { pilinELipuMa } from '../insa/lipuMa';
-import { MaIjo } from "../insa/maIjo";
-import { panaENasinMusiAli } from '../insa/pilinToki';
-import { tokiENasinMusi } from "../insa/nasinMusi";
+import { test, expect } from 'vitest'
+import Im from 'immutable'
+import { pilinELipuMa } from '../insa/lipuMa'
+import { MaIjo } from '../insa/maIjo'
+import { panaENasinMusiAli } from '../insa/pilinToki'
+import { tokiENasinMusi } from '../insa/nasinMusi'
 
 test.each([
   {
     lipuMa: {
       nimi: 'nasin wan',
-      ma: ['Soweli Li Mi']
+      ma: ['Soweli Li Mi'],
     },
-    nasinMusi: ['soweli li mi']
+    nasinMusi: ['soweli li mi'],
   },
-  
   {
     lipuMa: {
       nimi: 'linja anpa en linja poka',
-      ma: [
-        ' .  SOW  . ',
-        'TOM LI  PIN',
-        ' .  MI   . ',
-      ]
+      ma: [' .  SOW  . ', 'TOM LI  PIN', ' .  MI   . '],
     },
-    nasinMusi: [
-      'soweli li mi',
-      'tomo li pini',
-    ]
+    nasinMusi: ['soweli li mi', 'tomo li pini'],
   },
-  
   {
     lipuMa: {
       nimi: 'nasin mute lon linja wan',
-      ma: ['.Kal Lon Kon Lon Ma Li Mol Kas Pip En Ake Li Mi En Wek.tel En Kiw Li Taw.']
+      ma: ['.Kal Lon Kon Lon Ma Li Mol Kas Pip En Ake Li Mi En Wek.tel En Kiw Li Taw.'],
     },
-    nasinMusi: [
-      'kala lon kon lon ma li moli',
-      'akesi en pipi li mi',
-      'kiwen li tawa',
-    ],
+    nasinMusi: ['kala lon kon lon ma li moli', 'akesi en pipi li mi', 'kiwen li tawa'],
   },
-  
   {
     lipuMa: {
       nimi: 'pali ike nasa',
-      ma: [
-        ' .  .  . KAL',
-        ' .  .  . LI ',
-        ' .  .  . WEK',
-      ]
+      ma: [' .  .  . KAL', ' .  .  . LI ', ' .  .  . WEK'],
     },
     nasinMusi: ['kala li weka'],
   },
-  
   // O PALI: leko wan li wile ken jo e nimi mute!
   // {
   //   lipuMa: {
@@ -78,14 +59,12 @@ test.each([
   //     'kiwen li awen',
   //   ]
   // },
-  
-])('', ({ lipuMa, nasinMusi }) =>
-{
-  const { suliMa, ijoAli } = pilinELipuMa(lipuMa);
-  const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq());
-  const maIjo = new MaIjo(suliMa, lipuIjo);
-  const nasinMusiAli = panaENasinMusiAli(maIjo);
-  const toki = nasinMusiAli.map(tokiENasinMusi);
-  
-  expect(toki.sort()).toEqual(nasinMusi.sort());
-});
+])('', ({ lipuMa, nasinMusi }) => {
+  const { suliMa, ijoAli } = pilinELipuMa(lipuMa)
+  const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq())
+  const maIjo = new MaIjo(suliMa, lipuIjo)
+  const nasinMusiAli = panaENasinMusiAli(maIjo)
+  const toki = nasinMusiAli.map(tokiENasinMusi)
+
+  expect(toki.sort()).toEqual(nasinMusi.sort())
+})

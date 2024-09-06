@@ -1,5 +1,4 @@
-.pokiTenpo
-{
+.pokiTenpo {
   margin: 0 auto;
   width: 780px;
   height: 30px;
@@ -10,16 +9,14 @@
   transition: all 0.25s;
 }
 
-.tenpo
-{
+.tenpo {
   position: absolute;
   display: flex;
   flex-direction: row;
   transition: left 0.25s;
 }
 
-.tawa
-{
+.tawa {
   display: flex;
   justify-content: center;
 
@@ -27,8 +24,8 @@
   height: 0.8em;
 }
 
-.tenpo button, .panaTenpo button
-{
+.tenpo button,
+.panaTenpo button {
   text-align: center;
   font-family: material-icons;
   font-weight: 500;
@@ -41,24 +38,21 @@
   transition: all 0.05s;
 }
 
-.tenpo button:active, .panaTenpo button:active
-{
+.tenpo button:active,
+.panaTenpo button:active {
   transform: translateY(1px);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px -1px;
 }
 
-.tawa button
-{
+.tawa button {
   width: 1.6em;
 }
 
-.kama
-{
+.kama {
   opacity: 0.25;
 }
 
-.panaTenpo
-{
+.panaTenpo {
   margin: 0 auto;
   font-size: 30px;
   vertical-align: top;
@@ -67,8 +61,7 @@
   justify-content: center;
 }
 
-.panaTenpo button
-{
+.panaTenpo button {
   margin: 0 0.2em;
   width: 1.6em;
   height: 1.6em;

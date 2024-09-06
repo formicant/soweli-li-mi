@@ -1,24 +1,21 @@
-import { KulupuNimi, NimiIjo } from '../insa/nimiAli';
-import { Kule } from './kule';
+import { KulupuNimi, NimiIjo } from '../insa/nimiAli'
+import { Kule } from './kule'
 
-export type AnteTawa = 'poka' | 'sikePoka' | 'sikeSewi';
+export type AnteTawa = 'poka' | 'sikePoka' | 'sikeSewi'
 
-export interface LukinIjo
-{
-  readonly kule: Kule;
-  readonly anteTawa?: AnteTawa;
+export interface LukinIjo {
+  readonly kule: Kule
+  readonly anteTawa?: AnteTawa
 }
 
-export const lukinPiKulupuNimi: Record<KulupuNimi, LukinIjo> =
-{
+export const lukinPiKulupuNimi: Record<KulupuNimi, LukinIjo> = {
   ijo:    { kule: '#26a' },
   toki:   { kule: '#555' },
   kulupu: { kule: '#682' },
   pali:   { kule: '#b52' },
-} as const;
+} as const
 
-export const lukinPiIjoAli: Record<NimiIjo, LukinIjo> =
-{
+export const lukinPiIjoAli: Record<NimiIjo, LukinIjo> = {
   soweli: { kule: '#444', anteTawa: 'poka' },
   waso:   { kule: '#678', anteTawa: 'poka' },
   kala:   { kule: '#d80', anteTawa: 'sikePoka' },
@@ -60,4 +57,4 @@ export const lukinPiIjoAli: Record<NimiIjo, LukinIjo> =
   kute:   { kule: '#a85', anteTawa: 'poka' },
   oko:    { kule: '#24d', anteTawa: 'sikePoka' },
   pu:     { kule: '#109' },
-} as const;
+} as const
