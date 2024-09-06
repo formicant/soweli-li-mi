@@ -17,3 +17,21 @@ test('nimi tu sama li lon ala', () => {
     }
   }
 })
+
+test('nimi tu pi sitelen open tu wan sama li lon ala', () => {
+  const nimiAli = [
+    ...nimiInsaKulupu.toki,
+    ...nimiInsaKulupu.kulupu,
+    ...nimiInsaKulupu.pali,
+    ...nimiInsaKulupu.ijo,
+  ]
+  const nimiPiWanTaso = new Map()
+  for (const nimi of nimiAli) {
+    const open = nimi.substring(0, 3)
+    if (nimiPiWanTaso.has(open)) {
+      assert.fail(`open nimi '${open}' li tu: '${nimiPiWanTaso.get(open)}' en '${nimi}'!`)
+    } else {
+      nimiPiWanTaso.set(open, nimi)
+    }
+  }
+})
