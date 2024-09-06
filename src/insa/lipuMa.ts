@@ -52,7 +52,9 @@ export function pilinELipuMa(lipuMa: LipuMa) {
     .cacheResult()
 
   const suliLinja = ma.map(linja => linja.length).toList()
-  if (suliLinja.size === 0) throw new Error('ma li jo e linja ala!')
+  if (suliLinja.size === 0) {
+    throw new Error('ma li jo e linja ala!')
+  }
 
   const suliMa = new Lon(suliLinja.first()!, suliLinja.size)
   if (suliMa.x === 0) {

@@ -20,60 +20,65 @@ export function panaENasinMusiAli(maIjo: MaIjo): readonly NasinMusi[] {
   return nasinAli.toArray()
 }
 
-const pilinJaki = rep(alt(tok('ala'), tok('ijo'), tok('kulupu'), tok('toki'), tok('pali')))
+const pilinJaki = rep(alt(
+  tok('ala'),
+  tok('ijo'),
+  tok('kulupu'),
+  tok('toki'),
+  tok('pali'),
+))
 
-const pilinIjo = tok('ijo' as const)
+const pilinIjo    = tok('ijo'    as const)
 const pilinKulupu = tok('kulupu' as const)
-const pilinPali = tok('pali' as const)
+const pilinPali   = tok('pali'   as const)
 
-const pilinLi = str<'toki'>('li')
-const pilinEn = str<'toki'>('en')
+const pilinLi  = str<'toki'>('li')
+const pilinEn  = str<'toki'>('en')
 const pilinLon = str<'toki'>('lon')
-//const pilinAla = str<'toki'>('ala')
+// const pilinAla = str<'toki'>('ala')
 
 const pilinSeme = apply(
   muteEnInsa(alt(pilinIjo, pilinKulupu), pilinEn),
-  ([mute, insa]) =>
-    ({
-      seme: Im.Seq(mute)
-        .map(ni => ni.text as Seme)
-        .toSet(),
-      nanpaIjo: Im.Seq(mute)
-        .map((ni: Toki) => ni.nanpaIjo!)
-        .concat(Im.Seq(insa).map((ni: Toki) => ni.nanpaIjo!))
-        .toSet(),
-    }) as const,
+  ([mute, insa]) => ({
+    seme: Im.Seq(mute)
+      .map(ni => ni.text as Seme)
+      .toSet(),
+    nanpaIjo: Im.Seq(mute)
+      .map((ni: Toki) => ni.nanpaIjo!)
+      .concat(Im.Seq(insa).map((ni: Toki) => ni.nanpaIjo!))
+      .toSet(),
+  }) as const,
 )
 
 const pilinLonSeme = apply(
   muteEnSinpin(alt(pilinIjo, pilinKulupu), pilinLon),
-  ([mute, lon]) =>
-    ({
-      seme: Im.Seq(mute)
-        .map(ni => ni.text as Seme)
-        .toSet(),
-      nanpaIjo: Im.Seq(mute)
-        .map((ni: Toki) => ni.nanpaIjo!)
-        .concat(Im.Seq(lon).map((ni: Toki) => ni.nanpaIjo!))
-        .toSet(),
-    }) as const,
+  ([mute, lon]) => ({
+    seme: Im.Seq(mute)
+      .map(ni => ni.text as Seme)
+      .toSet(),
+    nanpaIjo: Im.Seq(mute)
+      .map((ni: Toki) => ni.nanpaIjo!)
+      .concat(Im.Seq(lon).map((ni: Toki) => ni.nanpaIjo!))
+      .toSet(),
+  }) as const,
 )
 
 const pilinLeko = apply(seq(pilinSeme, pilinLonSeme), ([seme, lonSeme]) => ({
   seme: seme.seme,
-  lonSeme: lonSeme.seme.isEmpty() ? Im.Set.of('ali' as Seme) : lonSeme.seme,
+  lonSeme: lonSeme.seme.isEmpty()
+    ? Im.Set.of('ali' as Seme)
+    : lonSeme.seme,
   nanpaIjo: seme.nanpaIjo.union(lonSeme.nanpaIjo),
 }))
 
 const pilinPiNasinMusi = apply(
   seq(pilinLeko, pilinLi, alt(pilinPali, pilinIjo)),
-  ([leko, li, liSeme]) =>
-    ({
-      seme: leko.seme,
-      lonSeme: leko.lonSeme,
-      liSeme: Im.Set.of(liSeme.text as LiSeme),
-      nanpaIjo: Im.Set.of((li as Toki).nanpaIjo!, (liSeme as Toki).nanpaIjo!).union(leko.nanpaIjo),
-    }) as NasinMusi,
+  ([leko, li, liSeme]) => ({
+    seme: leko.seme,
+    lonSeme: leko.lonSeme,
+    liSeme: Im.Set.of(liSeme.text as LiSeme),
+    nanpaIjo: Im.Set.of((li as Toki).nanpaIjo!, (liSeme as Toki).nanpaIjo!).union(leko.nanpaIjo),
+  }) as NasinMusi,
 )
 
 const pilin = kmid(pilinJaki, pilinPiNasinMusi, pilinJaki)
