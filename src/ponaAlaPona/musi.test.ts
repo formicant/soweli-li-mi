@@ -7,32 +7,38 @@ test.each([
   {
     nimi: 'mi tawa',
     open: {
-      ma: [' .  sow  . ', 'SOW LI  MI '],
+      ma: [
+        ' .  SOW  . ',
+        'sow li  mi ',
+      ]
     },
     nasin: '←↓↓→→→↑',
     pini: {
-      ma: [' .   .  sow', 'SOW LI  MI '],
+      ma: [
+        ' .   .  SOW',
+        'sow li  mi ',
+      ]
     },
   },
   {
     nimi: 'tawa e ijo',
     open: {
       ma: [
-        'NIM EN  KIW LI  TAW',
-        'ma   .  kiw  .   . ',
-        ' .  SOW LI  MI  sow',
-        'AKE LI  AWE  .  kiw',
-        'MA  LI   .   .  ake',
+        'nim en  kiw li  taw',
+        'MA   .  KIW  .   . ',
+        ' .  sow li  mi  SOW',
+        'ake li  awe  .  KIW',
+        'ma  li   .   .  AKE',
       ],
     },
     nasin: '↓←←↑↑←↓↑↑↑←←↑←→',
     pini: {
       ma: [
-        'NIM EN  KIW LI  TAW',
-        'ma  kiw  .  ake kiw',
-        'SOW LI  sow  .   . ',
-        'AKE LI  MI   .   . ',
-        'MA  LI  AWE  .   . ',
+        'nim en  kiw li  taw',
+        'MA  KIW  .  AKE KIW',
+        'sow li  SOW  .   . ',
+        'ake li  mi   .   . ',
+        'ma  li  awe  .   . ',
       ],
     },
   },
@@ -40,19 +46,19 @@ test.each([
     nimi: 'weka en moli',
     open: {
       ma: [
-        'sow kiw KIW LI  AWE KIW LI  WEK',
-        'sow kil KIL LI  MOL  .   .  SOW',
-        'sow tel SOW LON TEL LI  WEK LI ',
-        'sow kas KAS LON SOW LI  WEK MI ',
+        'SOW KIW kiw li  awe kiw li  wek',
+        'SOW KIL kil li  mol  .   .  sow',
+        'SOW TEL sow lon tel li  wek li ',
+        'SOW KAS kas lon sow li  wek mi ',
       ],
     },
     nasin: '→',
     pini: {
       ma: [
-        'sow  .  KIW LI  AWE KIW LI  WEK',
-        ' .  kil KIL LI  MOL  .   .  SOW',
-        ' .  tel SOW LON TEL LI  WEK LI ',
-        ' .  sow KAS LON SOW LI  WEK MI ',
+        'SOW  .  kiw li  awe kiw li  wek',
+        ' .  KIL kil li  mol  .   .  sow',
+        ' .  TEL sow lon tel li  wek li ',
+        ' .  SOW kas lon sow li  wek mi ',
       ],
     },
   },

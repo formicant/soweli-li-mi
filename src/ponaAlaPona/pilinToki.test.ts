@@ -9,28 +9,28 @@ test.each([
   {
     lipuMa: {
       nimi: 'nasin wan',
-      ma: ['Soweli Li Mi'],
+      ma: ['soweli li mi'],
     },
     nasinMusi: ['soweli li mi'],
   },
   {
     lipuMa: {
       nimi: 'linja anpa en linja poka',
-      ma: [' .  SOW  . ', 'TOM LI  PIN', ' .  MI   . '],
+      ma: [' .  sow  . ', 'tom li  pin', ' .  mi   . '],
     },
     nasinMusi: ['soweli li mi', 'tomo li pini'],
   },
   {
     lipuMa: {
       nimi: 'nasin mute lon linja wan',
-      ma: ['.Kal Lon Kon Lon Ma Li Mol Kas Pip En Ake Li Mi En Wek.tel En Kiw Li Taw.'],
+      ma: ['.kal lon kon lon ma li mol kas pip en ake li mi en wek.TEL en kiw li taw.'],
     },
     nasinMusi: ['kala lon kon lon ma li moli', 'akesi en pipi li mi', 'kiwen li tawa'],
   },
   {
     lipuMa: {
       nimi: 'pali ike nasa',
-      ma: [' .  .  . KAL', ' .  .  . LI ', ' .  .  . WEK'],
+      ma: [' .  .  . kal', ' .  .  . li ', ' .  .  . wek'],
     },
     nasinMusi: ['kala li weka'],
   },
@@ -40,12 +40,12 @@ test.each([
   //     nimi: 'nimi mute lon leko wan',
   //     ma: ['1 2 3 4 5 6 7'],
   //     namako: {
-  //       '1': '          Soweli',
-  //       '2': 'Tomo      Li    ',
-  //       '3': 'Li        Mi    ',
-  //       '4': 'Pini  Nimi  Supa',
-  //       '5': 'Kiwen     Li    ',
-  //       '6': 'Li    Tawa  Moli',
+  //       '1': '          soweli',
+  //       '2': 'tomo      li    ',
+  //       '3': 'li        mi    ',
+  //       '4': 'pini  nimi  supa',
+  //       '5': 'kiwen     li    ',
+  //       '6': 'li    tawa  moli',
   //       '7': 'Awen            ',
   //     }
   //   },

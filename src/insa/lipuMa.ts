@@ -78,8 +78,8 @@ export function pilinELipuMa(lipuMa: LipuMa) {
 }
 
 const mamaToki = buildLexer<KulupuToki>([
-  [true,  /^[A-Z][A-Za-z]*/g,      KulupuToki.Nimi   ],
-  [true,  /^[a-z]+/g,              KulupuToki.Sitelen],
+  [true,  /^[a-z]+/g,              KulupuToki.Nimi   ],
+  [true,  /^[A-Z]+/g,              KulupuToki.Sitelen],
   [true,  /^[^A-Za-z.\s][^.\s]*/g, KulupuToki.Namako ],
   [true,  /^\./g,                  KulupuToki.Kon    ],
   [false, /^\s+/g,                 KulupuToki.Insa   ],
@@ -98,9 +98,9 @@ function panaENimi(nimi: string, liSitelen: boolean) {
     if (nimiOpen.size === 1) {
       return nimiOpen.first()! as Nimi
     } else if (nimiOpen.isEmpty()) {
-      throw new Error(`nimi '${nimi}' li ken open e ala!`)
+      throw new Error(`'${nimi}' li ken open e nimi ala!`)
     } else {
-      throw new Error(`nimi '${nimi}' li ken open e '${nimiOpen.join("' anu '")}''!`)
+      throw new Error(`'${nimi}' li ken open e '${nimiOpen.join("' anu '")}''!`)
     }
   }
 }

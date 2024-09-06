@@ -2,91 +2,91 @@
   {
     "nimi": "kama sona",
     "ma": [
-      " .  SOW LON TEL LI  WEK  .   . ",
-      " .  LI   .   .   .   .   .   . ",
-      "kiw MI   .  sow  .   .   .   . ",
-      " .   .   .   .   .  KIW LI  AWE",
+      " .  sow lon tel li  wek  .   . ",
+      " .  li   .   .   .   .   .   . ",
+      "KIW mi   .  SOW  .   .   .   . ",
+      " .   .   .   .   .  kiw li  awe",
       " .   .   .   .   .   .   .   . ",
-      "tel tel tel tel tel tel tel tel",
-      " .   .   .   .   .  NIM LI  TAW",
-      "tom  .  TOM LI  PIN  .   .   . "
+      "TEL TEL TEL TEL TEL TEL TEL TEL",
+      " .   .   .   .   .  nim li  taw",
+      "TOM  .  tom li  pin  .   .   . "
     ]
   },
 
   {
     "nimi": "lon poka telo",
     "ma": [
-      "tom TOM LI  PIN  .  SOW EN  KAL LON KON LI  ANP  .  WAS EN  KAL LON TOM LI  WEK",
-      " .   .   .   .   .  LI  MI   .   .   .   .   .   .   .   .   .   .   .   .  was",
-      " .   .   .   .  KAL  .   .   .   .   .   .   .   .   .   .   .   .  kas kas kas",
-      " .   .   .   .  kil  .   .   .   .   .   .   .   .   .   .   .   .   .  pal  . ",
-      " .  sow  .   .  kas  .   .   .   .   .   .   .   .   .   .   .   .   .  pal  . ",
-      "ma  ma  ma  ma  ma  ma   .  pan pan pan  .   .   .   .   .   .   .   .  pal  . ",
-      "ma  MA  LI  AWE ma  ma  ma  ma  ma  ma   .  WAS LI  SEW pan  .   .  ma  ma  ma ",
-      "ma  KIW LI  TAW ma  KIW LI  ANP ma  ma  tel tel tel tel tel tel SOW LI  MI  ma ",
-      "ma  NIM LON TEL LI  WEK ma  ma  ma  ma  tel tel tel tel tel tel LON ma  ma  ma ",
-      "ma   .   .  WAS  .  PIP kiw kiw tel ma  tel tel tel tel tel tel TEL TOM WAS ma ",
-      "ma   .  ma  ma  LI  ma  ma  ma  tel tel tel tel tel pan ~cx tel LI  kiw LI   . ",
-      "ma   .   .  pip MI  ma  ma  ma  ma  kas tel kas tel pan kas tel ANP WEK  .  ma ",
-      "NIM EN  SOW EN  KAL LI  TAW ma  ma  ma  ma  ma  ma  ma  ma  WAS LON TEL LI  SEW"
+      "TOM tom li  pin  .  sow en  kal lon kon li  anp  .  was en  kal lon tom li  wek",
+      " .   .   .   .   .  li  mi   .   .   .   .   .   .   .   .   .   .   .   .  WAS",
+      " .   .   .   .  kal  .   .   .   .   .   .   .   .   .   .   .   .  KAS KAS KAS",
+      " .   .   .   .  KIL  .   .   .   .   .   .   .   .   .   .   .   .   .  PAL  . ",
+      " .  SOW  .   .  KAS  .   .   .   .   .   .   .   .   .   .   .   .   .  PAL  . ",
+      "MA  MA  MA  MA  MA  MA   .  PAN PAN PAN  .   .   .   .   .   .   .   .  PAL  . ",
+      "MA  ma  li  awe MA  MA  MA  MA  MA  MA   .  was li  sew PAN  .   .  MA  MA  MA ",
+      "MA  kiw li  taw MA  kiw li  anp MA  MA  TEL TEL TEL TEL TEL TEL sow li  mi  MA ",
+      "MA  nim lon tel li  wek MA  MA  MA  MA  TEL TEL TEL TEL TEL TEL lon MA  MA  MA ",
+      "MA   .   .  was  .  pip KIW KIW TEL MA  TEL TEL TEL TEL TEL TEL tel tom was MA ",
+      "MA   .  MA  MA  li  MA  MA  MA  TEL TEL TEL TEL TEL PAN ~cx TEL li  KIW li   . ",
+      "MA   .   .  PIP mi  MA  MA  MA  MA  KAS TEL KAS TEL PAN KAS TEL anp wek  .  MA ",
+      "nim en  sow en  kal li  taw MA  MA  MA  MA  MA  MA  MA  MA  was lon tel li  sew"
     ],
     "namako": {
-      "~cx": "telo kala"
+      "~cx": "TELO KALA"
     }
   },
 
   {
     "nimi": "nimi namako",
     "ma": [
-      "SOW LI  MI   .    .  sow SOW TOM LI  PIN",
-      " .  LI   .   .    .  EN   .   .  NIM  . ",
-      " .   .   .  LON  kas tel kas  .   .   . ",
-      " .  KAS  .   .   tel tom tel MOL  .   . ",
-      "KAS  .   .  KAS  kas tel kas  .   .  TEL",
-      "LI MOL   .   .    .   .   .   .  EN  LI ",
-      "AWE  .   .   .   NIM LI  TAW  .   .  MOL"
+      "sow li  mi   .    .  SOW sow tom li  pin",
+      " .  li   .   .    .  en   .   .  nim  . ",
+      " .   .   .  lon  KAS TEL KAS  .   .   . ",
+      " .  kas  .   .   TEL TOM TEL mol  .   . ",
+      "kas  .   .  kas  KAS TEL KAS  .   .  tel",
+      "li mol   .   .    .   .   .   .  en  li ",
+      "awe  .   .   .   nim li  taw  .   .  mol"
     ]
   },
 
   {
     "nimi": "suno en mun",
     "ma": [
-      "WAS LI  MI  TOM KAS EN  NEN LI  AWE NIM nen",
-      "nen  .   .  LI   .  kiw kas  .  nen EN  kas",
-      "was kas  .  nen  .  kiw  .  PIN  .  MUN KIW",
-      "KIW  .   .  LON  .  nen sun kas  .  EN  LI ",
-      "LI   .   .   .   .  kas  .   .   .  SUN TAW",
-      "ANP mun  .   .   .   .  nen MUN  .  LI  kas",
-      " .   .   .   .   .  LI   .   .   .  TAW tom",
-      " .   .  SUN  .  nen  .   .   .   .  pan pan"
+      "was li  mi  tom kas en  nen li  awe nim NEN",
+      "NEN  .   .  li   .  KIW KAS  .  NEN en  KAS",
+      "WAS KAS  .  NEN  .  KIW  .  pin  .  mun kiw",
+      "kiw  .   .  lon  .  NEN SUN KAS  .  en  li ",
+      "li   .   .   .   .  KAS  .   .   .  sun taw",
+      "anp MUN  .   .   .   .  NEN mun  .  li  KAS",
+      " .   .   .   .   .  li   .   .   .  taw TOM",
+      " .   .  sun  .  NEN  .   .   .   .  PAN PAN"
     ]
   },
 
   {
     "nimi": "kin la suno en mun",
     "ma": [
-      "WAS LI  MI  TOM KAS EN  NEN LI  AWE NIM nen",
-      "nen  .   .  LI   .  kiw kas  .  nen EN  kas",
-      "was kas  .  nen  .  kiw  .  PIN  .  MUN KIW",
-      "KIW  .   .  LON  .  nen sun kas  .  EN  LI ",
-      "LI   .   .   .   .  kas  .   .   .  SUN TAW",
-      "ANP mun  .   .   .   .  nen MUN  .  LI  kas",
-      " .   .   .   .   .  LI   .   .   .  TAW tom",
-      " .   .  SUN  .  nen  .   .   .  kiw pan pan"
+      "was li  mi  tom kas en  nen li  awe nim NEN",
+      "NEN  .   .  li   .  KIW KAS  .  NEN en  KAS",
+      "WAS KAS  .  NEN  .  KIW  .  pin  .  mun kiw",
+      "kiw  .   .  lon  .  NEN SUN KAS  .  en  li ",
+      "li   .   .   .   .  KAS  .   .   .  sun taw",
+      "anp MUN  .   .   .   .  NEN mun  .  li  KAS",
+      " .   .   .   .   .  li   .   .   .  taw TOM",
+      " .   .  sun  .  NEN  .   .   .  KIW PAN PAN"
     ]
   },
 
   {
     "nimi": "sewi jaki",
     "ma": [
-      "SOW LI  MI  nen  .  kas pan nen tom SUN kas",
-      "pan  .  jak SUN EN  MUN LI  PIN kas EN  pan",
-      "nen pan sun  .  LON  .   .  kas  .  MUN nen",
-      "nen  .  jak  .   .  kas  .   .   .  LI  kas",
-      "PAN  .  LI  nen  .  nen nen  .  SEW TAW  . ",
-      " .  sow jak jak  .  mun  .   .  kas kas nen",
-      "PIN  .   .   .   .   .  kas nen tom tom pan",
-      "NIM LI  TAW KAS EN  NEN LI  AWE JAK LI  MOL"
+      "sow li  mi  NEN  .  KAS PAN NEN TOM sun KAS",
+      "PAN  .  JAK sun en  mun li  pin KAS en  PAN",
+      "NEN PAN SUN  .  lon  .   .  KAS  .  mun NEN",
+      "NEN  .  JAK  .   .  KAS  .   .   .  li  KAS",
+      "pan  .  li  NEN  .  NEN NEN  .  sew taw  . ",
+      " .  SOW JAK JAK  .  MUN  .   .  KAS KAS NEN",
+      "pin  .   .   .   .   .  KAS NEN TOM TOM PAN",
+      "nim li  taw kas en  nen li  awe jak li  mol"
     ]
   }
 ]

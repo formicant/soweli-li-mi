@@ -5,11 +5,17 @@ import { Lon } from '../insa/lon'
 test.each([
   {
     nimi: 'ma lili pona',
-    ma: [' KON ake ', '  .  PIN '],
+    ma: [
+      ' kon AKE ',
+      '  .  pin ',
+    ]
   },
   {
     nimi: 'ma lili pona',
-    ma: ['Kon akesi', '.PINI'],
+    ma: [
+      'kon AKESI',
+      '.pini',
+    ]
   },
 ])('lupu ma pona', lipuMa => {
   const { nimiMa, suliMa, ijoAli } = pilinELipuMa(lipuMa)
@@ -30,19 +36,25 @@ test.each([
 test.each([
   {
     nimi: 'ma lili pona namako',
-    ma: [' .  sow @tL', 'SOW @tL MI '],
-    namako: { '@tL': 'telo LI' },
+    ma: [
+      ' .  SOW @tL',
+      'sow @tL mi ',
+    ],
+    namako: { '@tL': 'TELO li' },
   },
   {
     nimi: 'ma lili pona namako',
-    ma: ['1 2 3', '4 5 6'],
+    ma: [
+      '1 2 3',
+      '4 5 6',
+    ],
     namako: {
       '1': '',
-      '2': 'soweli',
-      '3': 'telo Li',
-      '4': 'Soweli',
-      '5': 'Li telo',
-      '6': 'Mi',
+      '2': 'SOWELI',
+      '3': 'TELO li',
+      '4': 'soweli',
+      '5': 'li TELO',
+      '6': 'mi',
     },
   },
 ])('lupu ma pona namako', lipuMa => {
@@ -80,20 +92,24 @@ test.each([
   },
   {
     nimi: 'nimi pi lon ala',
-    ma: ['Mewika'],
+    ma: ['PaLIsa'],
+  },
+  {
+    nimi: 'nimi pi lon ala',
+    ma: ['ukulele'],
   },
   {
     nimi: 'nimi li ken open e nimi mute',
-    ma: ['AL'], // ala | ali
+    ma: ['al'], // ala | ali
   },
   {
     nimi: 'ijo sitelen li jo e nimi pali',
-    ma: ['pini'],
+    ma: ['PINI'],
   },
   {
     nimi: 'namako ike',
     ma: ['@'],
-    namako: { '!': 'jan' },
+    namako: { '!': 'JAN' },
   },
 ])('lipu ma ike', lipuMa => {
   const pilinIke = () => pilinELipuMa(lipuMa)
