@@ -32,10 +32,10 @@ test.each([
   {
     lipuMa: {
       nimi: 'nasin mute lon linja wan',
-      ma: ['.Kal Lon Kon En Ma Li Mol Kas Pip En Ake Li Mi En Wek.tel En Kiw Li Taw.']
+      ma: ['.Kal Lon Kon Lon Ma Li Mol Kas Pip En Ake Li Mi En Wek.tel En Kiw Li Taw.']
     },
     nasinMusi: [
-      'kala lon kon en ma li moli',
+      'kala lon kon lon ma li moli',
       'akesi en pipi li mi',
       'kiwen li tawa',
     ],

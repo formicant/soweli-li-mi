@@ -52,25 +52,14 @@ const pilinLonSeme = apply(
   } as const)
 );
 
-const pilinLeko = alt(
-  apply(
-    pilinSeme,
-    ({ nanpaIjo, seme }) =>
-    ({
-      seme: seme,
-      lonSeme: Im.Set.of('ali' as Seme),
-      nanpaIjo: nanpaIjo
-    })
-  ),
-  apply(
-    seq(pilinSeme, pilinLonSeme),
-    ([seme, lonSeme]) =>
-    ({
-      seme: seme.seme,
-      lonSeme: lonSeme.seme,
-      nanpaIjo: seme.nanpaIjo.union(lonSeme.nanpaIjo)
-    })
-  )
+const pilinLeko = apply(
+  seq(pilinSeme, pilinLonSeme),
+  ([seme, lonSeme]) =>
+  ({
+    seme: seme.seme,
+    lonSeme: lonSeme.seme.isEmpty() ? Im.Set.of('ali' as Seme) : lonSeme.seme,
+    nanpaIjo: seme.nanpaIjo.union(lonSeme.nanpaIjo)
+  })
 );
 
 const pilinPiNasinMusi = apply(
@@ -126,8 +115,8 @@ function muteEnSinpin<TKulupu, TMute, TSinpin>(
     rep(seq(pilinSinpin, pilinMute)),
     (tu) =>
     [
-      tu.map(([sinpin, mute]) => mute),
-      tu.map(([sinpin, mute]) => sinpin)
+      tu.map(([_sinpin, mute]) => mute),
+      tu.map(([sinpin, _mute]) => sinpin)
     ]
   );
 }

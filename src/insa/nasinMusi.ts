@@ -14,15 +14,15 @@ export interface NasinMusi{
 // ni li kepeken lon ni taso: pona ala pona
 export function tokiENasinMusi(nasin: NasinMusi)
 {
-  const seme = `${en(nasin.seme)}`;
+  const seme = `${en(nasin.seme, 'en')}`;
   const lonSeme = nasin.lonSeme.equals(Im.Set.of('ali'))
     ? ''
-    : ` lon ${en(nasin.lonSeme)}`;
+    : ` lon ${en(nasin.lonSeme, 'lon')}`;
   const liSeme = ` li ${en(nasin.liSeme, 'li')}`;
   return `${seme}${lonSeme}${liSeme}`;
 }
 
-function en<T>(nimiMute: Im.Set<T>, insa: string = 'en')
+function en<T>(nimiMute: Im.Set<T>, insa: string)
 {
   return nimiMute.toSeq().sort().join(` ${insa} `);
 }
