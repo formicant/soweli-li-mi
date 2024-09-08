@@ -53,16 +53,23 @@ export const nimiInsaKulupu = {
     'kili',
     'kasi',
     'pan',
+    'soko',
+    'monsuta',
     'sike',
+    'leko',
     'lipu',
     'nena',
     'lupa',
     'poki',
     'supa',
     'palisa',
+    'misikeke',
     'ilo',
     'len',
     'mani',
+    'suwi',
+    'kulupu',
+    'musi',
     'linja',
     'jaki',
     'suno',
@@ -77,9 +84,30 @@ export const nimiInsaKulupu = {
     'uta',
     'kute',
     'oko',
+    'namako',
+    'nanpa',
+    'sona',
+    'nasa',
+    'unpa',
+    'tonsi',
     'pu',
+    'ku',
   ],
 } as const
+
+// tenpo ni la, nimi ni li lon ala:
+// nimi pu:
+//   a alasa ante anu esun ijo ike insa jelo jo kalama kama ken kepeken kin kule la lape laso lete
+//   lili loje lukin mama moku monsi mu mute nasin ni o ona open pakala pali pana pi pimeja poka
+//   pona sama seli selo seme sin sina sinpin suli tan taso toki tu utala walo wan wawa wile
+// nimi ku suli:
+//   epiku jasima kijetesantakalu kipisi kokosila lanpan meso n
+// nimi ku lili (ona li lon linja pona 4.9):
+//   apeja pake
+// nimi ku lili (ona li lon ala linja pona 4.9):
+//   ete ewe isipin kamalawala kan kapesi ke kese kiki kulijo kuntu likujo linluwi loka majuna misa
+//   mulapisu neja oke pata peto po polinpin pomotolo powe samu san soto taki te teje to tuli umesu
+//   unu usawi wa waleja wasoweli yupekosi kalamARR Pingo su
 
 const kulupuPiNimiAli = monsiELukinKulupu(nimiInsaKulupu)
 

@@ -10,7 +10,6 @@ export function kipisiENimi(nimi: Nimi): readonly LinjaNimi[] {
   if (!kipisiPiNimiAli) {
     kipisiPiNimiAli = paliEKipisiPiNimiAli()
   }
-
   return kipisiPiNimiAli[nimi]
 }
 
@@ -43,7 +42,6 @@ function paliEKipisiPiNimiAli(): KipisiPiNimiAli {
   for (const nimi of nimiAli) {
     kipisi[nimi] = kipisiENimi(nimi)
   }
-
   return kipisi as KipisiPiNimiAli
 }
 
