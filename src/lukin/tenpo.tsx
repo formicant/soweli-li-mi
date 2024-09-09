@@ -34,7 +34,7 @@ export const Tenpo = ({ nasin, tenpoNi, tenpoNanpaLa, panaTanPokiLa }: JoTenpo) 
         content_copy
       </button>
       <button
-        title={'pana e nasin tan poki.\npali ala lon ilo lukin Firefox :('}
+        title={'pana e nasin tan poki'}
         onClick={() => panaTanPoki(panaTanPokiLa)}
       >
         content_paste
