@@ -4,7 +4,7 @@ import { anteELipuIjo, LipuIjo } from './lipuIjo'
 import { Lon, NasinTawa } from './lon'
 import { MaIjo } from './maIjo'
 import { KulupuPali, LonPali, paliELonPali } from './lonPali'
-import { panaENasinMusiAli } from './pilinToki'
+import { panaENasinMusiAle } from './pilinToki'
 import { Pali, panaEPilinMusi } from './pali'
 
 export type PilinMusi =
@@ -36,7 +36,7 @@ const tawaAla: ITawa = {
 export class Tawa extends Im.Record<ITawa>(tawaAla) implements ITawa {
   constructor(suliMa: Lon, lipuIjo: LipuIjo, nasin?: NasinTawa) {
     const maIjo = new MaIjo(suliMa, lipuIjo)
-    const nasinMusi = panaENasinMusiAli(maIjo)
+    const nasinMusi = panaENasinMusiAle(maIjo)
     const lonPali = paliELonPali(maIjo, nasinMusi)
 
     // O PALI: ken ante e ijo wan tawa ijo mute!

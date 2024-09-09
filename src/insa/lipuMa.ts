@@ -3,7 +3,7 @@ import {
   buildLexer, apply, expectSingleResult, expectEOF, tok, rep, alt, Parser
 } from 'typescript-parsec'
 import { Lon } from './lon'
-import { Nimi, nimiAli, nimiInsaKulupu } from './nimiAli'
+import { Nimi, nimiAle, nimiInsaKulupu } from './nimiAle'
 import { Ijo, KulupuIjo } from './ijo'
 
 /**
@@ -27,18 +27,18 @@ enum KulupuToki {
 /**
  * li pilin e lipu ma tan lipu Json.
  * @param lipuMa li ma wan tan lipu Json.
- * @returns e jo ali pi ma ni.
+ * @returns e jo ale pi ma ni.
  */
 export function pilinELipuMa(lipuMa: LipuMa) {
   // O PALI: pilin ike la, pana e nimi ma, e nanpa pi linja ike!
 
-  const namakoAli =
+  const namakoAle =
     lipuMa.namako !== undefined
       ? Im.Map(lipuMa.namako).map(linja => pilin(pilinPiLinjaNamako, linja as string).flat())
       : Im.Map<string, Wan[]>()
 
   const pilinPiIjoNamako = apply(tok(KulupuToki.Namako), (toki): readonly Wan[] => {
-    const namako = namakoAli.get(toki.text)
+    const namako = namakoAle.get(toki.text)
     if (namako !== undefined) {
       return namako
     } else {
@@ -63,7 +63,7 @@ export function pilinELipuMa(lipuMa: LipuMa) {
   if (suliLinja.skip(1).some(ni => ni !== suliMa.x)) {
     throw new Error('suli pi linja ma li sama ala!')
   }
-  const ijoAli = ma
+  const ijoAle = ma
     .flatMap((linja, y) =>
       Im.Seq(linja).flatMap((leko, x) => Im.Seq(leko).map(wan => ({ ...wan, lon: new Lon(x, y) })))
     )
@@ -73,7 +73,7 @@ export function pilinELipuMa(lipuMa: LipuMa) {
   return {
     nimiMa: lipuMa.nimi,
     suliMa: suliMa,
-    ijoAli: ijoAli,
+    ijoAle: ijoAle,
   }
 }
 
@@ -85,7 +85,7 @@ const mamaToki = buildLexer<KulupuToki>([
   [false, /^\s+/g,                 KulupuToki.Insa   ],
 ])
 
-const nimiNimi = Im.Set<string>(nimiAli)
+const nimiNimi = Im.Set<string>(nimiAle)
 const nimiSitelen = Im.Set<string>(nimiInsaKulupu['ijo'])
 
 function panaENimi(nimi: string, liSitelen: boolean) {

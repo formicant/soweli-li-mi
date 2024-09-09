@@ -1,7 +1,7 @@
 import { monsiELukinKulupu } from './kepeken'
 
 /**
- * nimi ali li insa kulupu mute:
+ * nimi ale li insa kulupu mute:
  *   nimi ijo li nimi e sitelen.
  *   nimi kulupu li nimi e kulupu ijo.
  *   nimi pali li nimi e ni: ijo li pali seme?
@@ -10,7 +10,7 @@ import { monsiELukinKulupu } from './kepeken'
 export type KulupuNimi = 'ijo' | 'kulupu' | 'pali' | 'toki'
 
 /**
- * nimi ali insa kulupu ona.
+ * nimi ale insa kulupu ona.
  */
 export const nimiInsaKulupu = {
   toki: [
@@ -21,9 +21,9 @@ export const nimiInsaKulupu = {
     'lon',
   ],
   kulupu: [
-    'nimi',    // nimi ali
-    'sitelen', // sitelen ali
-    'ali',     // nimi ali en sitelen ali
+    'nimi',    // nimi ale
+    'sitelen', // sitelen ale
+    'ale',     // nimi ale en sitelen ale
     'kon',     // leko pi ijo ala
   ],
   pali: [
@@ -109,9 +109,9 @@ export const nimiInsaKulupu = {
 //   mulapisu neja oke pata peto po polinpin pomotolo powe samu san soto taki te teje to tuli umesu
 //   unu usawi wa waleja wasoweli yupekosi kalamARR Pingo su
 
-const kulupuPiNimiAli = monsiELukinKulupu(nimiInsaKulupu)
+const kulupuPiNimiAle = monsiELukinKulupu(nimiInsaKulupu)
 
-export const nimiAli = kulupuPiNimiAli.keySeq().toArray()
+export const nimiAle = kulupuPiNimiAle.keySeq().toArray()
 
 export type NimiToki   = (typeof nimiInsaKulupu.toki  )[number]
 export type NimiKulupu = (typeof nimiInsaKulupu.kulupu)[number]
@@ -132,5 +132,5 @@ export function liInsaKulupu(nimi: Nimi, kulupu: KulupuNimi) {
 }
 
 export function panaEKulupuNimi(nimi: Nimi) {
-  return kulupuPiNimiAli.get(nimi) as KulupuNimi
+  return kulupuPiNimiAle.get(nimi) as KulupuNimi
 }

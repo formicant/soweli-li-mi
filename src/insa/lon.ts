@@ -1,15 +1,15 @@
 import Im from 'immutable'
 
-const nasinTawaAli = ['↑', '↓', '←', '→'] as const
+const nasinTawaAle = ['↑', '↓', '←', '→'] as const
 
 /**
  * nasin pi tawa e ijo.
  * (↑ sewi, ↓ anpa, ← soto, → teje.)
  */
-export type NasinTawa = (typeof nasinTawaAli)[number]
+export type NasinTawa = (typeof nasinTawaAle)[number]
 
 export function liNasinTawa(sitelen: string): sitelen is NasinTawa {
-  return (nasinTawaAli as readonly string[]).includes(sitelen)
+  return (nasinTawaAle as readonly string[]).includes(sitelen)
 }
 
 interface ILon {

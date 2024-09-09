@@ -1,4 +1,4 @@
-import { KulupuNimi, NimiIjo } from '../insa/nimiAli'
+import { KulupuNimi, NimiIjo } from '../insa/nimiAle'
 import { Kule } from './kule'
 
 export type AnteTawa = 'poka' | 'sikePoka' | 'sikeSewi'
@@ -15,7 +15,7 @@ export const lukinPiKulupuNimi: Record<KulupuNimi, LukinIjo> = {
   pali:    { kule: '#b52' },
 } as const
 
-export const lukinPiIjoAli: Record<NimiIjo, LukinIjo> = {
+export const lukinPiIjoAle: Record<NimiIjo, LukinIjo> = {
   soweli:  { kule: '#444', anteTawa: 'poka' },
   waso:    { kule: '#678', anteTawa: 'poka' },
   kala:    { kule: '#d80', anteTawa: 'sikePoka' },

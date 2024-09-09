@@ -49,7 +49,7 @@ export class LukinMusi extends Component<JoPiLukinMusi, { musi: Musi }> {
     this.setState({ musi: this.state.musi.tenpoNanpa(nanpa) })
 
   private lukaPanaTanPoki = (nasin: string) =>
-    this.setState({ musi: this.state.musi.sinETenpoAli(nasin) })
+    this.setState({ musi: this.state.musi.sinETenpoAle(nasin) })
 
   private lukaPalisa = (palisa: Palisa) => {
     if (!liNasinTawa(palisa) || this.state.musi.tawaNi.pilin === 'palisa') {

@@ -12,7 +12,7 @@ interface JoMa {
 }
 
 export function Ma(jo: JoMa) {
-  const lekoAli = jo.lipuIjo
+  const lekoAle = jo.lipuIjo
     .map((ijo, nanpaTaso) => (
       <Leko key={nanpaTaso} ijo={ijo} lukinWawa={jo.lukinWawa.contains(nanpaTaso)} />
     ))
@@ -25,7 +25,7 @@ export function Ma(jo: JoMa) {
 
   return (
     <div className="ma" style={suli}>
-      <div>{lekoAli}</div>
+      <div>{lekoAle}</div>
       {jo.liPini && (
         <div className="pini" style={suli}>
           <p className="pona sitelen">pona</p>

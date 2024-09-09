@@ -18,13 +18,13 @@ test.each([
     ]
   },
 ])('lupu ma pona', lipuMa => {
-  const { nimiMa, suliMa, ijoAli } = pilinELipuMa(lipuMa)
+  const { nimiMa, suliMa, ijoAle } = pilinELipuMa(lipuMa)
 
   expect(nimiMa).toBe('ma lili pona')
   expect(suliMa.x).toBe(2)
   expect(suliMa.y).toBe(2)
-  expect(ijoAli).toHaveLength(3)
-  expect(ijoAli).toEqual(
+  expect(ijoAle).toHaveLength(3)
+  expect(ijoAle).toEqual(
     expect.arrayContaining([
       expect.objectContaining({ lon: new Lon(0, 0), liLon: true, kulupu: 'nimi',    nimi: 'kon'   }),
       expect.objectContaining({ lon: new Lon(1, 0), liLon: true, kulupu: 'sitelen', nimi: 'akesi' }),
@@ -58,13 +58,13 @@ test.each([
     },
   },
 ])('lupu ma pona namako', lipuMa => {
-  const { nimiMa, suliMa, ijoAli } = pilinELipuMa(lipuMa)
+  const { nimiMa, suliMa, ijoAle } = pilinELipuMa(lipuMa)
 
   expect(nimiMa).toBe('ma lili pona namako')
   expect(suliMa.x).toBe(3)
   expect(suliMa.y).toBe(2)
-  expect(ijoAli).toHaveLength(7)
-  expect(ijoAli).toEqual(
+  expect(ijoAle).toHaveLength(7)
+  expect(ijoAle).toEqual(
     expect.arrayContaining([
       expect.objectContaining({ lon: new Lon(1, 0), liLon: true, kulupu: 'sitelen', nimi: 'soweli' }),
       expect.objectContaining({ lon: new Lon(2, 0), liLon: true, kulupu: 'sitelen', nimi: 'telo'   }),
@@ -100,7 +100,7 @@ test.each([
   },
   {
     nimi: 'nimi li ken open e nimi mute',
-    ma: ['al'], // ala | ali
+    ma: ['al'], // ala | ale
   },
   {
     nimi: 'ijo sitelen li jo e nimi pali',

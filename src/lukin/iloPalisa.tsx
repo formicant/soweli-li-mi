@@ -5,7 +5,7 @@ import { liNasinTawa, NasinTawa } from '../insa/lon'
 type TawaTenpo = 'monsi' | 'sinpin' | 'open' | 'pini'
 export type Palisa = NasinTawa | TawaTenpo
 
-const palisaAli: Record<Palisa, readonly string[]> = {
+const palisaAle: Record<Palisa, readonly string[]> = {
   '↑':    ['KeyW', 'ArrowUp'   ],
   '↓':    ['KeyS', 'ArrowDown' ],
   '←':    ['KeyA', 'ArrowLeft' ],
@@ -17,7 +17,7 @@ const palisaAli: Record<Palisa, readonly string[]> = {
   pini:   ['KeyT', 'End'       ],
 } as const
 
-const palisaPiNimiPalisa = monsiELukinKulupu(palisaAli)
+const palisaPiNimiPalisa = monsiELukinKulupu(palisaAle)
 
 export interface JoPiIloPalisa {
   palisaLa(palisa: Palisa): void
@@ -44,5 +44,5 @@ export class IloPalisa extends Component<JoPiIloPalisa> {
 }
 
 export function panaENimiPalisa(palisa: Palisa): readonly string[] {
-  return palisaAli[palisa].map(nimi => `[${nimi.replace(/^Key/, '')}]`)
+  return palisaAle[palisa].map(nimi => `[${nimi.replace(/^Key/, '')}]`)
 }

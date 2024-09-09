@@ -1,7 +1,7 @@
 import Im from 'immutable'
 import { Lon } from './lon'
 import { Ijo } from './ijo'
-import { NimiIjo } from './nimiAli'
+import { NimiIjo } from './nimiAle'
 import { LiSeme, NasinMusi } from './nasinMusi'
 import { MaIjo } from './maIjo'
 
@@ -38,12 +38,12 @@ function panaEPali(
 
   function nasinLiLon(nasin: NasinMusi) {
     const semeLiLon =
-      nasin.seme.contains('ali') ||
+      nasin.seme.contains('ale') ||
       (ijo.liNimi() && nasin.seme.contains('nimi')) ||
       (ijo.liSitelen() && nasin.seme.contains(ijo.nimi))
 
     const lonSemeLiLon =
-      nasin.lonSeme.contains('ali') ||
+      nasin.lonSeme.contains('ale') ||
       (nasin.lonSeme.contains('nimi') && ijoAntePiLonSama.some(ni => ni.liNimi())) ||
       (nasin.lonSeme.contains('kon') && ijoAntePiLonSama.isEmpty()) ||
       !nasin.lonSeme.intersect(nimiPiIjoSitelenAntePiLonSama).isEmpty()

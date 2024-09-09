@@ -1,9 +1,9 @@
 import Im from 'immutable'
 import { Lon, NasinTawa } from './lon'
-import { liInsaKulupu, Nimi, NimiIjo } from './nimiAli'
+import { liInsaKulupu, Nimi, NimiIjo } from './nimiAle'
 
 /**
- * ijo ali li tan kulupu tu:
+ * ijo ale li tan kulupu tu:
  *   ijo nimi li lukin sama nimi, li ken pali e nasin musi.
  *   ijo sitelen li lukin sama sitelen pi Sitelen Pona.
  */

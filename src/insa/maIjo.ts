@@ -4,7 +4,7 @@ import { Ijo } from './ijo'
 import { LipuIjo } from './lipuIjo'
 
 /**
- * li jo e suli ma, e ijo ali insa kulupu Lon.
+ * li jo e suli ma, e ijo ale insa kulupu Lon.
  * ijo pi lon ala li lon ala.
  */
 export class MaIjo {

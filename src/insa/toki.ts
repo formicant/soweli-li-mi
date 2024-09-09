@@ -1,6 +1,6 @@
 import Im from 'immutable'
 import { Token, TokenPosition } from 'typescript-parsec'
-import { KulupuNimi, panaEKulupuNimi } from './nimiAli'
+import { KulupuNimi, panaEKulupuNimi } from './nimiAle'
 import { Lon } from './lon'
 import { MaIjo } from './maIjo'
 import { Ijo } from './ijo'
@@ -17,10 +17,10 @@ export interface Toki extends Token<KulupuToki> {
 }
 
 /**
- * li pana e linja toki ali tan poka tawa poka,
- * e linja toki ali tan sewi tawa anpa.
+ * li pana e linja toki ale tan poka tawa poka,
+ * e linja toki ale tan sewi tawa anpa.
  */
-export function* panaELinjaTokiAli(maIjo: MaIjo) {
+export function* panaELinjaTokiAle(maIjo: MaIjo) {
   yield* panaELinjaTokiMute(maIjo, (x: number, y: number) => new Lon(x, y))
   yield* panaELinjaTokiMute(maIjo, (x: number, y: number) => new Lon(y, x))
 }
@@ -48,7 +48,7 @@ function paliEToki(
       .filterNot(ijo => ijo.liSitelen())
       .entrySeq()
       .first()
-    // O PALI: leko wan li ken jo e nimi mute. o pali pana e ken ali!
+    // O PALI: leko wan li ken jo e nimi mute. o pali pana e ken ale!
     if (nimiWan !== undefined) {
       const [nanpa, { nimi }] = nimiWan
       const kulupu = panaEKulupuNimi(nimi)

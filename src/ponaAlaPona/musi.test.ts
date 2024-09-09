@@ -67,8 +67,8 @@ test.each([
   const musiPini = musiOpen.tawaNasin(nasin)
   const ijoLon = wekaENanpa(musiPini.tawaNi.lipuIjo.valueSeq().toArray())
 
-  const { ijoAli } = pilinELipuMa({ nimi: nimi, ...pini })
-  const ijoWile = wekaENanpa(ijoAli)
+  const { ijoAle } = pilinELipuMa({ nimi: nimi, ...pini })
+  const ijoWile = wekaENanpa(ijoAle)
 
   // O PALI pona e ni:
   expect(ijoLon).toEqual(expect.arrayContaining(ijoWile))

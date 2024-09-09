@@ -1,5 +1,5 @@
 import Im from 'immutable'
-import { Nimi, nimiAli } from '../insa/nimiAli'
+import { Nimi, nimiAle } from '../insa/nimiAle'
 
 interface LinjaNimi {
   readonly nimiLili: string
@@ -7,22 +7,22 @@ interface LinjaNimi {
 }
 
 export function kipisiENimi(nimi: Nimi): readonly LinjaNimi[] {
-  if (!kipisiPiNimiAli) {
-    kipisiPiNimiAli = paliEKipisiPiNimiAli()
+  if (!kipisiPiNimiAle) {
+    kipisiPiNimiAle = paliEKipisiPiNimiAle()
   }
-  return kipisiPiNimiAli[nimi]
+  return kipisiPiNimiAle[nimi]
 }
 
-type KipisiPiNimiAli = Record<Nimi, readonly LinjaNimi[]>
-let kipisiPiNimiAli: KipisiPiNimiAli | undefined
+type KipisiPiNimiAle = Record<Nimi, readonly LinjaNimi[]>
+let kipisiPiNimiAle: KipisiPiNimiAle | undefined
 
-function paliEKipisiPiNimiAli(): KipisiPiNimiAli {
+function paliEKipisiPiNimiAle(): KipisiPiNimiAle {
   const lipuSitelen = document.createElement('canvas')
   const lonSitelen = lipuSitelen.getContext('2d')!
   lonSitelen.font = 'normal 100px truculenta'
 
-  function paliELinja(nimiLili: string, suliPokaAli: number): LinjaNimi {
-    const suliPoka = Math.round(suliPokaAli / lonSitelen.measureText(nimiLili).width)
+  function paliELinja(nimiLili: string, suliPokaAle: number): LinjaNimi {
+    const suliPoka = Math.round(suliPokaAle / lonSitelen.measureText(nimiLili).width)
     return { nimiLili: nimiLili, suliPoka: suliPoka }
   }
 
@@ -39,10 +39,10 @@ function paliEKipisiPiNimiAli(): KipisiPiNimiAli {
   }
 
   const kipisi: { [nimi: string]: readonly LinjaNimi[] } = {}
-  for (const nimi of nimiAli) {
+  for (const nimi of nimiAle) {
     kipisi[nimi] = kipisiENimi(nimi)
   }
-  return kipisi as KipisiPiNimiAli
+  return kipisi as KipisiPiNimiAle
 }
 
 const nanpaSuliPiLinjaWan = 8000

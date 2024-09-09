@@ -3,21 +3,21 @@ import {
   apply, expectEOF, str, tok, seq, rep, alt, kmid, Parser, ParserOutput,
 } from 'typescript-parsec'
 import { MaIjo } from './maIjo'
-import { panaELinjaTokiAli, Toki } from './toki'
+import { panaELinjaTokiAle, Toki } from './toki'
 import { Seme, LiSeme, NasinMusi } from './nasinMusi'
 
 /**
- * li lukin e nimi ali lon ma ijo li pilin e nasin musi ali li pana e ona.
- * @param maIjo li ijo ali insa kulupu lon.
- * @returns nasin musi ali pi ma ni.
+ * li lukin e nimi ale lon ma ijo li pilin e nasin musi ale li pana e ona.
+ * @param maIjo li ijo ale insa kulupu lon.
+ * @returns nasin musi ale pi ma ni.
  */
-export function panaENasinMusiAli(maIjo: MaIjo): readonly NasinMusi[] {
-  const tokiAli = panaELinjaTokiAli(maIjo)
-  const nasinAli = Im.Seq(tokiAli)
+export function panaENasinMusiAle(maIjo: MaIjo): readonly NasinMusi[] {
+  const tokiAle = panaELinjaTokiAle(maIjo)
+  const nasinAle = Im.Seq(tokiAle)
     .map(linja => expectEOF(pilin.parse(linja)))
     .flatMap(panaENasinMusiLinja)
 
-  return nasinAli.toArray()
+  return nasinAle.toArray()
 }
 
 const pilinJaki = rep(alt(
@@ -66,7 +66,7 @@ const pilinLonSeme = apply(
 const pilinLeko = apply(seq(pilinSeme, pilinLonSeme), ([seme, lonSeme]) => ({
   seme: seme.seme,
   lonSeme: lonSeme.seme.isEmpty()
-    ? Im.Set.of('ali' as Seme)
+    ? Im.Set.of('ale' as Seme)
     : lonSeme.seme,
   nanpaIjo: seme.nanpaIjo.union(lonSeme.nanpaIjo),
 }))

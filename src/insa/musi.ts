@@ -20,8 +20,8 @@ const musiAla: IMusi = {
 
 export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi {
   constructor(lipuMa: LipuMa) {
-    const { nimiMa, suliMa, ijoAli } = pilinELipuMa(lipuMa)
-    const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq())
+    const { nimiMa, suliMa, ijoAle } = pilinELipuMa(lipuMa)
+    const lipuIjo = Im.Map(Im.Seq(ijoAle).toKeyedSeq())
     const tenpoOpen = Im.List.of(new Tawa(suliMa, lipuIjo))
 
     super({
@@ -48,17 +48,17 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi {
     return tenpo.map(tawa => tawa.nasin).toArray()
   }
 
-  tenpoMonsi(ali: boolean = false): Musi {
+  tenpoMonsi(ale: boolean = false): Musi {
     if (this.tenpoNi > 0) {
-      return this.set('tenpoNi', ali ? 0 : this.tenpoNi - 1)
+      return this.set('tenpoNi', ale ? 0 : this.tenpoNi - 1)
     } else {
       return this
     }
   }
 
-  tenpoSinpin(ali: boolean = false): Musi {
+  tenpoSinpin(ale: boolean = false): Musi {
     if (this.tenpoNi < this.tenpo.size - 1) {
-      return this.set('tenpoNi', ali ? this.tenpo.size - 1 : this.tenpoNi + 1)
+      return this.set('tenpoNi', ale ? this.tenpo.size - 1 : this.tenpoNi + 1)
     } else {
       return this
     }
@@ -108,7 +108,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi {
     return nasin.reduce(tawaWan, this as Musi)
   }
 
-  sinETenpoAli(tokiNasin: string): Musi {
+  sinETenpoAle(tokiNasin: string): Musi {
     const musiOpen = this.tenpoMonsi(true)
     const musiSin = musiOpen.tawaNasin(tokiNasin)
     return musiSin.tenpoMonsi(true)

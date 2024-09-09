@@ -3,7 +3,7 @@ import { AntePiLipuIjo } from './lipuIjo'
 import { Lon, NasinTawa } from './lon'
 import { LonPali } from './lonPali'
 import { LiSeme } from './nasinMusi'
-import { liInsaKulupu, NimiIjo, NimiPali } from './nimiAli'
+import { liInsaKulupu, NimiIjo, NimiPali } from './nimiAle'
 
 export type Pali = (suliMa: Lon, lonPali: LonPali, nasin: NasinTawa) => AntePiLipuIjo
 
@@ -86,14 +86,14 @@ function panaEKulupuTawa(mamaTawa: NimiPali, suliMa: Lon, lonPali: LonPali, nasi
     }
   }
 
-  const kulupuTawaAli = Im.Map(
+  const kulupuTawaAle = Im.Map(
     miMute
       .map((lon, nanpa) => lukinEKulupuTawa(nanpa, lon))
       .valueSeq()
       .flatMap(ni => ni),
   )
 
-  return kulupuTawaAli
+  return kulupuTawaAle
 }
 
 function panaENanpaTanPali(

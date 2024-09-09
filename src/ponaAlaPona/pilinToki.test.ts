@@ -2,7 +2,7 @@ import { test, expect } from 'vitest'
 import Im from 'immutable'
 import { pilinELipuMa } from '../insa/lipuMa'
 import { MaIjo } from '../insa/maIjo'
-import { panaENasinMusiAli } from '../insa/pilinToki'
+import { panaENasinMusiAle } from '../insa/pilinToki'
 import { tokiENasinMusi } from '../insa/nasinMusi'
 
 test.each([
@@ -60,11 +60,11 @@ test.each([
   //   ]
   // },
 ])('', ({ lipuMa, nasinMusi }) => {
-  const { suliMa, ijoAli } = pilinELipuMa(lipuMa)
-  const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq())
+  const { suliMa, ijoAle } = pilinELipuMa(lipuMa)
+  const lipuIjo = Im.Map(Im.Seq(ijoAle).toKeyedSeq())
   const maIjo = new MaIjo(suliMa, lipuIjo)
-  const nasinMusiAli = panaENasinMusiAli(maIjo)
-  const toki = nasinMusiAli.map(tokiENasinMusi)
+  const nasinMusiAle = panaENasinMusiAle(maIjo)
+  const toki = nasinMusiAle.map(tokiENasinMusi)
 
   expect(toki.sort()).toEqual(nasinMusi.sort())
 })

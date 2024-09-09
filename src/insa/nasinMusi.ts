@@ -1,5 +1,5 @@
 import Im from 'immutable'
-import { NimiIjo, NimiKulupu, NimiPali } from './nimiAli'
+import { NimiIjo, NimiKulupu, NimiPali } from './nimiAle'
 
 export type Seme = NimiIjo | NimiKulupu
 export type LiSeme = NimiPali | NimiIjo
@@ -14,7 +14,7 @@ export interface NasinMusi {
 // ni li kepeken lon ni taso: pona ala pona
 export function tokiENasinMusi(nasin: NasinMusi) {
   const seme = `${en(nasin.seme, 'en')}`
-  const lonSeme = nasin.lonSeme.equals(Im.Set.of('ali'))
+  const lonSeme = nasin.lonSeme.equals(Im.Set.of('ale'))
     ? ''
     : ` lon ${en(nasin.lonSeme, 'lon')}`
   const liSeme = ` li ${en(nasin.liSeme, 'li')}`
