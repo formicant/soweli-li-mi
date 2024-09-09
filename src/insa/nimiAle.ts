@@ -97,17 +97,21 @@ export const nimiInsaKulupu = {
 
 // tenpo ni la, nimi ni li lon ala:
 // nimi pu:
-//   a alasa ante anu esun ijo ike insa jelo jo kalama kama ken kepeken kin kule la lape laso lete
-//   lili loje lukin mama moku monsi mu mute nasin ni o ona open pakala pali pana pi pimeja poka
-//   pona sama seli selo seme sin sina sinpin suli tan taso toki tu utala walo wan wawa wile
-// nimi ku suli:
+//   a ante anu esun ijo ike insa jelo jo kama ken kepeken kin la lape laso lete lili loje mama
+//   moku mu mute ni o ona open pakala pi pimeja pona sama seme seli sinpin suli tan taso toki tu
+//   walo wan wawa wile
+// nimi ku suli: (ale li lon linja pona 4.9)
 //   epiku jasima kijetesantakalu kipisi kokosila lanpan meso n
-// nimi ku lili (ona li lon linja pona 4.9):
-//   apeja pake
-// nimi ku lili (ona li lon ala linja pona 4.9):
-//   ete ewe isipin kamalawala kan kapesi ke kese kiki kulijo kuntu likujo linluwi loka majuna misa
-//   mulapisu neja oke pata peto po polinpin pomotolo powe samu san soto taki te teje to tuli umesu
-//   unu usawi wa waleja wasoweli yupekosi kalamARR Pingo su
+// nimi ku lili: (nimi 'apeja' taso li lon linja pona 4.9)
+//   apeja ete ewe isipin kan kapesi ke kese kiki kuntu likujo loka majuna mulapisu neja oke pata
+//   peto po polinpin pomotolo powe san soto taki te teje to tuli umesu unu usawi wa yupekosi Pingo
+//   su ju lu nu u
+// 
+// nimi ni li open sama nimi ante li ken ala kepeken:
+//   alasa (ala), kalama kalamARR (kala), kule kulijo (kulupu), lukin (luka), monsi (monsuta),
+//   nasin (nasa), pali (palisa), pana (pan), poka (poki), selo (seli), sin sina (sinpin), 
+//   utala (uta), kamalawala (kama), linluwi (linja), misa (misikeke), pake (pakala), samu (sama),
+//   waleja (walo), wasoweli (waso)
 
 const kulupuPiNimiAle = monsiELukinKulupu(nimiInsaKulupu)
 
