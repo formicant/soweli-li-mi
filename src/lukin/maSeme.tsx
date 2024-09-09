@@ -1,5 +1,5 @@
 import './maSeme.css'
-import lipuMaAle from '../lipu/lipuMa.json'
+import lipuMaAle from '../lipu/lipuMaAle.json'
 import { LipuMa } from '../insa/lipuMa'
 
 export const MaSeme = ({ paliLa }: { paliLa: (lipuMa: LipuMa) => void }) => (
