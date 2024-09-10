@@ -2,7 +2,7 @@ import { test, expect } from 'vitest'
 import { pilinELipuMa } from '../insa/lipuMa'
 import { Lon } from '../insa/lon'
 
-test.each([
+test.for([
   {
     nimi: 'ma lili pona',
     ma: [
@@ -17,7 +17,7 @@ test.each([
       '.pini',
     ]
   },
-])('lupu ma pona', lipuMa => {
+])('lipu ma pona', lipuMa => {
   const { nimiMa, suliMa, ijoAle } = pilinELipuMa(lipuMa)
 
   expect(nimiMa).toBe('ma lili pona')
@@ -33,7 +33,7 @@ test.each([
   )
 })
 
-test.each([
+test.for([
   {
     nimi: 'ma lili pona namako',
     ma: [
@@ -77,7 +77,7 @@ test.each([
   )
 })
 
-test.each([
+test.for([
   {
     nimi: 'ma ala',
     ma: [],
@@ -111,7 +111,7 @@ test.each([
     ma: ['@'],
     namako: { '!': 'JAN' },
   },
-])('lipu ma ike', lipuMa => {
+])('lipu ma ike $nimi', lipuMa => {
   const pilinIke = () => pilinELipuMa(lipuMa)
   expect(pilinIke).toThrowError()
 })

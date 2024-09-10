@@ -2,7 +2,7 @@ import { test, expect, assert } from 'vitest'
 import { Musi } from '../insa/musi'
 import lipuMaAle from '../lipu/lipuMaAle.json'
 
-test.each([
+test.for([
   {
     nimiMa: 'kama sona',
     nasinPiniMute: [
@@ -48,7 +48,7 @@ test.each([
       '↓→→→↑↑↑↑→→↓→↓↓←←↓←←←←↑↑↑↑→→←←↓↓↓↓→→→→↑→→↑→←↑←↑←←',
     ]
   },
-])('piniEMusi', ({ nimiMa, nasinPiniMute }) => {
+])('pini e musi $nimiMa', ({ nimiMa, nasinPiniMute }) => {
   const lipuMa = lipuMaAle.find(lipu => lipu.nimi === nimiMa)
   if (lipuMa === undefined) {
     assert.fail(`lipu ma '${nimiMa}' li lon ala!`)
@@ -58,6 +58,6 @@ test.each([
   for (let i = 0; i < nasinPiniMute.length; i++) {
     const nasinPini = nasinPiniMute[i]
     const musiPini = musiOpen.tawaNasin(nasinPini)
-    expect(musiPini.tawaNi.pilin, `ma '${nimiMa}', nasin pini nanpa ${i}`).toEqual('pini')
+    expect(musiPini.tawaNi.pilin, `nasin pini nanpa ${i}`).toEqual('pini')
   }
 })

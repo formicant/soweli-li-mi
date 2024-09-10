@@ -5,7 +5,7 @@ import { MaIjo } from '../insa/maIjo'
 import { panaENasinMusiAle } from '../insa/pilinToki'
 import { tokiENasinMusi } from '../insa/nasinMusi'
 
-test.each([
+test.for([
   {
     lipuMa: {
       nimi: 'nasin wan',
@@ -59,7 +59,7 @@ test.each([
   //     'kiwen li awen',
   //   ]
   // },
-])('', ({ lipuMa, nasinMusi }) => {
+])('pilin toki $lipuMa.nimi', ({ lipuMa, nasinMusi }) => {
   const { suliMa, ijoAle } = pilinELipuMa(lipuMa)
   const lipuIjo = Im.Map(Im.Seq(ijoAle).toKeyedSeq())
   const maIjo = new MaIjo(suliMa, lipuIjo)

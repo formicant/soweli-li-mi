@@ -3,7 +3,7 @@ import { pilinELipuMa } from '../insa/lipuMa'
 import { Musi } from '../insa/musi'
 import { Ijo } from '../insa/ijo'
 
-test.each([
+test.for([
   {
     nimi: 'mi tawa',
     open: {
@@ -62,7 +62,7 @@ test.each([
       ],
     },
   },
-])('musi', ({ nimi, open, nasin, pini }) => {
+])('musi $nimi', ({ nimi, open, nasin, pini }) => {
   const musiOpen = new Musi({ nimi: nimi, ...open })
   const musiPini = musiOpen.tawaNasin(nasin)
   const ijoLon = wekaENanpa(musiPini.tawaNi.lipuIjo.valueSeq().toArray())
