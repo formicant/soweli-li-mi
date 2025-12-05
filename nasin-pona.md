@@ -80,10 +80,10 @@ _tan jan Aldan_
 
 
 ## ma “suno en mun” en “kin la suno en mun”
-_tan jan Arseniiv_ @arseniiv
+_tan jan Aseni_ @arseniiv
 
 ### nasin pona “mun li pini”
-_tan jan Arseniiv_
+_tan jan Aseni_
 ```
 ↓→→↓↓↓→↓←←→→↑→→↓→→↑←←←←↑←↓→→→→→→↑↑←↓→↓←←
 ←←↑←←↓←↑→→→↓←←↑←↓→→→↑↑↑↑→→←←↓↓↓←↓→→→→→↑↑
@@ -91,7 +91,7 @@ _tan jan Arseniiv_
 ```
 
 ### nasin pona “suno li pini”
-_tan jan Arseniiv_
+_tan jan Aseni_
 ```
 ↓→→↓↓↓→↓←←↑↑↑→→→↑↑↑←←↓↓↓↓↓→→→↓→→→↑↑↑↑↑←←
 ←→→→↓↓↓↓←←←←←←↑←↓↑↑→↑↑↑→→↓↓↓↓→↓←←↑←↓→→→→
@@ -114,10 +114,10 @@ _tan jan Formicant_
 
 
 ## ma “sewi jaki”
-_tan jan Arseniiv_
+_tan jan Aseni_
 
 ### nasin pona
-_tan jan Arseniiv_
+_tan jan Aseni_
 ```
 ↓→→→↑↑↑↑→→↓→↓↓←←↓←←←←↑↑↑↑→→←←↓↓↓↓→→→→↑→→
 ↑→←↑←↑←←
