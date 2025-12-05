@@ -82,7 +82,7 @@ _tan jan Aldan_
 ## ma “suno en mun” en “kin la suno en mun”
 _tan jan Arseniiv_ @arseniiv
 
-### nasin pona “”
+### nasin pona “mun li pini”
 _tan jan Arseniiv_
 ```
 ↓→→↓↓↓→↓←←→→↑→→↓→→↑←←←←↑←↓→→→→→→↑↑←↓→↓←←
