@@ -55,9 +55,9 @@ test.for([
   }
   const musiOpen = new Musi(lipuMa)
   
-  for (let i = 0; i < nasinPiniMute.length; i++) {
-    const nasinPini = nasinPiniMute[i]
-    const musiPini = musiOpen.tawaNasin(nasinPini)
-    expect(musiPini.tawaNi.pilin, `nasin pini nanpa ${i}`).toEqual('pini')
+  for (const [nanpa, nasin] of nasinPiniMute.entries()) {
+    const musiPini = musiOpen.tawaNasin(nasin)
+    const pilinPini = musiPini.tawaNi.pilin
+    expect(pilinPini, `nasin pini nanpa ${nanpa}`).toEqual('pini')
   }
 })
