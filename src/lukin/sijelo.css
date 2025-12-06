@@ -1,10 +1,8 @@
-header
-{
+header {
   cursor: pointer;
 }
 
-h1
-{
+h1 {
   margin: 0;
   margin-bottom: -0.1em;
   font-size: 2.5em;
@@ -14,28 +12,31 @@ h1
   line-height: 1em;
 }
 
-h2
-{
+h2 {
   margin: 0;
   font-size: 1.2em;
   font-weight: normal;
-  font-variation-settings: 'wght' 500, 'wdth' 125, 'opsz' 12;
+  font-variation-settings:
+    'wght' 500,
+    'wdth' 125,
+    'opsz' 12;
   text-align: center;
   line-height: 1em;
 }
 
-h3
-{
+h3 {
   margin: 0;
   margin-bottom: 1em;
   font-size: 0.64em;
   font-weight: normal;
-  font-variation-settings: 'wght' 350, 'wdth' 125, 'opsz' 12;
+  font-variation-settings:
+    'wght' 350,
+    'wdth' 125,
+    'opsz' 12;
   text-align: center;
   line-height: 1em;
 }
 
-p
-{
+p {
   margin: 0;
 }

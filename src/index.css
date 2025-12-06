@@ -1,30 +1,34 @@
-@font-face
-{
+@font-face {
   font-family: truculenta;
   /* wght 100.900, wdth 75..125, opsz 12..72 */
   src: url('/linja/Truculenta-VariableFont_opsz,wdth,wght.ttf') format('truetype');
 }
 
-@font-face
-{
+@font-face {
   font-family: linja-pona;
-  src: url('/linja/linja-pona-4.2.woff') format('woff');
+  src: url('/linja/linja-pona-4.9.otf') format('opentype');
 }
 
-@font-face
-{
+@font-face {
   font-family: material-icons;
   src: url('/linja/MaterialIcons.woff2') format('woff2');
 }
 
-body, button
-{
+body,
+button {
   background-color: #ded;
   color: #222;
   font-family: truculenta;
   font-size: 24px;
   font-weight: 400;
-  font-variation-settings: 'wdth' 125, 'opsz' 12;
-  font-feature-settings: 'liga' 1, 'clig' 1, 'calt' 1, 'kern' 1, 'mark' 1;
+  font-variation-settings:
+    'wdth' 125,
+    'opsz' 12;
+  font-feature-settings:
+    'liga' 1,
+    'clig' 1,
+    'calt' 1,
+    'kern' 1,
+    'mark' 1;
   text-rendering: geometricPrecision;
 }

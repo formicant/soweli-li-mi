@@ -1,17 +1,19 @@
-.nimiMa
-{
+.nimiMa {
   text-align: center;
   margin-bottom: 0.25em;
 }
 
-main
-{
+main {
   animation: kamaSuli 0.25s;
   backface-visibility: hidden;
 }
 
-@keyframes kamaSuli
-{ 
-  0%   { transform: scale(0) translateY(-50%); } 
-  100% { transform: scale(1) translateY(0%); } 
+@keyframes kamaSuli {
+  0% {
+    transform: scale(0) translateY(-50%);
+  }
+
+  100% {
+    transform: scale(1) translateY(0%);
+  }
 }

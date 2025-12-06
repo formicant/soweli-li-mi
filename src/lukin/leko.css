@@ -1,5 +1,4 @@
-.leko
-{
+.leko {
   width: 1em;
   height: 1em;
   display: flex;
@@ -14,40 +13,34 @@
   z-index: 1;
 }
 
-.leko.wawa
-{
+.leko.wawa {
   opacity: 1;
   z-index: 2;
 }
 
-.sitelen span
-{
+.sitelen span {
   font-family: linja-pona;
   font-size: 1.125em;
 }
 
-.nimi
-{
+.nimi {
   line-height: 0.75em;
   position: relative;
   transform: scaleX(1.1);
 }
 
-.linjaWan
-{
+.linjaWan {
   font-size: 0.8em;
   font-weight: 330;
   top: -0.02em;
 }
 
-.linjaTu
-{
+.linjaTu {
   font-size: 0.625em;
   font-weight: 360;
   top: -0.07em;
 }
 
-.lonAla
-{
+.lonAla {
   opacity: 0 !important;
 }

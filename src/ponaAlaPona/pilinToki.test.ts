@@ -1,70 +1,51 @@
-import { test, expect } from 'vitest';
-import Im from "immutable";
-import { pilinELipuMa } from '../insa/lipuMa';
-import { MaIjo } from "../insa/maIjo";
-import { panaENasinMusiAli } from '../insa/pilinToki';
-import { tokiENasinMusi } from "../insa/nasinMusi";
+import { test, expect } from 'vitest'
+import Im from 'immutable'
+import { pilinELipuMa } from '../insa/lipuMa'
+import { MaIjo } from '../insa/maIjo'
+import { panaENasinMusiAle } from '../insa/pilinToki'
+import { tokiENasinMusi } from '../insa/nasinMusi'
 
-test.each([
+test.for([
   {
     lipuMa: {
       nimi: 'nasin wan',
-      ma: ['Soweli Li Mi']
+      ma: ['soweli li mi'],
     },
-    nasinMusi: ['soweli li mi']
+    nasinMusi: ['soweli li mi'],
   },
-  
   {
     lipuMa: {
       nimi: 'linja anpa en linja poka',
-      ma: [
-        ' .  SOW  . ',
-        'TOM LI  PIN',
-        ' .  MI   . ',
-      ]
+      ma: [' .  sow  . ', 'tom li  pin', ' .  mi   . '],
     },
-    nasinMusi: [
-      'soweli li mi',
-      'tomo li pini',
-    ]
+    nasinMusi: ['soweli li mi', 'tomo li pini'],
   },
-  
   {
     lipuMa: {
       nimi: 'nasin mute lon linja wan',
-      ma: ['.Kal Lon Kon En Ma Li Mol Kas Pip En Ake Li Mi En Wek.tel En Kiw Li Taw.']
+      ma: ['.kal lon kon lon ma li mol kas pip en ake li mi en wek.TEL en kiw li taw.'],
     },
-    nasinMusi: [
-      'kala lon kon en ma li moli',
-      'akesi en pipi li mi',
-      'kiwen li tawa',
-    ],
+    nasinMusi: ['kala lon kon lon ma li moli', 'akesi en pipi li mi', 'kiwen li tawa'],
   },
-  
   {
     lipuMa: {
       nimi: 'pali ike nasa',
-      ma: [
-        ' .  .  . KAL',
-        ' .  .  . LI ',
-        ' .  .  . WEK',
-      ]
+      ma: [' .  .  . kal', ' .  .  . li ', ' .  .  . wek'],
     },
     nasinMusi: ['kala li weka'],
   },
-  
   // O PALI: leko wan li wile ken jo e nimi mute!
   // {
   //   lipuMa: {
   //     nimi: 'nimi mute lon leko wan',
   //     ma: ['1 2 3 4 5 6 7'],
   //     namako: {
-  //       '1': '          Soweli',
-  //       '2': 'Tomo      Li    ',
-  //       '3': 'Li        Mi    ',
-  //       '4': 'Pini  Nimi  Supa',
-  //       '5': 'Kiwen     Li    ',
-  //       '6': 'Li    Tawa  Moli',
+  //       '1': '          soweli',
+  //       '2': 'tomo      li    ',
+  //       '3': 'li        mi    ',
+  //       '4': 'pini  nimi  supa',
+  //       '5': 'kiwen     li    ',
+  //       '6': 'li    tawa  moli',
   //       '7': 'Awen            ',
   //     }
   //   },
@@ -78,14 +59,12 @@ test.each([
   //     'kiwen li awen',
   //   ]
   // },
-  
-])('', ({ lipuMa, nasinMusi }) =>
-{
-  const { suliMa, ijoAli } = pilinELipuMa(lipuMa);
-  const lipuIjo = Im.Map(Im.Seq(ijoAli).toKeyedSeq());
-  const maIjo = new MaIjo(suliMa, lipuIjo);
-  const nasinMusiAli = panaENasinMusiAli(maIjo);
-  const toki = nasinMusiAli.map(tokiENasinMusi);
-  
-  expect(toki.sort()).toEqual(nasinMusi.sort());
-});
+])('pilin toki $lipuMa.nimi', ({ lipuMa, nasinMusi }) => {
+  const { suliMa, ijoAle } = pilinELipuMa(lipuMa)
+  const lipuIjo = Im.Map(Im.Seq(ijoAle).toKeyedSeq())
+  const maIjo = new MaIjo(suliMa, lipuIjo)
+  const nasinMusiAle = panaENasinMusiAle(maIjo)
+  const toki = nasinMusiAle.map(tokiENasinMusi)
+
+  expect(toki.sort()).toEqual(nasinMusi.sort())
+})

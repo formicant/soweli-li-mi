@@ -1,5 +1,4 @@
-.ma
-{
+.ma {
   background-color: #fff;
   margin: 0 auto;
   padding: 0;
@@ -9,8 +8,7 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px -10px;
 }
 
-.pini
-{
+.pini {
   position: absolute;
   background: radial-gradient(rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0));
   z-index: 3;
@@ -20,33 +18,38 @@
   animation: kamaLukin ease-out 1s;
 }
 
-.pona
-{
+.pona {
   color: #f41;
   text-align: center;
   text-shadow: #fff 0 10px 0;
 }
 
-.pona.sitelen
-{
+.pona.sitelen {
   font-family: linja-pona;
   font-size: 3em;
   animation: sikePoka 0.5s ease-in-out alternate infinite;
 }
 
-.pona.toki
-{
+.pona.toki {
   font-size: 2em;
 }
 
-@keyframes kamaLukin
-{ 
-  0%   { opacity: 0; } 
-  100% { opacity: 1; } 
+@keyframes kamaLukin {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
-@keyframes sikePoka
-{ 
-  0%   { transform:rotate(-15deg); } 
-  100% { transform:rotate(15deg); } 
+@keyframes sikePoka {
+  0% {
+    transform: rotate(-15deg);
+  }
+
+  100% {
+    transform: rotate(15deg);
+  }
 }
