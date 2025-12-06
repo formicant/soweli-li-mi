@@ -72,10 +72,10 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi {
     }
   }
 
-  tawaPalisa(nasin: NasinTawa): Musi {
+  tawaNena(nasin: NasinTawa): Musi {
     const tawaNi = this.tawaNi
-    if (tawaNi.pilin !== 'palisa') {
-      throw Error('ken ala tawaPalisa!')
+    if (tawaNi.pilin !== 'nena') {
+      throw Error('ken ala tawaNena!')
     }
     return this.tawa(nasin, paliTawaMi, this.tenpoNi + 1)
   }
@@ -98,7 +98,7 @@ export class Musi extends Im.Record<IMusi>(musiAla) implements IMusi {
     } // tokiNasin li ala anu ike
 
     function tawaWan(musi: Musi, nasinTawa: NasinTawa) {
-      let musiSin = musi.tawaPalisa(nasinTawa)
+      let musiSin = musi.tawaNena(nasinTawa)
       while (musiSin.tawaNi.pilin === 'tawa') {
         musiSin = musiSin.tawaTawa()
       }

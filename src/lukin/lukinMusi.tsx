@@ -1,7 +1,7 @@
 import './lukinMusi.css'
 import { Component } from 'react'
 import { Musi } from '../insa/musi'
-import { IloPalisa, Palisa } from './iloPalisa'
+import { IloNena, Nena } from './iloNena'
 import { Ma } from './ma'
 import { Tenpo } from './tenpo'
 import { liNasinTawa } from '../insa/lon'
@@ -37,7 +37,7 @@ export class LukinMusi extends Component<JoPiLukinMusi, { musi: Musi }> {
           tenpoNanpaLa={this.lukaTenpoNanpa}
           panaTanPokiLa={this.lukaPanaTanPoki}
         />
-        <IloPalisa palisaLa={this.lukaPalisa} />
+        <IloNena nenaLa={this.lukaNena} />
         {tawaNi.pilin === 'tawa' && <IloTenpo tenpoLa={this.lukaIloTenpo} />}
       </main>
     )
@@ -51,18 +51,18 @@ export class LukinMusi extends Component<JoPiLukinMusi, { musi: Musi }> {
   private lukaPanaTanPoki = (nasin: string) =>
     this.setState({ musi: this.state.musi.sinETenpoAle(nasin) })
 
-  private lukaPalisa = (palisa: Palisa) => {
-    if (!liNasinTawa(palisa) || this.state.musi.tawaNi.pilin === 'palisa') {
-      const pali = this.paliPalisa[palisa]
+  private lukaNena = (nena: Nena) => {
+    if (!liNasinTawa(nena) || this.state.musi.tawaNi.pilin === 'nena') {
+      const pali = this.paliNena[nena]
       this.setState({ musi: pali(this.state.musi) })
     }
   }
 
-  private paliPalisa: Record<Palisa, (musi: Musi) => Musi> = {
-    '↑':    musi => musi.tawaPalisa('↑'),
-    '↓':    musi => musi.tawaPalisa('↓'),
-    '←':    musi => musi.tawaPalisa('←'),
-    '→':    musi => musi.tawaPalisa('→'),
+  private paliNena: Record<Nena, (musi: Musi) => Musi> = {
+    '↑':    musi => musi.tawaNena('↑'),
+    '↓':    musi => musi.tawaNena('↓'),
+    '←':    musi => musi.tawaNena('←'),
+    '→':    musi => musi.tawaNena('→'),
     monsi:  musi => musi.tenpoMonsi(),
     sinpin: musi => musi.tenpoSinpin(),
     open:   musi => musi.tenpoMonsi(true),

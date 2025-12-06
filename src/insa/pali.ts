@@ -116,7 +116,7 @@ export function panaEPilinMusi(suliMa: Lon, lonPali: LonPali) {
   } else if (liTawa(suliMa, lonPali)) {
     return 'tawa'
   } else {
-    return 'palisa'
+    return 'nena'
   }
 }
 

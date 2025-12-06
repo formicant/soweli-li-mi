@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { NasinTawa } from '../insa/lon'
-import { panaENimiPalisa } from './iloPalisa'
+import { panaENimiNena } from './iloNena'
 import './tenpo.css'
 
 interface JoTenpo {
@@ -57,13 +57,13 @@ function Tawa({ nasinTawa, nanpaTanNi, paliLa }: JoTawa) {
   const nimiNanpa = nanpaTawa <= 2 ? (nanpaTawa === 1 ? 'wan' : 'tu') : 'mute'
   const sinpinAnuMonsi = nanpaTanNi > 0 ? 'sinpin' : 'monsi'
   const insaLinja = '\n'
-  const palisa =
-    nanpaTawa === 1 ? `${insaLinja}palisa ${panaENimiPalisa(sinpinAnuMonsi).join(' anu ')}` : ''
+  const nena =
+    nanpaTawa === 1 ? `${insaLinja}nena ${panaENimiNena(sinpinAnuMonsi).join(' anu ')}` : ''
   const toki = nasinTawa
     ? nanpaTanNi === 0
       ? 'tenpo ni'
-      : `tawa ${nimiNanpa} ${sinpinAnuMonsi}${palisa}`
-    : `open musi${insaLinja}palisa ${panaENimiPalisa('open').join(' anu ')}`
+      : `tawa ${nimiNanpa} ${sinpinAnuMonsi}${nena}`
+    : `open musi${insaLinja}nena ${panaENimiNena('open').join(' anu ')}`
 
   return (
     <div className="tawa">

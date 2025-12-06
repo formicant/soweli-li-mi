@@ -8,9 +8,9 @@ import { panaENasinMusiAle } from './pilinToki'
 import { Pali, panaEPilinMusi } from './pali'
 
 export type PilinMusi =
-  | 'pini'   // musi li pini pona
-  | 'palisa' // jan musi li ken kepeken e ilo palisa
-  | 'tawa'   // musi li wile tawa sin
+  | 'pini' // musi li pini pona
+  | 'nena' // jan musi li ken kepeken e nena
+  | 'tawa' // musi li wile tawa sin
 
 interface ITawa {
   readonly nasin: NasinTawa | undefined
